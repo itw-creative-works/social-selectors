@@ -1,7 +1,7 @@
-{
-  "name": "ultimate-jekyll",
+social-selectors{
+  "name": "social-selectors",
   "version": "0.0.13",
-  "description": "Ultimate Jekyll starter project including full setup for gulp, Sass, Autoprefixer, PostCSS, webpack, imagemin, Browsersync etc.",
+  "description": "A library of selectors for CSS elements on social media sites.",
   "main": "module/index.js",
   "scripts": {
     "preinstall": "bundle install --path vendor/bundle",
@@ -20,11 +20,11 @@
     "lighthouse": "lighthouse --output json --output html --output-path ./@output/regular/lighthouse-report.html && echo Generated lighthouse report!"
   },
   "engines": {
-    "node": ">=10.15.1"
+    "node": ">=6.0.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/itw-creative-works/ultimate-jekyll.git"
+    "url": "https://github.com/itw-creative-works/social-selectors.git"
   },
   "keywords": [
     "Autoprefixer",
@@ -39,9 +39,9 @@
   "author": "ITW Creative Works",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/itw-creative-works/ultimate-jekyll/issues"
+    "url": "https://github.com/itw-creative-works/social-selectors/issues"
   },
-  "homepage": "https://template.itwcreativeworks.com",
+  "homepage": "https://social-selectors.itwcreativeworks.com",
   "devDependencies": {
     "@babel/core": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
