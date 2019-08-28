@@ -1,4 +1,4 @@
-social-selectors{
+{
   "name": "social-selectors",
   "version": "0.0.13",
   "description": "A library of selectors for CSS elements on social media sites.",
