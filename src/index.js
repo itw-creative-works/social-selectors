@@ -19,8 +19,9 @@
   // attach properties to the exports object to define
   // the exported module properties.
 
-  var PATH_SERVER = 'https://social-selectors.itwcreativeworks.com/module/';
-  var PATH_LOCAL = './module/';
+  // var PATH_SERVER = 'https://social-selectors.itwcreativeworks.com/module/';
+  var PATH_SERVER = 'https://cdn.jsdelivr.net/npm/social-selectors/module/libraries/';
+  var PATH_LOCAL = './libraries/';
 
   // if ((typeof window !== 'undefined') && (window.XMLHttpRequest || XMLHttpRequest || ActiveXObject)) {
   //   environment = 'browser';
@@ -36,9 +37,6 @@
   //   } catch (e) {
   //   }
   // }
-  //NEW 2
-  //NEW 2
-  //NEW 2
 
   function SocialSelectors(options) {
     this.library = {};
@@ -50,6 +48,7 @@
     // console.log('$$$ LOAD');
 
     payload = payload || {};
+    payload.debug = typeof payload.debug !== 'undefined' ? typeof payload.debug : false;
     payload.environment = payload.environment || environment || 'browser';
     payload.location = payload.location || 'local';
     payload.library = payload.library || '';
@@ -76,6 +75,9 @@
       workingPath = (payload.location == 'local') ? PATH_LOCAL : PATH_SERVER;
       workingPath = (payload.path) ? payload.path : workingPath;
       workingPath = workingPath + payload.library + '/' + payload.device + '.json' + payload.cacheBreaker;
+      if (payload.debug) {
+        console.log('Working path = ', workingPath);
+      }
 
       return new Promise(function(resolve, reject) {
         if (payload.location == 'local') {
