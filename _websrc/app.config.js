@@ -1,14 +1,14 @@
 module.exports = {
   tasks: {
-    sample: true,
+    main: true,
   },
   watch: function(gulp, watch) {
     return [
 
       watch([
-        './appTask/src/**/*',
+        './src/**/*',
       ], function () {
-        gulp.start('sample');
+        gulp.start('main');
       })
 
     ]

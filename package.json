@@ -1,8 +1,8 @@
 {
   "name": "ultimate-jekyll",
-  "version": "1.0.0",
+  "version": "0.0.13",
   "description": "Ultimate Jekyll starter project including full setup for gulp, Sass, Autoprefixer, PostCSS, webpack, imagemin, Browsersync etc.",
-  "main": "index.js",
+  "main": "module/index.js",
   "scripts": {
     "preinstall": "bundle install --path vendor/bundle",
     "start": "bundle exec gulp",
@@ -55,6 +55,7 @@
     "gulp-cached": "^1.1.1",
     "gulp-eslint": "^5.0.0",
     "gulp-imagemin": "^4.1.0",
+    "gulp-jsonminify": "^1.1.0",
     "gulp-newer": "^1.4.0",
     "gulp-plumber": "^1.2.0",
     "gulp-postcss": "^7.0.1",

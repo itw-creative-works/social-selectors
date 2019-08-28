@@ -1,0 +1,47 @@
+{
+  "globals": {
+    "nav": {
+      "comment": "//same structure as page from below section"
+    },
+    "indicators": {
+      "loggedIn": "LOGGED IN EL"
+    }
+  },
+  "pages": {
+    "home": {
+      "meta": {
+        "url": "REGEX HERE",
+        "indicator": "ELEMENT TO INDICATE HOME"
+      },
+      "elements": {
+        "buttons": {
+
+        },
+        "metrics": {
+
+        }
+      },
+      "indicators": {
+
+      }
+    },
+    "feed": {
+
+    },
+    "profile": {
+
+    },
+    "post": {
+
+    },
+    "private": {
+
+    },
+    "error": {
+
+    }
+  }
+}
+
+/* Comment test */
+// Comment test
