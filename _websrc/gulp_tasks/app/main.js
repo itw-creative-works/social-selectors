@@ -22,10 +22,15 @@ var source_index = './src';
 var source_json = './src/libraries';
 var destination = './module';
 
-gulp.task('main', function() {
-  gulp.src(source_index + '/index.js', {base: source_index})
-    .pipe(watch(source_index, {base: source_index}))
+
+gulp.task('copy', function() {
+  return gulp.src(source_index + '/index.js', {base: source_index})
+    // .pipe(watch(source_index, {base: source_index}))
     .pipe(gulp.dest(destination));
+});
+
+
+gulp.task('jsonMinify', function() {
 
   // gulp.src(source_json + '/*.json', {base: source_json})
   //     .pipe(jsonminify())

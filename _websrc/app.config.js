@@ -1,14 +1,15 @@
 module.exports = {
   tasks: {
-    main: true,
+    copy: true,
+    jsonMinify: true,
   },
   watch: function(gulp, watch) {
     return [
 
       watch([
-        './src/**/*',
+        './src/index.js',
       ], function () {
-        gulp.start('main');
+        gulp.start('copy');
       })
 
     ]
