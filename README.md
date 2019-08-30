@@ -56,7 +56,6 @@ SocialSelectors.load({
 
 ```
 
-
 ## What Can SocialSelectors do?
 SocialSelectors is an API that provides an up-to-date library of CSS selectors for elements on social media sites.
 
