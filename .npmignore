@@ -39,3 +39,5 @@ gulpfile.js
 
 # App files
 ### INCLUDE APP FILES HERE ###
+/src
+*.png
