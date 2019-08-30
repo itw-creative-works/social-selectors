@@ -26,8 +26,8 @@
 </div>
 
 ## Supported Sites
-* Twitter
-* Instagram _(coming soon!)_
+* Instagram
+* Twitter _(coming soon!)_
 * SoundCloud _(coming soon!)_
 * _more coming soon!_
 
@@ -42,17 +42,18 @@ npm install social-selectors
 ```js
 const SocialSelectors = new (require('social-selectors'));
 SocialSelectors.load({
-  library: 'twitter', // The social media site you want to load
-  location: 'local', // Load the local library or hosted library (local | hosted).
+  library: 'instagram', // The social media site you want to load
+  location: 'hosted', // Load the local library or hosted library (local | hosted).
 })
 .then(function (data) { // This function runs only on success
   console.log('Success!', data);
+  const followButton = SocialSelectors.get('pages.profile.elements.followButton.normal.selector'); // Get the CSS Selector for the follow button on a profile
+  console.log(followButton);
 })
 .catch(function (error) { // This function runs only on error
   console.log('Fail!', error);
 });
 
-const likeButton = SocialSelectors.get('pages.post.elements.buttons.like'); // Get the CSS Selector for the like button on a post
 ```
 
 ## What Can SocialSelectors do?

@@ -52,7 +52,7 @@
     payload.environment = payload.environment || environment || 'browser';
     payload.location = payload.location || 'local';
     payload.library = payload.library || '';
-    payload.device = payload.device || 'main';
+    payload.device = payload.device || 'desktop';
     payload.path = payload.path || ''; // Overwrite existing hardcoded paths
     if (payload.cacheBreaker === true) {
       payload.cacheBreaker = '?cb=' + Date.now();
@@ -76,7 +76,7 @@
       workingPath = (payload.path) ? payload.path : workingPath;
       workingPath = workingPath + payload.library + '/' + payload.device + '.json' + payload.cacheBreaker;
       if (payload.debug) {
-        console.log('Working path = ', workingPath);
+        console.log('Working path:', workingPath);
       }
 
       return new Promise(function(resolve, reject) {
@@ -145,7 +145,17 @@
       .split('.')
       .filter(Boolean);
 
-    return revive(fullPath.every(everyFunc) ? obj : def);
+    // return revive(fullPath.every(everyFunc) ? obj : def);
+    var workingVal = fullPath.every(everyFunc) ? obj : def;
+    if ((typeof workingVal === 'string') && (workingVal.indexOf('$') == 0)) {
+      if ((workingVal.indexOf('$get(') == 0)) {
+        workingVal = This.get(workingVal.slice(0, -1).substring(5));
+      } else if (workingVal.indexOf('$new(') == 0) {
+
+      }
+    }
+    return revive(workingVal);
+
 
     function everyFunc(step) {
       return !(step && (obj = obj[step]) === undefined);
