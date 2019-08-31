@@ -40,9 +40,14 @@
 
 
   function SocialSelectors(options) {
+    this.loaded = false;
     this.library = {};
     this.error = false;
     this.options = options || {};
+  };
+
+  SocialSelectors.prototype.isLoaded = function(payload) {
+    return this.loaded;
   };
 
   SocialSelectors.prototype.load = function(payload) {
@@ -67,6 +72,7 @@
 
     var workingPath = '';
     This.library = {};
+    This.loaded = false;
     This.error = false;
 
     if (payload.environment == 'browser') {
@@ -74,8 +80,10 @@
     } else if (payload.environment == 'node') {
       // console.log('$$$ NODE');
       workingPath = (payload.location == 'local') ? PATH_LOCAL : PATH_SERVER;
+      workingPath = workingPath + payload.library + '/' + payload.device + '.json';
       workingPath = (payload.path) ? payload.path : workingPath;
-      workingPath = workingPath + payload.library + '/' + payload.device + '.json' + payload.cacheBreaker;
+      workingPath += payload.cacheBreaker;
+
       if (payload.debug) {
         console.log('Working path:', workingPath);
       }
@@ -86,40 +94,62 @@
           try {
             This.library = require(workingPath);
             This.library = (typeof This.library === 'string') ? JSON.parse(This.library) : This.library;
+            This.loaded = true;
             This.error = false;
             resolve(This.library);
           } catch (e) {
             This.library = e;
+            This.loaded = false;
             This.error = e;
             reject(e);
           }
         } else if (payload.location == 'hosted') {
           var https = require('https');
+          var full = '';
           https.get(workingPath, function(res) {
             // console.log('statusCode:', res.statusCode);
             // console.log('headers:', res.headers);
+            res.on('data', function(chunk) {
+              full += chunk;
+            });
 
-            res.on('data', function(data) {
-              // process.stdout.write(d);
-              // console.log('data', data);
-              var processed = data.toString();
-              // console.log('data.toString()', processed);
-              // console.log('JSON.parse', JSON.parse(processed));
-
+            res.on('end', function() {
               try {
-                This.library = JSON.parse(processed);
+                This.library = JSON.parse(full.toString());
+                This.loaded = true;
                 This.error = false;
                 resolve(This.library);
               } catch (e) {
                 This.library = e;
+                This.loaded = false;
                 This.error = e;
                 console.error(e);
                 reject(e);
               }
             });
 
+            // res.on('data', function(data) {
+            //   // process.stdout.write(d);
+            //   // console.log('data', data);
+            //   var processed = data.toString();
+            //   // console.log('data.toString()', processed);
+            //   // console.log('JSON.parse', JSON.parse(processed));
+            //
+            //   try {
+            //     This.library = JSON.parse(processed);
+            //     This.error = false;
+            //     resolve(This.library);
+            //   } catch (e) {
+            //     This.library = e;
+            //     This.error = e;
+            //     console.error(e);
+            //     reject(e);
+            //   }
+            // });
+
           }).on('error', function(e) {
             This.library = e;
+            This.loaded = false;
             This.error = e;
             console.error(e);
             reject(e);

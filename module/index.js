@@ -37,7 +37,7 @@
   //   } catch (e) {
   //   }
   // }
-  
+
 
   function SocialSelectors(options) {
     this.library = {};
@@ -95,19 +95,17 @@
           }
         } else if (payload.location == 'hosted') {
           var https = require('https');
+          var full = '';
           https.get(workingPath, function(res) {
             // console.log('statusCode:', res.statusCode);
             // console.log('headers:', res.headers);
+            res.on('data', function(chunk) {
+              full += chunk;
+            });
 
-            res.on('data', function(data) {
-              // process.stdout.write(d);
-              // console.log('data', data);
-              var processed = data.toString();
-              // console.log('data.toString()', processed);
-              // console.log('JSON.parse', JSON.parse(processed));
-
+            res.on('end', function() {
               try {
-                This.library = JSON.parse(processed);
+                This.library = JSON.parse(full.toString());
                 This.error = false;
                 resolve(This.library);
               } catch (e) {
@@ -117,6 +115,25 @@
                 reject(e);
               }
             });
+
+            // res.on('data', function(data) {
+            //   // process.stdout.write(d);
+            //   // console.log('data', data);
+            //   var processed = data.toString();
+            //   // console.log('data.toString()', processed);
+            //   // console.log('JSON.parse', JSON.parse(processed));
+            //
+            //   try {
+            //     This.library = JSON.parse(processed);
+            //     This.error = false;
+            //     resolve(This.library);
+            //   } catch (e) {
+            //     This.library = e;
+            //     This.error = e;
+            //     console.error(e);
+            //     reject(e);
+            //   }
+            // });
 
           }).on('error', function(e) {
             This.library = e;
