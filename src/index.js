@@ -50,9 +50,10 @@
     return this.loaded;
   };
 
+
   SocialSelectors.prototype.load = function(payload) {
     // console.log('$$$ LOAD');
-
+    this.extra = '1';
     payload = payload || {};
     payload.debug = typeof payload.debug !== 'undefined' ? typeof payload.debug : false;
     payload.environment = payload.environment || environment || 'browser';
@@ -178,13 +179,15 @@
 
     // return revive(fullPath.every(everyFunc) ? obj : def);
     var workingVal = fullPath.every(everyFunc) ? obj : def;
-    if ((typeof workingVal === 'string') && (workingVal.indexOf('$') == 0)) {
-      if ((workingVal.indexOf('$get(') == 0)) {
-        workingVal = This.get(workingVal.slice(0, -1).substring(5));
-      } else if (workingVal.indexOf('$new(') == 0) {
+    // if ((typeof workingVal === 'string') && (workingVal.indexOf('$') == 0)) {
+    //   if ((workingVal.indexOf('$get(') == 0)) {
+    //     workingVal = This.get(workingVal.slice(0, -1).substring(5));
+    //   } else if (workingVal.indexOf('$new(') == 0) {
+    //
+    //   }
+    // }
 
-      }
-    }
+    workingVal = parseTriggers(This, workingVal);
     return revive(workingVal);
 
 
@@ -199,6 +202,23 @@
     return (value && (typeof value === 'string') && value.indexOf("function") === 0)
       ? new Function('return ' + value)()
       : value;
+  }
+
+  function parseTriggers(This, workingVal) {
+
+    var triggers = ['$get', '$new'];
+
+    if (((typeof workingVal === 'string') && (triggers.some(function(v) { return workingVal.indexOf(v) >= 0; })))) {
+      workingVal = ' ' + workingVal + ' ';
+      var occurances = (workingVal.match(/\$get\(/g) || []).length
+      for (var i = 0; i < occurances; i++) {
+        var workingValArray = workingVal.match(/(?<=\$get\().*?(?=\)\s)/)
+        workingVal = workingVal.replace('$get(' + workingValArray + ') ', This.get(workingValArray + '') + ' ');
+      }
+      workingVal = workingVal.trim();
+    }
+    return workingVal;
+
   }
 
   return SocialSelectors; // Enable if using UMD
