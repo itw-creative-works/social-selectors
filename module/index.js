@@ -44,6 +44,7 @@
     this.library = {};
     this.error = false;
     this.options = options || {};
+    this.options.debug = (typeof this.options.debug !== 'undefined') ? options.debug : false;
   };
 
   SocialSelectors.prototype.isLoaded = function(payload) {
@@ -68,6 +69,9 @@
     } else {
       payload.cacheBreaker = '';
     }
+
+    // options
+    this.options.debug = payload.debug;
 
     var This = this;
 
@@ -162,6 +166,16 @@
 
   }
 
+  var parseDELETE = function (req) {
+    var result;
+    try {
+      result = JSON.parse(req.responseText);
+    } catch (e) {
+      result = req.responseText;
+    }
+    return [result, req];
+  };
+
   SocialSelectors.prototype.get = function(path, def) {
     var This = this;
     var response = def || '';
@@ -178,7 +192,16 @@
       .filter(Boolean);
 
     // return revive(fullPath.every(everyFunc) ? obj : def);
-    var workingVal = fullPath.every(everyFunc) ? obj : def;
+    var workingVal;
+    if (fullPath.every(everyFunc)) {
+      workingVal = obj;
+    } else {
+      workingVal = def;
+      if (This.options.debug) {
+        console.error("Could not access path, maybe it's incorrect?", path);
+      }
+    }
+
     // if ((typeof workingVal === 'string') && (workingVal.indexOf('$') == 0)) {
     //   if ((workingVal.indexOf('$get(') == 0)) {
     //     workingVal = This.get(workingVal.slice(0, -1).substring(5));
@@ -210,10 +233,17 @@
 
     if (((typeof workingVal === 'string') && (triggers.some(function(v) { return workingVal.indexOf(v) >= 0; })))) {
       workingVal = ' ' + workingVal + ' ';
-      var occurances = (workingVal.match(/\$get\(/g) || []).length
-      for (var i = 0; i < occurances; i++) {
-        var workingValArray = workingVal.match(/(?<=\$get\().*?(?=\)\s)/)
-        workingVal = workingVal.replace('$get(' + workingValArray + ') ', This.get(workingValArray + '') + ' ');
+            // var occurances = (workingVal.match(/\$get\(/g) || []).length
+            // for (var i = 0; i < occurances; i++) {
+            //   // var workingValArray = workingVal.match(/(?<=\$get\().*?(?=\)\s)/)
+            //   var workingValArray = workingVal.match(/(?=\$get\().*?(?=\)\s)/)
+            //   console.log(workingValArray);
+            //   workingVal = workingVal.replace('$get(' + workingValArray + ') ', This.get(workingValArray + '') + ' ');
+            // }
+      var valMatches = workingVal.match(/(?:\$get\().*?(?=\)\s)/g)
+      for (var i = 0; i < valMatches.length; i++) {
+        valMatches[i] = valMatches[i].replace('$get(', '')
+        workingVal = workingVal.replace('$get(' + valMatches[i] + ') ', This.get(valMatches[i]) + ' ')
       }
       workingVal = workingVal.trim();
     }

@@ -1,0 +1,14 @@
+{
+  "regular_1": "REGULAR_1",
+  "regular_2": "REGULAR_2",
+  "nest": {
+    "nested_1": "NESTED_1"
+  },
+  "parentheses(in)name": "PAR_IN_NAME",
+
+  "compound_1": "$get(regular_1)",
+  "compound_2": "$get(regular_1) MORE_AT_END",
+  "compound_3": "MORE_AT_BEG $get(regular_1)",
+  "compound_4": "$get(regular_1) $get(regular_2)",
+  "compound_5": "$get(parentheses(in)name) $get(regular_2)",
+}
