@@ -10,5 +10,5 @@
   "compound_2": "$get(regular_1) MORE_AT_END",
   "compound_3": "MORE_AT_BEG $get(regular_1)",
   "compound_4": "$get(regular_1) $get(regular_2)",
-  "compound_5": "$get(parentheses(in)name) $get(regular_2)",
+  "compound_5": "$get(parentheses(in)name) $get(regular_2)"
 }
