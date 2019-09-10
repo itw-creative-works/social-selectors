@@ -1,0 +1,239 @@
+{
+  "globals": {
+    "indicators": {
+      "loggedIn": {
+        "selector": "",
+        "regex:": ""
+      },
+      "viewingPopup": {
+        "selector": ""
+      },
+      // "viewingNotificationPopup": {
+      //   "selector": "._7UhW9.x-6xq.yUEEX.KV-D4.uL8Hv"
+      // }
+
+    },
+    "elements": {
+      "nav": {
+        "profile": {
+          "selector": ""
+        }
+      },
+    }
+  },
+  "pages": {
+    // Home
+    "home": {
+
+    },
+
+    // Feed
+    "feed": {
+      "meta": {
+        "url": {
+          "regex": ""
+        },
+        "element": {
+          "selector": ""
+        }
+      },
+      "indicators": {
+
+      },
+      "elements": {
+        "profileLink(array)": {
+          "selector": "" // Profile link on a post
+        }
+      }
+    },
+    // Profile
+    "profile": {
+      "meta": {
+        "url": {
+          "regex": ""
+        },
+        "element": {
+          "selector": ""
+        }
+      },
+      "indicators": {
+        // Example:
+        "isPrivate": {
+          "selector": ""
+        },
+        "isFollowing": {
+          "normal": {
+            "selector": "$"
+          },
+          "back": {
+            "selector": ""
+          },
+          "private": {
+            "selector": ""
+          }
+        },
+        // "isFollowedBy": {
+        //   "normal": {
+        //     "selector": ""
+        //   },
+        //   "back": {
+        //     "selector": ""
+        //   },
+        //   "private": {
+        //     "selector": ""
+        //   }
+        // },
+      },
+      "elements": {
+        // Interactables
+        "followButton": {
+          "normal": {
+            "selector": ""
+          },
+          "back": {
+            "selector": "" // Example:
+          },
+          "private": {
+            "selector": ""
+          }
+        },
+        "unfollowButton": {
+          "normal": {
+            "selector": ""
+          },
+          "back": {
+            "selector": "" // Example: (while on SoundGrail)  https://www.instagram.com/kiruemusic/
+          },
+          "private": {
+            "selector": ""
+          }
+        },
+        "postLink(array)": {
+          "selector": ""
+        },
+        // Metrics
+        "postCount": {
+          "selector": ""
+        },
+        "followerCount": {
+          "selector": ""
+        },
+        "followingCount": {
+          "selector": ""
+        },
+      }
+    },
+    // Post
+    "post": {
+      // Example: https://www.instagram.com/p/B1h9yPJnEL_/
+      "meta": {
+        "url": {
+          "regex": ""
+        },
+        "element": {
+          "selector": ""
+        }
+      },
+      "indicators": {
+        "isLiked": {
+          "selector": ""
+        },
+        "isFollowing": {
+          "normal": {
+            "selector": "",
+          }
+        },
+
+        "isLikesBoxOpen": {
+          "selector": ""
+        },
+      },
+      "elements": {
+        "posterUsername": {
+          "selector": ""
+        },
+        "likeButton": {
+          "selector": ""
+        },
+        "unlikeButton": {
+          "selector": "" // Same as likeButton so must check isLiked before performing!
+        },
+        "followButton": {
+          "normal": {
+            "selector": ""
+          }
+        },
+        "unfollowButton": {
+          "normal": {
+            "selector": ""
+          }
+        },
+        "unfollowConfirmationButton": {
+          "selector": ""
+        },
+
+        "loadCommentsButton": {
+          "selector": ""
+        },
+        "commentFeed": {
+          "selector": ""
+        },
+        "viewLikesButton": {
+          "selector": "" // Only brings up the like box if there's at least 1 like already!
+        },
+        "viewLikesBoxFeed": {
+          "selector": ""
+        },
+        "viewLikesBoxProfileLink(array)": {
+          "selector": ""
+        },
+        // Metrics
+        "likeCount": {
+          "selector": ""
+        },
+        "datePosted": {
+          "selector": ""
+        },
+      },
+
+    },
+
+    // Search
+    "search": {
+      // Example: https://www.instagram.com/explore/tags/cats/
+      "meta": {
+        "url": {
+          // "regex": "/https:\/\/instagram.com\/p\//"
+        },
+        "element": {
+          // "selector": ""
+        }
+      },
+      "indicators": {
+
+      },
+      "elements": {
+        "postLink(array)": {
+          "selector": ""
+        },
+      },
+
+    },
+
+    // Error
+    "error": {
+      "meta": {
+        "url": {
+          "regex": ""
+        },
+        "element": {
+          "selector": "" // Example:
+        }
+      },
+    }
+
+  }
+}
+
+/* Comment test */
+// Comment test

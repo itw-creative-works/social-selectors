@@ -60,7 +60,7 @@
     payload.environment = payload.environment || environment || 'browser';
     payload.location = payload.location || 'local';
     payload.library = payload.library || '';
-    payload.device = payload.device || 'desktop';
+    payload.device = payload.device || 'main';
     payload.path = payload.path || ''; // Overwrite existing hardcoded paths
     if (payload.cacheBreaker === true) {
       payload.cacheBreaker = '?cb=' + Date.now();
@@ -89,7 +89,7 @@
       workingPath = (payload.path) ? payload.path : workingPath;
       workingPath += payload.cacheBreaker;
 
-      if (payload.debug) {
+      if (This.options.debug) {
         console.log('Working path:', workingPath);
       }
 
@@ -101,6 +101,9 @@
             This.library = (typeof This.library === 'string') ? JSON.parse(This.library) : This.library;
             This.loaded = true;
             This.error = false;
+            if (This.options.debug) {
+              console.log('Loaded library:', This.library);
+            }
             resolve(This.library);
           } catch (e) {
             This.library = e;
@@ -109,9 +112,9 @@
             reject(e);
           }
         } else if (payload.location == 'hosted') {
-          var https = require('https');
+          var request = (workingPath.substring(0,5).indexOf('https') > -1) ? require('https') : require('http');
           var full = '';
-          https.get(workingPath, function(res) {
+          request.get(workingPath, function(res) {
             // console.log('statusCode:', res.statusCode);
             // console.log('headers:', res.headers);
             res.on('data', function(chunk) {
@@ -123,6 +126,9 @@
                 This.library = JSON.parse(full.toString());
                 This.loaded = true;
                 This.error = false;
+                if (This.options.debug) {
+                  console.log('Loaded library:', This.library);
+                }
                 resolve(This.library);
               } catch (e) {
                 This.library = e;

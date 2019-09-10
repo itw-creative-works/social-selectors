@@ -25,9 +25,20 @@
 
 </div>
 
+SO... you're trying to get the css selector for the _follow button_ on Twitter. **Which would you rather use?**
+
+```js
+'.css-1dbjc4n.r-obd0qt.r-18u37iz.r-1w6e6rj.r-1h0z5md.r-dnmrzs *[data-testid*="-follow"]'
+// OR //
+'pages.profile.elements.followButton.normal.selector'
+```
+
+Well, now you don't have to manage those ugly, system generated css selectors anymore!
+Introducing **SocialSelectors**: a dynamically updated library of css selectors for social media sites.
+
 ## Supported Sites
 * Instagram
-* Twitter _(coming soon!)_
+* Twitter
 * SoundCloud _(coming soon!)_
 * _more coming soon!_
 
@@ -38,23 +49,41 @@ npm install social-selectors
 ```
 
 ## Using SocialSelectors
-### Via the npm module
 ```js
 const SocialSelectors = new (require('social-selectors'));
 SocialSelectors.load({
   library: 'instagram', // The social media site you want to load
   location: 'hosted', // Load the local library or hosted library (local | hosted).
 })
-.then(function (data) { // This function runs only on success
-  console.log('Success!', data);
+.then(function (library) {
+  console.log(library);
   const followButton = SocialSelectors.get('pages.profile.elements.followButton.normal.selector'); // Get the CSS Selector for the follow button on a profile
   console.log(followButton);
+
+  // Now you can pass the selector to your code! Here are some examples:
+  // 1. Using querySelectorAll
+  document.querySelectorAll(followButton);
+  // 2. Using Puppeteer
+  const puppeteer = require('puppeteer');
+  puppeteer.launch().then(async browser => {
+    const page = await browser.newPage();
+    await page.goto('https://www.instagram.com/google/');
+    page.$(followButton);
+  });
+
 })
-.catch(function (error) { // This function runs only on error
-  console.log('Fail!', error);
-});
 
 ```
+
+## How do I find the paths for the selectors?
+The easiest way to get the path for the selectors is to view the src JSON files in the repo. For example if you want to find the paths for Instagram, open [https://github.com/itw-creative-works/social-selectors/blob/master/src/libraries/instagram/main.json](/src/libraries/instagram/main.json). Each site has two main sections in the JSON file: `globals` and `pages`. And `pages` is where you'll find the selectors broken down for each page on the site.
+
+So if you wanted the selector for the like button on an Instagram post, you would come up with `pages.post.elements.likeButton.selector`.
+
+## Why use SocialSelectors?
+* Does your app scrape social media sites or rely on their css elements in any way?
+* Are you annoyed with having to meticulously update your css selectors to successfully scrape these elements?
+This library solves that problem by providing an api with *static* css paths that get translated into the current css selectors!
 
 ## What Can SocialSelectors do?
 SocialSelectors is an API that provides an up-to-date library of CSS selectors for elements on social media sites.
