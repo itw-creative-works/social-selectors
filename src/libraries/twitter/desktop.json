@@ -75,7 +75,7 @@
         },
         "isFollowing": {
           "normal": {
-            "selector": "$get(pages.profile.elements.unFollowButton.normal.selector)"
+            "selector": "$get(pages.profile.elements.unfollowButton.normal.selector)"
           },
           "back": {
             "selector": ""
