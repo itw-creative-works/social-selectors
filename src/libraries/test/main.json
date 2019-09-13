@@ -5,6 +5,7 @@
     "nested_1": "NESTED_1"
   },
   "parentheses(in)name": "PAR_IN_NAME",
+  "caret>inName": "CAR_IN_NAME",
 
   "compound_1": "$get(regular_1)",
   "compound_2": "$get(regular_1) MORE_AT_END",

@@ -1,9 +1,12 @@
 {
   "globals": {
     "indicators": {
-      "loggedIn": {
-        "selector": ".XrOey:nth-child(3) a",
+      "isLoggedIn": {
+        "selector": "*[aria-label='Profile']", // used to be .XrOey:nth-child(3) a, can also be glyphsSpriteUser__outline__24__grey_9 u-__7
         "regex:": ""
+      },
+      "isNotLoggedIn": {
+        "selector": "a[href*='/accounts/login/']",
       },
       "viewingPopup": {
         "selector": "div.piCib"
@@ -17,8 +20,15 @@
       "nav": {
         "profile": {
           "selector": ".XrOey:nth-child(3) a"
+        },
+        "home": {
+          "selector": "a[href='/']"
         }
       },
+    },
+    "urls": {
+      "home": "https://www.instagram.com/",
+      "login": "https://www.instagram.com/accounts/login/",
     }
   },
   "pages": {
@@ -111,16 +121,23 @@
         "postLink(array)": {
           "selector": "div.v1Nh3.kIKUG._bz0w a"
         },
+        "followerListButton": {
+          "selector": "$get(pages.profile.elements.followerCount.selector)"
+        },
+        "followerListButton_profileLink(array)": {
+          "selector": "$get(pages.post.elements.viewLikesBoxProfileLink(array).selector)" // Same as likes box for now
+        },
         // Metrics
         "postCount": {
           "selector": "ul.k9GMp li:nth-child(1) span span"
         },
         "followerCount": {
-          "selector": "ul.k9GMp li:nth-child(2) a span"
+          "selector": "ul.k9GMp li:nth-child(2) a"
         },
         "followingCount": {
-          "selector": "ul.k9GMp li:nth-child(3) a span"
+          "selector": "ul.k9GMp li:nth-child(3) a"
         },
+
       }
     },
     // Post
@@ -150,7 +167,7 @@
       },
       "elements": {
         "posterUsername": {
-          "selector": "a.FPmhX.nJAzx"
+          "selector": "article h2 a" // used to be a.FPmhX.nJAzx
         },
         "likeButton": {
           "selector": "span.fr66n button"

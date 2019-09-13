@@ -3,6 +3,9 @@
     // Example: https://twitter.com/
     "indicators": {
       "loggedIn": {
+        "selector": "*[href='/compose/tweet']", // DEPRECATE SOON
+      },
+      "isLoggedIn": {
         "selector": "*[href='/compose/tweet']",
       },
       "legacyUi": {
