@@ -54,7 +54,7 @@
 
   SocialSelectors.prototype.load = function(payload) {
     // console.log('$$$ LOAD');
-    this.extra = '2';
+    this.extra = '4';
     payload = payload || {};
     payload.debug = typeof payload.debug !== 'undefined' ? typeof payload.debug : false;
     payload.environment = payload.environment || environment || 'browser';
