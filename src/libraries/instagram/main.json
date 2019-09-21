@@ -26,10 +26,15 @@
         }
       },
     },
-    "urls": {
-      "home": "https://www.instagram.com/",
-      "login": "https://www.instagram.com/accounts/login/",
+    "variables": {
+      "username": {
+        "path": "_sharedData.config.viewer.username"
+      }
     }
+    // "urls": {
+    //   "home": "https://www.instagram.com/",
+    //   "login": "https://www.instagram.com/accounts/login/",
+    // }
   },
   "pages": {
     // Home
@@ -37,10 +42,30 @@
 
     },
 
+    // Login
+    "login": {
+      "meta": {
+        "url": {
+          "direct": "https://www.instagram.com/accounts/login/",
+          "regex": ""
+        },
+        "element": {
+          "selector": ""
+        }
+      },
+      "indicators": {
+
+      },
+      "elements": {
+
+      }
+    },
+
     // Feed
     "feed": {
       "meta": {
         "url": {
+          "direct": "https://www.instagram.com/",
           "regex": "/https:\/\/instagram.com/"
         },
         "element": {
@@ -95,6 +120,9 @@
         // },
       },
       "elements": {
+        "username": {
+          "selector": "div.nZSzR h1" // Username on the profile page
+        },
         // Interactables
         "followButton": {
           "normal": {
@@ -117,6 +145,9 @@
           "private": {
             "selector": "button.BY3EC._0mzm-.sqdOP.L3NKy._8A5w5"
           }
+        },
+        "unfollowButton_confirmationButton": {
+          "selector": "button.aOOlW.-Cab_", // Unfollow confirmation
         },
         "postLink(array)": {
           "selector": "div.v1Nh3.kIKUG._bz0w a"
@@ -220,6 +251,8 @@
       // Example: https://www.instagram.com/explore/tags/cats/
       "meta": {
         "url": {
+          "direct": "https://www.instagram.com/explore/",
+          "direct_tags": "https://www.instagram.com/explore/tags/",
           // "regex": "/https:\/\/instagram.com\/p\//"
         },
         "element": {
