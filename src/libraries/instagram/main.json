@@ -233,7 +233,8 @@
           "selector": "div.Igw0E.IwRSH.eGOV_.vwCYk.i0EQd"
         },
         "viewLikesBoxProfileLink(array)": {
-          "selector": "div.Igw0E.rBNOH.eGOV_.ybXk5._4EzTm.XfCBB.HVWg4._0mzm-.ZUqME > div:nth-of-type(1) a"
+          // "selector": "div.Igw0E.rBNOH.eGOV_.ybXk5._4EzTm.XfCBB.HVWg4._0mzm-.ZUqME > div:nth-of-type(1) a",
+          "selector": "div.Igw0E.rBNOH.eGOV_.ybXk5._4EzTm.XfCBB a",
         },
         // Metrics
         "likeCount": {
