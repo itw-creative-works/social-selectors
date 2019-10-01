@@ -124,7 +124,7 @@
           }
         },
         "postLink(array)": {
-          "selector": "article a[href*='/status/']"
+          "selector": "article a[href*='/status/']:not([href*='/photo/'])"
         },
         "profileLink(array)": {
           "selector": "article a.css-4rbku5.css-18t94o4.css-1dbjc4n.r-1loqt21.r-1wbh5a2.r-dnmrzs.r-1ny4l3l"

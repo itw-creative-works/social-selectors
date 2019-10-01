@@ -1,0 +1,76 @@
+{
+  "globals": {
+    "indicators": {
+      "isLoggedIn": {
+        "selector": "", // used to be .XrOey:nth-child(3) a, can also be glyphsSpriteUser__outline__24__grey_9 u-__7
+        "regex:": ""
+      },
+      "isNotLoggedIn": {
+        "selector": "",
+      },
+      "viewingPopup": {
+        "selector": ""
+      },
+
+    },
+    "elements": {
+      "nav": {
+        "profile": {
+          "selector": ""
+        },
+        "home": {
+          "selector": ""
+        }
+      },
+      "popups": {
+        "actionBlocked": {
+          "selector": "" // Also check to make sure it says "Action Blocked" in innerText
+        }
+      }
+    },
+    "variables": {
+      "username": {
+        "path": ""
+      }
+    }
+    // "urls": {
+    //   "home": "https://www.instagram.com/",
+    //   "login": "https://www.instagram.com/accounts/login/",
+    // }
+  },
+  "pages": {
+    // Home
+    "home": {
+      "meta": {
+        "element": {
+          "selector": ""
+        }
+      },
+      "indicators": {
+
+      },
+      "elements": {
+        "searchBar": {
+          "selector": "input[type='search'], input[title='Search']"
+        }
+      }
+    },
+
+
+    // Error
+    "error": {
+      "meta": {
+        "url": {
+          "regex": ""
+        },
+        "element": {
+          "selector": "div.error-container.-cx-PRIVATE-ErrorPage__errorContainer.-cx-PRIVATE-ErrorPage__errorContainer__" // Example: https://www.instagram.com/doesnotexist9999999999/
+        }
+      },
+    }
+
+  }
+}
+
+/* Comment test */
+// Comment test

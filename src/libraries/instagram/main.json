@@ -25,6 +25,11 @@
           "selector": "a[href='/']"
         }
       },
+      "popups": {
+        "actionBlocked": {
+          "selector": "h3._7UhW9.LjQVu.qyrsm.KV-D4.uL8Hv" // Also check to make sure it says "Action Blocked" in innerText
+        }
+      }
     },
     "variables": {
       "username": {
@@ -66,8 +71,11 @@
       "meta": {
         "url": {
           "direct": "https://www.instagram.com/",
-          // "regex": "/https:\/\/instagram.com/"
-          "regex": "(instagram.com|www.instagram.com|www.instagram.com\/|instagram.com\/)$"
+          // "regex": "/https:\/\/instagram.com/",
+          // "regex": "(instagram.com|www.instagram.com|www.instagram.com\/|instagram.com\/)$",
+          // "regex": "/instagram.com($|\\/$|\\?|\\/\\?|\\#|\\/\\#)/igm",
+          "regex": "instagram.com($|\\/$|\\?|\\/\\?|\\#|\\/\\#)",
+
         },
         "element": {
           "selector": ""
@@ -178,7 +186,9 @@
       "meta": {
         "url": {
           // "regex": "instagram.com\/p\/"
-          "regex": "(www.instagram.com\/p\/|instagram.com\/p\/)"
+          // "regex": "(www.instagram.com\/p\/|instagram.com\/p\/)",
+          // "regex": "/(instagram.com\\/p\\/.*?)($|\\/$|\\/|\\?|\\/\\?|\\#|\\/\\#)/igm",
+          "regex": "(instagram.com\\/p\\/.*?)($|\\/$|\\/|\\?|\\/\\?|\\#|\\/\\#)",
         },
         "element": {
           "selector": ""
@@ -259,7 +269,9 @@
         "url": {
           "direct": "https://www.instagram.com/explore/",
           "direct_tags": "https://www.instagram.com/explore/tags/",
-          "regex": "(instagram.com\/explore\/tags\/)"
+          // "regex": "(instagram.com\/explore\/tags\/)",
+          // "regex": "/(instagram.com\\/explore\\/tags\\/.*?)($|\\/$|\\/|\\?|\\/\\?|\\#|\\/\\#)/igm",
+          "regex": "(instagram.com\\/explore\\/tags\\/.*?)($|\\/$|\\/|\\?|\\/\\?|\\#|\\/\\#)",
         },
         "element": {
           // "selector": ""
