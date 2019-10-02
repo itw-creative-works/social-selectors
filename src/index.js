@@ -228,9 +228,19 @@
 
   function revive(value) {
     // logic from: http://ovaraksin.blogspot.com/2013/10/pass-javascript-function-via-json.html
-    return (value && (typeof value === 'string') && value.indexOf("function") === 0)
-      ? new Function('return ' + value)()
-      : value;
+    if (value && (typeof value === 'string') && value.indexOf("function") === 0) {
+      return new Function('return ' + value)();
+    } else if (value && (typeof value === 'string') && value.indexOf("/") === 0) {
+      // return new RegExp(value);
+      var flags = value.replace(/.*\/([gimy]*)$/, '$1');
+      var pattern = value.replace(new RegExp('^/(.*?)/'+flags+'$'), '$1');
+      return new RegExp(pattern, flags);
+    } else {
+      return value;
+    }
+    // return (value && (typeof value === 'string') && value.indexOf("function") === 0)
+    //   ? new Function('return ' + value)()
+    //   : value;
   }
 
   function parseTriggers(This, workingVal) {

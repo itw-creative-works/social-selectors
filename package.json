@@ -1,12 +1,13 @@
 {
   "name": "social-selectors",
-  "version": "0.1.21",
+  "version": "0.2.0",
   "description": "A library of selectors for CSS elements on social media sites.",
   "main": "module/index.js",
   "scripts": {
     "install:bundle": "bundle install --path vendor/bundle",
     "start": "bundle exec gulp",
-    "test": "bundle exec gulp test",
+    "test_": "bundle exec gulp test",
+    "test": "mocha ./_websrc/unit_tests/ --recursive",
     "browsersync": "bundle exec gulp browsersync",
     "browsersync-production": "bundle exec gulp browsersync --jekyllEnv='production'",
     "build": "bundle exec gulp build --jekyllEnv='production'",
@@ -64,6 +65,7 @@
     "gulp-watch": "^5.0.0",
     "imagemin-pngquant": "^6.0.0",
     "jsonminify": "^0.4.1",
+    "mocha": "^6.2.1",
     "natives": "^1.1.6",
     "node-cmd": "^3.0.0",
     "require-dir": "^1.0.0",
