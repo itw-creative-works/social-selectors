@@ -27,6 +27,9 @@
       "nav": {
         "profile": {
           "selector": ""
+        },
+        "loginButton": {
+          "selector": "*[href='/login']"
         }
       },
     }
@@ -261,6 +264,14 @@
           "selector": "*[data-testid='error-detail']" // Example: https://twitter.com/noexist999999999999999999
         }
       },
+    },
+    "rateLimited": {
+      "meta": {
+        "url": {
+          // "regex": "http://twitter.com/i/rate-limited"
+          "regex": "(twitter.com\\/i\\/rate-limited)($|\\/$|\\/|\\?|\\/\\?|\\#|\\/\\#)"
+        }
+      }
     }
 
   }
