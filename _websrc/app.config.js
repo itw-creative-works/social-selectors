@@ -5,7 +5,6 @@ module.exports = {
   },
   watch: function(gulp, watch) {
     return [
-
       watch([
         './src/index.js',
       ], function () {

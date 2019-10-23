@@ -116,6 +116,22 @@ describe('SocialSelectors - Instagram',  function() {
       it(`Don't match ${url_fail_2}`, function() { assert(!url_fail_2.match(instagram.get('pages.search.meta.url.regex'))) })
     });
 
+    describe('test', function() {
+      it(`Match ${url_search_1}`, function() { assert(url_search_1.match(instagram.get('pages.search.meta.url.regex'))) })
+      it(`Match ${url_search_2}`, function() { assert(url_search_1.match(instagram.get('pages.search.meta.url.regex'))) })
+      it(`Match ${url_search_3}`, function() { assert(url_search_1.match(instagram.get('pages.search.meta.url.regex'))) })
+      it(`Match ${url_search_4}`, function() { assert(url_search_1.match(instagram.get('pages.search.meta.url.regex'))) })
+      it(`Match ${url_search_5}`, function() { assert(url_search_1.match(instagram.get('pages.search.meta.url.regex'))) })
+      it(`Match ${url_search_6}`, function() { assert(url_search_1.match(instagram.get('pages.search.meta.url.regex'))) })
+      it(`Match ${url_search_7}`, function() { assert(url_search_1.match(instagram.get('pages.search.meta.url.regex'))) })
+
+      it(`Don't match ${url_home_1}`, function() { assert(!url_home_1.match(instagram.get('pages.search.meta.url.regex'))) })
+      it(`Don't match ${url_home_2}`, function() { assert(!url_home_2.match(instagram.get('pages.search.meta.url.regex'))) })
+
+      it(`Don't match ${url_fail_1}`, function() { assert(!url_fail_1.match(instagram.get('pages.search.meta.url.regex'))) })
+      it(`Don't match ${url_fail_2}`, function() { assert(!url_fail_2.match(instagram.get('pages.search.meta.url.regex'))) })
+    });
+
   });
 });
 
