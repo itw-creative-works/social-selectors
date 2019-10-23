@@ -27,6 +27,9 @@ meta:
   keywords: "" # false or blank to disable, comma separated kws
   viewport: "" # string, leave blank to use default
 
+cloudflare:
+  zone: '282d4b5b8f71a0cb5f9ccae85b905a48'
+
 socials:
   facebook: "" # string, example: somiibo
   twitter: "" # string, example: somiibo
@@ -111,9 +114,10 @@ settings:
             authDomain: 'ultimate-jekyll.firebaseapp.com',
             databaseURL: 'https://ultimate-jekyll.firebaseio.com',
             projectId: 'ultimate-jekyll',
-            storageBucket: '',
+            storageBucket: 'ultimate-jekyll.appspot.com',
             messagingSenderId: '837186164890',
-            appId: '1:837186164890:web:f1f59569d661078c'
+            appId: '1:837186164890:web:f1f59569d661078c',
+            measurementId: 'G-FR3X7X4KYN'
           }
         },
         cookieconsent: {

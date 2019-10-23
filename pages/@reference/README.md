@@ -1,23 +1,29 @@
-# Creating & synching new repo from ultimate-jekyll template
+# Getting started
+```shell
+npm run install:bundle
+npm install
+```
+
+# Creating & synching new repo from the ultimate-jekyll template
 1. Navigate to [https://github.com/itw-creative-works/ultimate-jekyll/](https://github.com/itw-creative-works/ultimate-jekyll/) and click **Use this template**.
 2. In the next window, name the new repository and choose an organization to host the repository.
 3. Create a branch called `master`, then make `master` the default branch, and finally delete the branch called `template`.
 4. Open the newly created repository on GitHub and click **Open in Desktop** then choose location using GitHub desktop.
 5. In the repo's settings add a secret called `ACCESS_TOKEN` and paste a GitHub token that has write permissions for this repo.
 6. Open Terminal and do the following commands:
-* `git remote add upstream https://github.com/itw-creative-works/ultimate-jekyll.git`.
-* `git remote set-url --push upstream no_push`.
-* `git fetch upstream template`.
-* If prompted, enter *username* and *password*/*GitHub access token*.
-* `git merge upstream/template --allow-unrelated-histories`.
-* Type `:quit` then press `enter`.
+    * `git remote add upstream https://github.com/itw-creative-works/ultimate-jekyll.git`.
+    * `git remote set-url --push upstream no_push`.
+    * `git fetch upstream template`.
+    * If prompted, enter *username* and *password*/*GitHub access token*.
+    * `git merge upstream/template --allow-unrelated-histories`.
+    * Type `:quit` then press `enter`.
 7. Go back into GitHub desktop on the new repo and press **Push** in top bar.
 8. Initialize the new repo by entering these commands in Terminal:
-* `npm run install:bundle`
-* `npm install`
-* `npm start`
+    * `npm run install:bundle`
+    * `npm install`
+    * `npm start`
 
-# Get changes from ultimate-jekyll template
+# Get changes from the ultimate-jekyll template
 1. Open GitHub Desktop and select the project (not ultimate-jekyll, the project requiring an update from it).
 2. Change current branch to `template`.
 3. Then press **Fetch upstream**.
@@ -27,6 +33,12 @@
 7. Select `template` from the list.
 8. Click the blue **Merge `template` into `master`** button.
 9. Press **Push origin** in the top right.
+
+# Things to regularly update on ultimate-jekyll
+* ./special/master/misc/master-service-worker.js = instances of Firebase SDKs being loaded
+
+# Things to regularly update on web-manager
+* Dependencies in package.json
 
 # Reference
 * https://medium.com/sweetmeat/how-to-keep-a-downstream-git-repository-current-with-upstream-repository-changes-10b76fad6d97

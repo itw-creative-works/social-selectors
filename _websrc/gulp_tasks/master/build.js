@@ -2,6 +2,8 @@ const argv   = require('yargs').argv;
 let config = require('../../master.config.js');
 let appGulpTasks = require('../../app.config.js');
 const cmd      = require('node-cmd');
+let yaml = require('js-yaml');
+let fs = require('fs');
 
 config.tasks = Object.assign(config.tasks, appGulpTasks.tasks);
 
@@ -13,11 +15,13 @@ const jekyll = process.platform === 'win32' ? 'jekyll.bat' : 'jekyll';
 const build  = Object.keys(config.tasks).filter((key) => config.tasks[key] && !['browsersync', 'watch'].includes(key))
 build.push('jekyll-build');
 
+// Display arguments
+console.log('Command line args => ', argv);
+
 /**
  * Build the Jekyll Site
  */
 gulp.task('jekyll-build', function (done) {
-  console.log('Command line args => ', argv);
   let jekyllConfig = config.jekyll.config.default;
   jekyllConfig += config.jekyll.config.app ? ',' + config.jekyll.config.app : '';
 
@@ -29,28 +33,28 @@ gulp.task('jekyll-build', function (done) {
   }
 
   if (argv.buildLocation == 'server') {
-    console.log('buildLocation =', 'server');
-    var runCommand = '' +
+    // Create CloudFlare Zone File
+    let doc = yaml.safeLoad(fs.readFileSync('_config.yml', 'utf8'));
+    cmd.run(`rm -rf @output/.temp && mkdir -p @output/.temp && echo '${doc.cloudflare.zone}' >@output/.temp/cloudflare-zone.txt`);
+
+    // Create build log JSON
+    cmd.run('' +
     'build_log_path="@output/templated/build.json"' + ' && ' +
     'sed "s/%TIMESTAMP_UTC_NPM%/' + now({offset: 0}) + '/g" $build_log_path > "$build_log_path"-temp && mv "$build_log_path"-temp $build_log_path' + ' && ' +
     'sed "s/%TIMESTAMP_PST_NPM%/' + now({offset: -7}) + '/g" $build_log_path > "$build_log_path"-temp && mv "$build_log_path"-temp $build_log_path' +
-    '';
-
-    cmd.run(runCommand);
+    '');
   } else {
-    console.log('buildLocation =', 'local');
+    // console.log('buildLocation =', 'local');
   }
 
   if (argv.skipJekyll == 'true') {
-    console.log('skipJekyll =', true);
+    // console.log('skipJekyll =', true);
     return done();
   } else {
-    console.log('skipJekyll =', false);
+    // console.log('skipJekyll =', false);
     return cp.spawn(jekyll, ['build', '--config', jekyllConfig], {stdio: 'inherit', env: process.env})
       .on('close', done);
   }
-
-
 });
 
 /**
