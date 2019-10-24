@@ -29,14 +29,16 @@ doc/
 .idea
 .secret
 
-# Generated Files
+# Generated Files GEN>>>
 /assets/css/
 /assets/images/
 /assets/js/
 package-lock.json
+# <<<GEN
 
 # Development
 /@output/regular/lighthouse-report.html
+/@output/ngrok/
 
 # App
 # ... include ignored files here
