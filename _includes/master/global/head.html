@@ -5,7 +5,7 @@
 {% if site.meta.viewport != '' and site.meta.viewport != false and site.meta.viewport != null %}
 <meta name="viewport" content="{{ site.meta.viewport }}">
 {% else %}
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, minimum-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, minimum-scale=1, maximum-scale=5">
 {% endif %}
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
@@ -153,13 +153,19 @@
 </style>
 
 <!-- CSS - Social Share Kit Style -->
-{%- if page.layout == 'post' and page.settings.include-socialsharekit == false -%}
 {% assign include_socialsharekitscript = false %}
-{%- elsif page.layout == 'post' or page.settings.include-socialsharekit != false -%}
-{% assign include_socialsharekitscript = true %}
+{%- if page.layout contains 'post' -%}
+  {%- if page.settings.include-socialsharekit == false -%}
+    {% assign include_socialsharekitscript = false %}
+  {%- else -%}
+    {% assign include_socialsharekitscript = true %}
+  {%- endif -%}
 {%- else -%}
-{% assign include_socialsharekitscript = false %}
+  {%- if page.settings.include-socialsharekit == true -%}
+    {% assign include_socialsharekitscript = true %}
+  {%- endif -%}
 {%- endif -%}
+
 {% if include_socialsharekitscript == true %}
 <style type="text/css" media="screen">
   {% include /master/assets/css/social-share-kit.css %}
@@ -196,6 +202,26 @@
     var tryAgain = true;
     options = options || {};
     options.retryInterval = options.retryInterval || 100;
+    options.waitFor = options.waitFor || [];
+
+    var waitFor = true;
+    for (var i = 0; i < options.waitFor.length; i++) {
+      var cur = options.waitFor[i] || {};
+      var val = window[cur.name];
+
+      if (cur.condition == '==' && val != cur.value) {
+        waitFor = false;
+        break;
+      }
+      if (cur.condition == '!=' && val == cur.value) {
+        waitFor = false;
+        break;
+      }
+      if (cur.condition == 'defined' && typeof val == 'undefined') {
+        waitFor = false;
+        break;
+      }
+    }
 
     try {
       tryAgain = (Manager.get('page.status.ready', false) == false);
@@ -203,7 +229,8 @@
     } catch (e) {
       tryAgain = true;
     }
-    if (tryAgain) {
+    if (tryAgain || !waitFor) {
+      // console.log('polling a...', options.waitFor, !waitFor);
       setTimeout(function () {
         This.ready(fn, options);
       }, options.retryInterval);

@@ -1,6 +1,6 @@
 ---
 ### ALL PAGES ###
-permalink: /@reference/tests/slapform/
+permalink: /@reference/tests/ajax/
 ---
 <!doctype html>
 <html lang="en">
@@ -68,7 +68,7 @@ permalink: /@reference/tests/slapform/
   <body class="text-center">
   <div class="form-signin">
     <form class="" onsubmit="return false;">
-      <h1 class="h3 mb-3 font-weight-normal">Slapform Library</h1>
+      <h1 class="h3 mb-3 font-weight-normal">Ajax Library</h1>
       <div class="card mb-3" style="">
         <div class="card-body">
           <pre id="result" class="text-left">
@@ -76,10 +76,7 @@ permalink: /@reference/tests/slapform/
           </pre>
         </div>
       </div>
-      <div class="form-group">
-        <label for="address" class="sr-only">Email</label>
-        <input type="text" id="email" class="form-control" placeholder="email" value="ian.wiedenman@gmail.com" required autofocus>
-      </div>
+
       <div class="form-group">
         <label for="address" class="sr-only">Endpoint</label>
         <input type="text" id="endpoint" class="form-control" placeholder="Web address" value="https://api.slapform.com" required autofocus>
@@ -94,12 +91,13 @@ permalink: /@reference/tests/slapform/
       <button id="go" class="btn btn-lg btn-primary btn-block" type="submit">Go</button>
     </form>
   </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- Exploring the library -->
     <script type="text/javascript">
+
       var slapform;
       Manager.ready(function() {
-        console.log('--- Exploring Slapform ---');
+        console.log('--- Exploring Ajax ---');
         slapform = new Slapform();
         Manager.dom().select('#body').setValue(
         '{' + '\n' +
@@ -107,29 +105,32 @@ permalink: /@reference/tests/slapform/
           '  "variable2": "apples",' + '\n' +
           '  "result": "${variable1} likes ${ variable2 }.",' + '\n' +
           '  "noexist": "Nothing happens if the variable is nonexistant > ${blank}.",' + '\n' +
-          '  "system": "Date = ${slap_meta_date}"' + '\n' +
+          '  "system": "Date = ${slap_meta_date}",' + '\n' +
+          '  "slap_replyto": "${variable1}",' + '\n' +
+          '  "slap_email": ""' + '\n' +
         '}' + '\n'
         )
         Manager.dom().select('body').on('click', function(event) {
           if (event.target.matches('#go')) {
-            slapform.submit({
-              account: Manager.dom().select('#email').getValue(), // Replace this with the email that submissions should be sent to
-              endpoint: Manager.dom().select('#endpoint').getValue(),
-              data: JSON.parse(Manager.dom().select('#body').getValue() || '{}')
-            })
-            .success(function (response, data) { // This function runs only on success
-              Manager.dom().select('#result').setInnerHTML(JSON.stringify(data), null, 2); // Set setInnerHTML
-              console.log('Success!', response, data);
-            })
-            .error(function (response, error) { // This function runs only on error
-              Manager.dom().select('#result').setInnerHTML(JSON.stringify(error), null, 2); // Set setInnerHTML
-              console.log('Fail!', response, error);
-            })
-            .always(function (response) { // This function runs regardless of success or error
-              console.log('This always runs!', response);
+            $.ajax({
+              type: "POST",
+              url: Manager.dom().select('#endpoint').getValue(),
+              data: Manager.dom().select('#body').getValue(),
+              contentType: "application/json; charset=utf-8",
+              dataType: "json",
+              success: function(data){
+                console.log(data);
+                Manager.dom().select('#result').setInnerHTML(JSON.stringify(data), null, 2); // Set setInnerHTML
+
+              },
+              failure: function(errMsg) {
+                console.log(errMsg);
+                Manager.dom().select('#result').setInnerHTML(errMsg); // Set setInnerHTML
+              }
             });
           }
-        });
+        })
+
 
       });
     </script>

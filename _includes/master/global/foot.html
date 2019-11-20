@@ -62,13 +62,19 @@
 {% endif %}
 
 <!-- Script - Social Share Kit Script -->
-{%- if page.layout == 'post' and page.settings.include-socialsharekit == false -%}
 {% assign include_socialsharekitscript = false %}
-{%- elsif page.layout == 'post' or page.settings.include-socialsharekit != false -%}
-{% assign include_socialsharekitscript = true %}
+{%- if page.layout contains 'post' -%}
+  {%- if page.settings.include-socialsharekit == false -%}
+    {% assign include_socialsharekitscript = false %}
+  {%- else -%}
+    {% assign include_socialsharekitscript = true %}
+  {%- endif -%}
 {%- else -%}
-{% assign include_socialsharekitscript = false %}
+  {%- if page.settings.include-socialsharekit == true -%}
+    {% assign include_socialsharekitscript = true %}
+  {%- endif -%}
 {%- endif -%}
+
 {% if include_socialsharekitscript == true %}
 <script defer type="text/javascript">
   {% include /master/assets/scripts/social-share-kit.js %}
@@ -169,7 +175,7 @@
     "url": "{{site.url}}",
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://cse.google.com/cse?cx={{ site.schema.sitelinks-pub }}&ie=UTF-8&q={search_term_string}",
+      "target": "{{ site.url }}/search/cse?q={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   }
