@@ -77,9 +77,10 @@ manifest:
   orientation: "portrait" # example: portrait,
 
 schema:
-  breadcrumbs: true # true | false
-  brand: true # true | false
-  sitelinks: true # true | false
+  path: "https://cdn.itwcreativeworks.com/assets/itw-creative-works/images/favicon" # example: /assets/images/favicon
+  safari-pinned-tab: "#5bbad5" # example: #5bbad5
+  msapp-tile-color: "#da532c" # example: #da532c"
+  theme-color: "#ffffff" # example: #ffffff
 
 favicon:
   path: "" # example: /assets/images/favicon
