@@ -6,7 +6,7 @@
         "regex:": ""
       },
       "isNotLoggedIn": {
-        "selector": "a[href*='/accounts/login/']",
+        "selector": "nav a[href*='/accounts/login/']",
       },
       "viewingPopup": {
         "selector": "div.piCib"
@@ -86,7 +86,7 @@
       },
       "elements": {
         "profileLink(array)": {
-          "selector": "a.FPmhX.notranslate.nJAzx" // Profile link on a post
+          "selector": "a.sqdOP.yWX7d._8A5w5.ZIAjV" // Profile link on a post
         }
       }
     },
@@ -141,7 +141,7 @@
             "selector": "$get(pages.profile.elements.followButton.normal.selector)" // Example: (while on SoundGrail)  https://www.instagram.com/kiruemusic/
           },
           "private": {
-            "selector": "button.BY3EC._0mzm-.sqdOP.L3NKy"
+            "selector": "button.BY3EC.sqdOP.L3NKy.y3zKF"
           }
         },
         "unfollowButton": {
@@ -152,7 +152,7 @@
             "selector": "$get(pages.profile.elements.unfollowButton.normal.selector)" // Example: (while on SoundGrail)  https://www.instagram.com/kiruemusic/
           },
           "private": {
-            "selector": "button.BY3EC._0mzm-.sqdOP.L3NKy._8A5w5"
+            "selector": "button.BY3EC.sqdOP.L3NKy._8A5w5"
           }
         },
         "unfollowButton_confirmationButton": {
@@ -196,7 +196,7 @@
       },
       "indicators": {
         "isLiked": {
-          "selector": "span.glyphsSpriteHeart__filled__24__red_5.u-__7"
+          "selector": "span.fr66n svg._8-yf5[aria-label='Unlike']"
         },
         "isFollowing": {
           "normal": {
@@ -210,7 +210,7 @@
       },
       "elements": {
         "posterUsername": {
-          "selector": "article h2 a" // used to be a.FPmhX.nJAzx
+          "selector": "article header a" // used to be a.FPmhX.nJAzx
         },
         "likeButton": {
           "selector": "span.fr66n button"
@@ -220,12 +220,12 @@
         },
         "followButton": {
           "normal": {
-            "selector": "button.oW_lN._0mzm-.sqdOP.yWX7d"
+            "selector": "article header button"
           }
         },
         "unfollowButton": {
           "normal": {
-            "selector": "button.oW_lN._0mzm-.sqdOP.yWX7d._8A5w5"
+            "selector": "article header button"
           }
         },
         "unfollowConfirmationButton": {
