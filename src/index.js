@@ -35,14 +35,15 @@
 
   SocialSelectors.prototype.load = function(payload) {
     // console.log('$$$ LOAD');
-    this.extra = '7';
+    // this.extra = '7';
     payload = payload || {};
     payload.debug = typeof payload.debug !== 'undefined' ? typeof payload.debug : false;
     payload.environment = payload.environment || environment || 'node';
     payload.location = payload.location || 'local';
     payload.library = payload.library || '';
     payload.device = payload.device || 'main';
-    payload.path = payload.path || ''; // Overwrite existing hardcoded paths
+    payload.path = (payload.path || '') // Overwrite existing hardcoded paths
+      .replace(/{{library}}/g, payload.library);
     if (payload.cacheBreaker === true) {
       payload.cacheBreaker = '?cb=' + Date.now();
     } else if (typeof payload.cacheBreaker !== 'undefined') {
