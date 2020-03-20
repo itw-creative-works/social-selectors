@@ -18,7 +18,8 @@ permalink: /@reference/guides/attributes/
 ## .auth-signup-email-btn
 ## .auth-signout-all-btn
 ## .auth-forgot-email-btn
-## .auth-subscribe-push-notifications-btn
+## .auth-subscribe-notifications-btn
+  * Automatically calls `Manager.notifications().subscribe();`.
 
 ## .auth-email-element
 ## .auth-name-element
@@ -29,7 +30,9 @@ permalink: /@reference/guides/attributes/
 ## .auth-plan-premium-false-element
 
 ## .auth-signedin-true-element
+  * Shows if user is signed in otherwise its hidden
 ## .auth-signedin-false-element
+  * Shows if user is NOT signed in otherwise its hidden
 
 ## .ad-unit
   * Hidden if user is premium

@@ -29,35 +29,29 @@ jobs:
         run: |
           export TZ=UTC date
           timestamp_utc=$(date +%FT%TZ)
-          echo $timestamp_utc
           export TZ=America/Los_Angeles date
           timestamp_pst=$(date +%FT%TZ)
-          echo $timestamp_pst
+          temp_build_json=$(cat @output/build/build.json)
 
-          github_repo=$(basename `git rev-parse --show-toplevel`)
-          echo $github_repo
+          echo account: $GITHUB_ACTOR,
+          echo repo: $GITHUB_REPOSITORY
+          echo timestamp_utc: $timestamp_utc
+          echo timestamp_pst: $timestamp_pst
+          echo build.json: $temp_build_json
 
-          github_origin_url=$(git remote get-url origin)
-          echo $github_origin_url
-
-          github_username="$(cut -d'/' -f4 <<<$github_origin_url)"
-          echo $github_username
-
-          build_log_path="@output/templated/build.json"
+          build_log_path="@output/build/build.json"
           sed "s/%TIMESTAMP_UTC_GHP%/$timestamp_utc/g" $build_log_path > "$build_log_path"-temp && mv "$build_log_path"-temp $build_log_path
           sed "s/%TIMESTAMP_PST_GHP%/$timestamp_pst/g" $build_log_path > "$build_log_path"-temp && mv "$build_log_path"-temp $build_log_path
 
           sed -n '1h;1!H;${;g;s/GEN>>>.*<<<GEN/<REDACTED FOR LIVE PUBLISH>/g;p;}' .gitignore > .gitignore
 
-          git config user.email "email@email.com"
-          git config user.name "Name"
+          git config user.email "$GITHUB_ACTOR@email.com"
+          git config user.name "$GITHUB_ACTOR"
           git add .
           git commit -m "Compile and Build: $timestamp_pst"
-          git remote set-url origin https://iwiedenm:${{secrets.ACCESS_TOKEN}}@github.com/$github_username/$github_repo.git
+          git remote set-url origin https://$GITHUB_ACTOR:${{secrets.ACCESS_TOKEN}}@github.com/$GITHUB_REPOSITORY.git
           git remote -v
           git checkout -b gh-pages
           git push origin HEAD:gh-pages --force
       - name: Purge CloudFlare Cache
-        run: |
-          cf_zone=$(cat @output/.temp/cloudflare-zone.txt)
-          curl -X POST https://api.itwcreativeworks.com/wrapper/cloudflare -H "Content-Type: application/json" -d '{ "body": { "purge_everything": true }, "zone": "'$cf_zone'", "command": "purge_cache", "delay": 180000 }'
+        run: npm run cloudflare:purge -- --delay='180000' --timeout='30000'

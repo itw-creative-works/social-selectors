@@ -2,6 +2,9 @@
 ### ALL PAGES ###
 layout: null
 permalink: /@reference/guides/kitchen-sink-page/
+sitemap:
+  include: true
+  priority: 0.5
 
 ### REGULAR PAGES ###
 meta:
@@ -42,6 +45,9 @@ settings:
     {
       auth: {
         state: 'default', /* default | required | prohibited */
+      },
+      pushNotifications: {
+        autoRequest: 60, /* 60, 0 or false to disable */
       }
     }
   "
@@ -50,10 +56,6 @@ schema:
   breadcrumbs: true
   brand: true
   sitelinks: true
-
-sitemap:
-  include: true
-  priority: 0.5
 
 search:
   include: true
@@ -66,9 +68,23 @@ post:
   title: "Page Title"
   description: "Page description."
   excerpt: "Page description."
-  id: "1"
-  category: ""
-  tags: ""
+  author: samantha
+  id: 1
+  categories: [marketing, business]
+  tags: [tag, tag2, tag3]
+  affiliate-search-term: Marketing
+
+### AUTHOR ONLY ###
+author:
+  name: Samantha Raeburn
+  position: Social Media Manager
+  excerpt: "Sam is an experienced social media expert from Beverly Hills, CA and is a major contributor to Somiibo's blog."
+
+  location: Beverly Hills, CA
+  skills: Writing, Blog Management
+  hobbies: Instagram
+  joined: 2017-10-20
+  instagram: _samraeburn
 ---
 <!DOCTYPE html>
 <html lang="en">

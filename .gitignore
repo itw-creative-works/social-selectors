@@ -30,14 +30,14 @@ doc/
 .secret
 
 # Generated Files GEN>>>
-/assets/css/
-/assets/images/
-/assets/js/
+/assets/*
+!/assets/_src
+!/assets/_src-uncompiled
 package-lock.json
 # <<<GEN
 
 # Development
-/@output/regular/*lighthouse*
+/@output/lighthouse/*lighthouse*
 /@output/ngrok/
 /@output/.temp/
 

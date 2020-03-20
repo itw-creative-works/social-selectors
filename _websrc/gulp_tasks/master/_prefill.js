@@ -1,16 +1,17 @@
 const gulp     = require('gulp');
-const cmd      = require('node-cmd');
-// const fs       = require('fs');
 const fs       = require('fs-jetpack');
 const argv     = require('yargs').argv;
 let config     = require('../../master.config.js');
 let isTemplate = __dirname.indexOf('/ultimate-jekyll/') > -1;
 let isServer   = (argv.buildLocation == 'server');
 
+let Global = require('../../libraries/global.js');
 
 gulp.task("_prefill", async () => {
   await new Promise(async (resolve, reject) => {
+
     const gitignore_ph = await readFile('./_websrc/templates/master/gitignore/all');
+    const build_json = await readFile('./_websrc/templates/master/output/build/build.json');
     try {
 
       // all versions need these files to run properly
@@ -171,6 +172,9 @@ gulp.task("_prefill", async () => {
         fs.dir(`./special/app/pages`);
         fs.dir(`./special/app/search`);
 
+        fs.dir('./@output/lighthouse');
+        fs.remove('./@output/build/build.json');
+        await createFile('./@output/build/build.json', build_json);
       }
 
       // only create these files if NOT on template
@@ -178,10 +182,11 @@ gulp.task("_prefill", async () => {
 
       }
 
-      // only create these files if IS ON template OR server
+      // only create these files if IS ON template and IS NOT server
       if (isTemplate && !isServer) {
         await createFile(config.assets + config.assetsSubpath + '/sass/app/.gitignore', gitignore_ph);
         await createFile(config.assets + config.assetsSubpath + '/js/app/.gitignore', gitignore_ph);
+        await createFile(config.assets + config.assetsSubpath + '/images/blog/.gitignore', gitignore_ph);
         await createFile('./_includes/app/misc/.gitignore', gitignore_ph);
         await createFile('./_includes/app/global/.gitignore', gitignore_ph);
         await createFile('./_websrc/gulp_tasks/app/.gitignore', gitignore_ph);
@@ -192,9 +197,14 @@ gulp.task("_prefill", async () => {
         await createFile('./_posts/.gitignore', gitignore_ph);
         await createFile('./_authors/.gitignore', gitignore_ph);
       }
-      resolve();
+
+      if (!isServer) {
+        await createFile('./@output/build/.gitignore', gitignore_ph);
+      }
+      Global.set('prefillStatus', 'done');
+      return resolve();
     } catch (e) {
-      reject(e)
+      return reject(e)
     }
 
   });

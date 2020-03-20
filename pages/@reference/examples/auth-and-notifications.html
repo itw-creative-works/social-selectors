@@ -1,6 +1,14 @@
 ---
 ### ALL PAGES ###
 permalink: /@reference/examples/auth-and-notifications/
+settings:
+  manager-configuration: "
+    {
+      pushNotifications: {
+        autoRequest: false
+      }
+    }
+  "
 ---
 <!doctype html>
 <html lang="en">
@@ -91,8 +99,12 @@ permalink: /@reference/examples/auth-and-notifications/
           </div>
 
           <div class="form-check">
-            <input type="checkbox" class="form-check-input auth-terms-input" id="terms-input">
-            <label class="form-check-label" for="terms-input">I agree to the Terms and Conditions</label>
+            <input type="checkbox" class="form-check-input auth-terms-input" id="auth-terms-input" required>
+            <label class="form-check-label" for="auth-terms-input">I agree to the Terms and Conditions</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input auth-newsletter-input" id="auth-newsletter-input">
+            <label class="form-check-label" for="auth-newsletter-input">Sign up for our newsletter</label>
           </div>
 
           <div class="alert alert-danger auth-error-message-element" hidden>
@@ -126,9 +138,9 @@ permalink: /@reference/examples/auth-and-notifications/
         <div class="">
           <h1 class="h3 my-3 font-weight-normal">.notifications() Library</h1>
           <h5 class="my-3">Subscribing</h5>
-          <button class="btn btn-lg btn-primary btn-block" id="subscribe-check" type="button" name="button">Subscribe check</button>
+          <button class="btn btn-lg btn-primary btn-block" id="subscribe-check" type="button" name="button">.isSubscribed()</button>
 
-          <button class="btn btn-lg btn-primary btn-block" id="subscribe-real" type="button" name="button">Subscribe real</button>
+          <button class="btn btn-lg btn-primary btn-block" id="subscribe-real" type="button" name="button">.subscribe()</button>
           <button class="btn btn-lg btn-primary btn-block" id="subscribe-fake" type="button" name="button">Subscribe fake</button>
           <h5 class="my-3">Sending</h5>
           <button class="btn btn-lg btn-primary btn-block" id="send" type="button" name="button">Send</button>
@@ -154,11 +166,19 @@ permalink: /@reference/examples/auth-and-notifications/
 
         // Inner event listener
         Manager.auth().ready(function() {
-          console.log('auth().ready()... (inner)');
-          console.log('authenticated (inner): ', Manager.auth().isAuthenticated());
-          console.log('authenticated (inner): ', Manager.auth().getUser());
+          console.log('.auth().ready()');
+          console.log('.isAuthenticated():', Manager.auth().isAuthenticated());
+          console.log('.getUser(): ', Manager.auth().getUser());
+          firebase.auth().onAuthStateChanged(function(user) {
+            console.log('.onAuthStateChanged():', user);
+          })
         });
 
+
+        function display(message) {
+          Manager.log(message);
+          Manager.dom().select('#result').setInnerHTML(message);
+        }
 
         Manager.dom().select('body').on('click', function(event) {
           if (event.target.matches('#subscribe-fake')) {
@@ -173,41 +193,48 @@ permalink: /@reference/examples/auth-and-notifications/
                   },
                 },
                 token: tempID.toString(),
-                linked: {
+                link: {
                   user: {
-                    timestampLastLinked: '',
+                    lastLinked: {
+
+                    },
                     data: {
-                      meta: {
-                        uid: ''
-                      }
+                      uid: ''
                     }
                   }
                 },
                 tags: ['general']
               }
               )
-              .then(function() {
-                Manager.dom().select('#result').setInnerHTML('Successfully set fake subscription!')
+              .then(function(data) {
+                display('Successfully set fake subscription!', data)
               })
               .catch(function(e) {
-                Manager.dom().select('#result').setInnerHTML('Failed to set Firestore doc: ' + JSON.stringify(e, undefined, 2))
+                display('Failed to set Firestore doc: ' + JSON.stringify(e, undefined, 2))
               });
           } else if (event.target.matches('#subscribe-real')) {
             Manager.notifications().subscribe()
               .then(function(response) {
-                Manager.dom().select('#result').setInnerHTML('Status = ' + JSON.stringify(response, undefined, 2))
+                display('Success. Was subscribe performed? = ' + JSON.stringify(response, undefined, 2))
               })
               .catch(function(e) {
-                Manager.dom().select('#result').setInnerHTML('Failed to subscribe: ' + JSON.stringify(e, undefined, 2))
+                display('Failed to subscribe: ' + JSON.stringify(e, undefined, 2))
               })
 
             } else if (event.target.matches('#subscribe-check')) {
-              Manager.notifications().checkSubscription()
+              // Manager.notifications().checkSubscription()
+              //   .then(function(response) {
+              //     Manager.dom().select('#result').setInnerHTML('Subscription status = ' + JSON.stringify(response, undefined, 2))
+              //   })
+              //   .catch(function(e) {
+              //     Manager.dom().select('#result').setInnerHTML('Failed to check subscription status: ' + JSON.stringify(e, undefined, 2))
+              //   })
+              Manager.notifications().isSubscribed()
                 .then(function(response) {
-                  Manager.dom().select('#result').setInnerHTML('Subscription status = ' + JSON.stringify(response, undefined, 2))
+                  display('isSubscribed = ' + JSON.stringify(response, undefined, 2))
                 })
                 .catch(function(e) {
-                  Manager.dom().select('#result').setInnerHTML('Failed to check subscription status: ' + JSON.stringify(e, undefined, 2))
+                  display('Failed to check subscription status: ' + JSON.stringify(e, undefined, 2))
                 })
 
             } else if (event.target.matches('#send')) {
@@ -215,38 +242,26 @@ permalink: /@reference/examples/auth-and-notifications/
                 .add(
                   {
                     payload: {
-                      icon: 'https://somiibo.com/assets/images/somiibo-logo-app-square.png',
-                      click_action: 'https://somiibo.com/engagement-groups/?data_ref=push_engagementGroup',
-                      body: 'Test message',
-                      title: 'Test message',
+                      icon: '{{ site.brand.logo-image }}',
+                      click_action: '{{ site.url }}',
+                      title: 'Test title',
+                      body: 'Test body'
                     },
                     meta: {
                       date: '2019-01-01'
                     }
                   }
                 )
-                .then(function() {
-                  Manager.dom().select('#result').setInnerHTML('Successfully sent notification!')
+                .then(function(data) {
+                  display('Successfully sent notification!', data);
                 })
                 .catch(function(e) {
-                  Manager.dom().select('#result').setInnerHTML('Failed to set Firestore doc: ' + e)
+                  display('Failed to set Firestore doc: ' + e);
                 });
             }
 
         })
       });
-
-      // Auth event listener
-      Manager.auth().ready(function() {
-        console.log('auth().ready()...');
-        console.log('authenticated: ', Manager.auth().isAuthenticated());
-        console.log('authenticated: ', Manager.auth().getUser());
-        firebase.auth().onAuthStateChanged(function(user) {
-          console.log('onAuthStateChanged 1', user);
-        })
-      });
-
-
 
     </script>
 

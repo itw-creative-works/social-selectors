@@ -38,7 +38,7 @@ Manager.init(Configuration, function() {
     });
     if (pass) {
       Manager.ajax().request({
-        type: 'POST',
+        method: 'POST',
         url: dom.select(idSelector).getAttribute('action'),
         data: formData,
       })

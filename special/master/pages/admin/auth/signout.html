@@ -1,0 +1,55 @@
+---
+### ALL PAGES ###
+layout: master/admin/auth
+permalink: /admin/signout/
+sitemap:
+  include: false
+
+### REGULAR PAGES ###
+settings:
+  manager-configuration: "
+    {
+      libraries: {
+        cookieconsent: {
+          enabled: false
+        },
+        tawk: {
+          enabled: false
+        },
+        sentry: {
+          enabled: false
+        }
+      }
+    }
+  "
+---
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-5 col-xl-4 my-5">
+
+      {%- include /master/helpers/svg.html src=site.brand.logo-image-svg width="144" height="144" class="d-block mx-auto" -%}
+      <!-- Heading -->
+      <h1 class="display-4 text-center mb-3">
+        Sad to see ya go!
+      </h1>
+
+      <!-- Subheading -->
+      <p class="text-muted text-center mb-5">
+        Signing out...
+      </p>
+
+      <!-- Form -->
+    </div>
+  </div> <!-- / .row -->
+</div> <!-- / .container -->
+
+<script type="text/javascript">
+  Manager.ready(function() {
+    Manager.auth().signOut();
+    Manager.auth().ready(function(user) {
+      if (!user) {
+        window.location.href = '{{ site.url }}/admin/signin/';
+      }
+    })
+  });
+</script>
