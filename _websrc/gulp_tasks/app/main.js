@@ -1,9 +1,7 @@
 const gulp     = require('gulp');
 const newer    = require('gulp-newer');
 const watch    = require('gulp-watch');
-const jsonminify = require('gulp-jsonminify');
-// const jsonminify2 = require('gulp-jsonminify');
-const jsonminify2 = require("jsonminify");
+const jsonminify = require("jsonminify");
 const through = require('through2');
 
 // Tasks
@@ -48,7 +46,7 @@ var minifyJson = () => {
     // console.log('NEW FILE', transformedFile.contents.toString())
     // console.log('NEW FILE', jsonminify2(transformedFile.contents.toString()));
     // transformedFile.contents = new Buffer(jsonminify2(transformedFile.contents.toString()));
-    transformedFile.contents = new Buffer(jsonminify2(transformedFile.contents.toString()).replace(/\,(?!\s*?[\{\[\"\'\w])/g, ''));
+    transformedFile.contents = new Buffer(jsonminify(transformedFile.contents.toString()).replace(/\,(?!\s*?[\{\[\"\'\w])/g, ''));
     // console.log('###',file.contents.toString());
     // return cb(null, file);
     return cb(null, transformedFile);
