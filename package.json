@@ -76,7 +76,6 @@
     "mocha": "^6.2.1",
     "natives": "^1.1.6",
     "node-cmd": "^3.0.0",
-    "puppeteer": "^2.1.1",
     "request": "^2.88.0",
     "require-dir": "^1.0.0",
     "rimraf": "^2.6.3",
