@@ -97,7 +97,7 @@
           "regex": ""
         },
         "element": {
-          "selector": "h2._7UhW9.fKFbl.yUEEX.KV-D4.fDxYl"
+          "selector": ".nZSzR h2, .nZSzR h1"
         }
       },
       "indicators": {
@@ -130,7 +130,7 @@
       },
       "elements": {
         "username": {
-          "selector": "div.nZSzR h1" // Username on the profile page
+          "selector": ".nZSzR h2, .nZSzR h1" // Username on the profile page
         },
         // Interactables
         "followButton": {
