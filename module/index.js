@@ -197,8 +197,7 @@
     //
     //   }
     // }
-
-    workingVal = parseTriggers(This, workingVal);
+    workingVal = typeof workingVal === 'object' ? workingVal : parseTriggers(This, workingVal);
     return revive(workingVal);
 
 
@@ -226,6 +225,7 @@
   }
 
   function parseTriggers(This, workingVal) {
+    // console.log('parseTriggers', );
 
     var triggers = ['$get', '$new'];
 
@@ -240,10 +240,15 @@
             // }
       var valMatches = workingVal.match(/(?:\$get\().*?(?=\)\s)/g)
       for (var i = 0; i < valMatches.length; i++) {
-        valMatches[i] = valMatches[i].replace('$get(', '')
-        workingVal = workingVal.replace('$get(' + valMatches[i] + ') ', This.get(valMatches[i]) + ' ')
+        valMatches[i] = valMatches[i].replace('$get(', '');
+        let fetched = This.get(valMatches[i]);
+        if (typeof fetched !== 'string') {
+          workingVal = fetched;
+          break;
+        }
+        workingVal = workingVal.replace('$get(' + valMatches[i] + ') ', fetched + ' ');
       }
-      workingVal = workingVal.trim();
+      workingVal = typeof workingVal === 'string' ? workingVal.trim() : workingVal;
     }
     return workingVal;
 

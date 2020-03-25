@@ -7,6 +7,9 @@
     "isLoggedIn": {
       "selector": ""
     },
+    "profileLink": {
+      "selector": ".header__userNav .header__userNavUsernameButton",
+    },
     // Actions
     "searchBar": {
       "selector": "header input",
@@ -20,7 +23,10 @@
     },
     "trackProfileLink": {
       "selector(array)": ".sound__body a.soundTitle__username span",
-    }
+    },
+    "modalCloseButton": {
+      "selector": ".modal__closeButton",
+    },
 
   },
   "home": {

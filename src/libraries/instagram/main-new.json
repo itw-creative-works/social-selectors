@@ -1,3 +1,11 @@
+/*
+  https://www.instagram.com/cats_of_instagram/
+  https://www.instagram.com/cats.all.day/
+
+  https://www.instagram.com/p/B99fX3uFZFX/
+
+
+*/
 {
   "global": {
     // Indicators
@@ -11,26 +19,34 @@
       "selector": "",
       "object": { "selector": "button", "filters": [ {"match": { "innerText": "/Log in/i" }} ] },
     },
+    "profilePicture": {
+      "selector": "nav img[alt*='s profile']",
+    },
+    "isPopupOpen": {
+      "selector": "div[role='presentation']"
+    },
     // Actions
     "searchBar": {
       "selector": "nav input",
     },
+    "searchBar_dropdown": {
+      "selector": "div[role='dialog']",
+    },
     "notificationsReminder_disable": {
       "object": { "selector": "button", "filters": [ {"match": { "innerText": "/Not Now/i" }} ] },
     },
+    /* "viewEngagementPopup_profileLink": {
+      "selector(array)": "div[role='presentation'] img",
+    }, */
     // Explore
     "postLink": {
       "selector(array)": "a[href*='/p/'] > div div:nth-child(2)",
     },
-    /* "postProfileLink": {
-      "selector(array)": ".sound__body a.soundTitle__username span",
-    }, */
-
   },
   "home": {
     // Indicators
     "isOnPage": {
-      "url": "/instagram\\.com$/",
+      "url": "/instagram.com($|\\/$|\\?|\\/\\?|\\#|\\/\\#)/",
     },
     // Actions
     "continueAsButton": {
@@ -47,29 +63,30 @@
   },
   "profile": {
     // Indicators
+    // Good for testing loaded
     "isOnPage": {
-      "selector": ".nZSzR h2, .nZSzR h1", // Good for testing loaded
+      "selector": ".nZSzR h2, .nZSzR h1",
     },
     // Actions
     "followButton": {
-      "object": {"selector": "button", "filters": [ {"match": { "innerText": "/Follow$|Follow back/i" }} ], index: 0 },
+      "object": {"selector": "button", "filters": [ {"match": { "innerText": "/Follow$|Follow back/i" }} ], "index": 0 },
     },
     // Stats
     "followerCount": {
-      "object": {"selector": "a", "filters": [ {"match": { "innerText": "/ followers$| follower$/i" }} ], index: 0 },
+      "object": {"selector": "a", "filters": [ {"match": { "innerText": "/ followers$| follower$/i" }} ], "index": 0 },
     },
     "followingCount": {
-      "object": {"selector": "a", "filters": [ {"match": { "innerText": "/ following$/i" }} ], index: 0 },
+      "object": {"selector": "a", "filters": [ {"match": { "innerText": "/ following$/i" }} ], "index": 0 },
     },
     "postCount": {
-      "object": {"selector": "span", "filters": [ {"match": { "innerText": "/ posts$| post$/i" }} ], index: 0 },
+      "object": {"selector": "span", "filters": [ {"match": { "innerText": "/ posts$| post$/i" }} ], "index": 0 },
     },
     // Explore
-    "viewFollowers": {
-      "selector": "$get(profile.followerCount.selector)",
+    "viewFollowersButton": {
+      "object": "$get(profile.followerCount.object)",
     },
-    "viewFollowing": {
-      "selector": "$get(profile.followingCount.selector)",
+    "viewFollowingButton": {
+      "object": "$get(profile.followingCount.object)",
     },
 
   },
@@ -96,7 +113,7 @@
     },
     // Explore
     "profileLink": {
-      "selector(array)": "div[role='presentation'] a.notranslate",
+      "selector(array)": "$get(profile_followers.profileLink.selector(array))",
     },
   },
   "post": {
@@ -104,75 +121,47 @@
     "isOnPage": {
       "url": "(instagram.com\\/p\\/.*?)($|\\/$|\\/|\\?|\\/\\?|\\#|\\/\\#)",
     },
-    // Actions
-    "likeButton": {
-      "selector": ".listenEngagement button[aria-label*='Like']",
-      "object": {"selector": "button[aria-label*='Like']", "filters": [{"match": {"innerText": "/Like/"}}]},
+    "isVideoPost": {
+      "selector": "article video",
     },
-    "repostButton": {
-      "selector": ".listenEngagement button[aria-label*='Repost']",
-      "object": {"selector": "button[aria-label*='Repost']", "filters": [{"match": {"innerText": "/Repost/"}}]},
+    "isLiked": {
+      "selector": "section.ltpMr.Slqrh span:nth-child(1) button svg[aria-label='Unlike']",
+    },
+    // Actions
+    "shareButton": { // Good load test
+      "select": "section button svg[aria-label='Share Post']",
     },
     "followButton": {
-      "selector": "button[aria-label*='Follow']",
-      "object": {"selector": "button[aria-label*='Follow']", "filters": [{"match": {"innerText": "/Follow/"}}]},
+      "object": {"selector": "article button", "filters": [ {"match": { "innerText": "/Follow$|Follow back/i" }} ], "index": 0 },
     },
-    "shareButton": { // Good indicator for isLoaded
-      "selector": "button[aria-label*='Share']",
-      "object": {"selector": "button[aria-label*='Share']", "filters": [{"match": {"innerText": "/Share/"}}]},
+    "likeButton": {
+      "selector": "section.ltpMr.Slqrh span:nth-child(1) button",
     },
-    "disableRepostReminder_checkButton": {
-      "selector": "input[name='dontRemind']",
-    },
-    "disableRepostReminder_closeButton": {
-      "selector": "button.shareRepostedAudible__closeDialogButton",
-    },
+
     // Stats
     "likeCount": {
-      "selector": ".listenEngagement .sc-ministats-likes span[aria-hidden='true']",
-    },
-    "repostCount": {
-      "selector": ".listenEngagement .sc-ministats-reposts span[aria-hidden='true']",
-    },
-    "followerCount": {
-      "selector": ".sc-ministats-followers span[aria-hidden='true']",
+      "object": {"selector": "section.EDfFK.ygqzn button", "filters": [ {"match": { "innerText": "/ likes$|likes this$| others$/i" }} ], "index": "$last" },
     },
     "postDate": {
-      "selector": ".fullHero__uploadTime .relativeTime",
+      "object": {"selector": "a[href*='/p/'] time", "retrieve": ["datetime"], "index": "$last" },
     },
+
     // Explore
     "commentProfileLink": {
-      "selector(array)": ".commentItem__username > a",
+      "selector(array)": "article a img",
+      "object": {"selector": "div.eo2As a img", "filters": [{"splice": [1,4]}, {"isVisible": true}], "index": "$random"}
     },
-    "relatedTrackLink": {
-      "selector(array)": "a.soundTitle__title span",
+    "viewLikesButton": {
+      "object": "$get(post.likeCount.object)",
     },
-    "viewLikes": {
-      "selector": "$get(track.likeCount.selector)",
-    },
+
   },
-  "track_likes": {
-    // Indicators
+  "post_likes": {
     "isOnPage": {
-      "url": "/\\/likes/",
+      "selector(array)": "div[role='presentation'] a > div",
     },
-    "isEmpty": {
-      "selector": "$get(profile_followers.isEmpty.selector)",
-    },
-    // Explore
     "profileLink": {
-      "selector(array)": ".userBadgeListItem__title",
-    },
-  },
-  "playlist": {
-    // Indicators
-    "isOnPage": {
-      "url": "/\\/sets\\//",
-      "selector": ".fullHero__tracksSummary",
-    },
-    // Explore
-    "trackLink": {
-      "selector(array)": "a.trackItem__trackTitle",
+      "selector(array)": "$get(post_likes.isOnPage.selector(array))",
     },
   },
   "error": {
