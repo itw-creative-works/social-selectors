@@ -67,19 +67,22 @@
     "isOnPage": {
       "selector": ".nZSzR h2, .nZSzR h1",
     },
+    "isPrivate": {
+      "object": {"selector": "h2", "filters": [ {"match": { "innerText": "/This Account is Private/i" }} ], "index": 0 },
+    },
     // Actions
     "followButton": {
-      "object": {"selector": "button", "filters": [ {"match": { "innerText": "/Follow$|Follow back/i" }} ], "index": 0 },
+      "object": {"selector": "header button", "filters": [ {"match": { "innerText": "/Follow$|Follow back$/i" }} ], "index": 0 },
     },
     // Stats
     "followerCount": {
-      "object": {"selector": "a", "filters": [ {"match": { "innerText": "/ followers$| follower$/i" }} ], "index": 0 },
+      "object": {"selector": "header a", "filters": [ {"match": { "innerText": "/ followers$| follower$/i" }} ], "index": 0 },
     },
     "followingCount": {
-      "object": {"selector": "a", "filters": [ {"match": { "innerText": "/ following$/i" }} ], "index": 0 },
+      "object": {"selector": "header a", "filters": [ {"match": { "innerText": "/ following$/i" }} ], "index": 0 },
     },
     "postCount": {
-      "object": {"selector": "span", "filters": [ {"match": { "innerText": "/ posts$| post$/i" }} ], "index": 0 },
+      "object": {"selector": "header span", "filters": [ {"match": { "innerText": "/ posts$| post$/i" }} ], "index": 0 },
     },
     // Explore
     "viewFollowersButton": {
