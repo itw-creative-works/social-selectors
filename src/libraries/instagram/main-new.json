@@ -17,7 +17,7 @@
     },
     "isLoggedOut": {
       "selector": "",
-      "object": { "selector": "button", "filters": [ {"match": { "innerText": "/Log in/i" }} ] },
+      "object": { "selector": "button", "filters": [ {"match": { "innerText": "/Log In/i" }} ] },
     },
     "profilePicture": {
       "selector": "nav img[alt*='s profile']",
