@@ -20,7 +20,7 @@
       "selector": "#captcha img"
     },
     "captchaFailedMessage": {
-      "object": {"selector": "div font", "filters": [ {"match": { "innerText": "/did not successfully solve:/i" }} ], "index": 0 },
+      "object": {"selector": "div font", "filters": [ {"match": { "innerText": "/did not successfully solve/i" }} ], "index": 0 },
     },
 
     "timerText": {

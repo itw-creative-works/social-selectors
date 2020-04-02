@@ -171,6 +171,9 @@
     // Indicators
     "spamWarning": {
       "selector": ".spamWarning",
+    },
+    "timeout": {
+      "object": {"selector": "body", "filters": [ {"match": { "innerText": "/wait a few minutes/i" }} ] },
     }
   }
 
