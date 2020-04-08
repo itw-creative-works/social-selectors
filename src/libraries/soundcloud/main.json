@@ -7,6 +7,9 @@
     "isLoggedIn": {
       "selector": ""
     },
+    "isLoggedOut": {
+      "object": {"selector": ".frontHero__signin button, header button", "filters": [{"match": {"innerText": "/Sign in/i"}}]},
+    },
     "profileLink": {
       "selector": ".header__userNav .header__userNavUsernameButton",
     },
