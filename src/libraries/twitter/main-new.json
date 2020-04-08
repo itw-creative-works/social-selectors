@@ -34,6 +34,9 @@
     "exploreLink": {
       "selector": "a[href='/explore']"
     },
+    "profileUpdateDialog": {
+      "object": {"selector": "div[role='alertdialog'] span", "filters": [ {"match": { "innerText": "/update your profile/i" }} ] },
+    },
     /* "searchBar_dropdown": {
       "selector": "div[role='dialog']",
     },
