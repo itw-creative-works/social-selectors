@@ -164,6 +164,12 @@
     "postDate": {
       "selector": ".fullHero__uploadTime .relativeTime",
     },
+    "commentList": {
+      "selector": ".commentsList"
+    },
+    "commentButton": {
+      "selector": ".commentForm__input"
+    },
     // Explore
     "commentProfileLink": {
       "selector(array)": ".commentItem__username > a"

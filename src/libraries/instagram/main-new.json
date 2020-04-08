@@ -148,6 +148,19 @@
     "postDate": {
       "object": {"selector": "a[href*='/p/'] time", "retrieve": ["datetime"], "index": "$last" },
     },
+    "postHeader": {
+      "selector": "article header"
+    },
+
+    "commentButton": {
+      "selector": "form textarea[placeholder*='comment']"
+    },
+    "commentButton_confirmButton": {
+      "object": {"selector": "form button", "filters": [ {"match": { "innerText": "/Post$/i" }} ] },
+    },
+    "commentList": {
+      "selector": "article"
+    },
 
     // Explore
     "commentProfileLink": {
