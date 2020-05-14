@@ -1,0 +1,32 @@
+{
+  "global": {
+    // Indicators
+    "isOnPage": {
+      "url": "/youtube\\.com/",
+    },
+    "isLoggedOut": {
+      "selector": "a[href*='ServiceLogin']",
+    },
+  },
+  "home": {
+
+  },
+  "explore": {
+
+  },
+  "post": {
+    "videoIsPlaying": {
+      "selector": "button.ytp-play-button[title*='Pause']",
+    },
+    "playButton": {
+      /* "selector": "span[aria-label='Play']", */
+      "selector": "button.ytp-play-button",
+    },
+  },
+  "search": {
+
+  },
+  "profile": {
+
+  },
+}

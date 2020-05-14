@@ -1,8 +1,9 @@
 const gulp     = require('gulp');
 const newer    = require('gulp-newer');
 const watch    = require('gulp-watch');
-const through = require('through2');
-const JSON5 = require('json5');
+const through  = require('through2');
+const JSON5    = require('json5');
+const del      = require('del');
 
 // Tasks
 let source_index = './src';
@@ -14,7 +15,10 @@ gulp.task('copy', function() {
     .pipe(gulp.dest(destination));
 });
 
-gulp.task('jsonMinify', function() {
+gulp.task('jsonMinify', async function() {
+
+  await del(['module/libraries/**/*']);
+
   return gulp.src(['src/libraries/**/*.json'])
     .pipe(minifyJson())
     .pipe(gulp.dest('module/libraries'));

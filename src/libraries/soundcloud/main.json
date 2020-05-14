@@ -154,6 +154,12 @@
     "disableRepostReminder_closeButton": {
       "selector": "button.shareRepostedAudible__closeDialogButton"
     },
+    "playButton": {
+      "selector": ".l-listen-hero a[title='Play']",
+    },
+    "pauseButton": {
+      "selector": ".l-listen-hero a[title='Pause']",
+    },
     // Stats
     "likeCount": {
       "selector": ".listenEngagement .sc-ministats-likes span[aria-hidden='true']",
