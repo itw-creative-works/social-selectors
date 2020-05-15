@@ -12,6 +12,9 @@
     "isOnPage": {
       "url": "/instagram\\.com/",
     },
+    "isEnglish": {
+      "object": { "selector": "html[lang*='en']", "wait": 15000 },
+    },
     "isOnMainSite": {
       "selector": "img[alt='Instagram']",
     },

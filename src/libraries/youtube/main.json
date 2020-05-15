@@ -4,6 +4,9 @@
     "isOnPage": {
       "url": "/youtube\\.com/",
     },
+    "isEnglish": {
+      "object": { "selector": "html[lang*='en']", "wait": 15000 },
+    },
     "isLoggedOut": {
       "selector": "a[href*='ServiceLogin']",
     },

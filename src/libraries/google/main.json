@@ -5,6 +5,9 @@
     "isOnPage": {
       "url": "/google\\.com/",
     },
+    "isEnglish": {
+      "object": { "selector": "html[lang*='en']", "wait": 15000 },
+    },
     "isOnMainSite": {
       "selector": "",
     },

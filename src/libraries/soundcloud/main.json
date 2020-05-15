@@ -4,6 +4,9 @@
     "isOnPage": {
       "url": "/soundcloud\\.com/"
     },
+    "isEnglish": {
+      "object": { "selector": "html[lang*='en']", "wait": 15000 },
+    },
     "isLoggedIn": {
       "selector": ""
     },
