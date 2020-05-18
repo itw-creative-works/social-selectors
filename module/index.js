@@ -154,20 +154,15 @@
 
   }
 
-  var parseDELETE = function (req) {
-    var result;
-    try {
-      result = JSON.parse(req.responseText);
-    } catch (e) {
-      result = req.responseText;
-    }
-    return [result, req];
-  };
+  function prepareObject(value, overwrite) {
+    return overwrite ? Object.assign(value, overwrite) : value;
+  }
 
-  SocialSelectors.prototype.get = function(path, def) {
+  SocialSelectors.prototype.get = function(path, def, options) {
     var This = this;
     var response = def || '';
     var obj = This.library || {};
+    options = options || {};
 
     if (This.error) {
       return response;
@@ -181,7 +176,10 @@
 
     // return revive(fullPath.every(everyFunc) ? obj : def);
     var workingVal;
-    if (fullPath.every(everyFunc)) {
+
+    if (fullPath.every(function (step) {
+      return !(step && (obj = obj[step]) === undefined);
+    })) {
       workingVal = obj;
     } else {
       workingVal = def;
@@ -197,13 +195,9 @@
     //
     //   }
     // }
-    workingVal = typeof workingVal === 'object' ? workingVal : parseTriggers(This, workingVal);
+    workingVal = typeof workingVal === 'object' ? prepareObject(workingVal, options.overwrite) : parseTriggers(This, workingVal);
+
     return revive(workingVal);
-
-
-    function everyFunc(step) {
-      return !(step && (obj = obj[step]) === undefined);
-    }
 
   }
 
