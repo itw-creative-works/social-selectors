@@ -7,6 +7,9 @@
     "isLoggedIn": {
       "selector": "a[href='account.php']"
     },
+    "isLoggedOut": {
+      "selector": "a[href*='login.php']"
+    },
     "isCaptcha": {
       "selector": "#captcha",
     },
