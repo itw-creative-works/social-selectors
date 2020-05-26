@@ -1,36 +1,38 @@
-<div align="center">
+<p align="center">
   <a href="https://cdn.itwcreativeworks.com/assets/itw-creative-works/images/logo/itw-creative-works-brandmark-black-x.svg">
     <img src="https://cdn.itwcreativeworks.com/assets/itw-creative-works/images/logo/itw-creative-works-brandmark-black-x.svg">
   </a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/github/package-json/v/itw-creative-works/social-selectors.svg">
+  <br>
+  <img src="https://img.shields.io/david/itw-creative-works/social-selectors.svg">
+  <img src="https://img.shields.io/david/dev/itw-creative-works/social-selectors.svg">
+  <img src="https://img.shields.io/bundlephobia/min/social-selectors.svg">
+  <img src="https://img.shields.io/codeclimate/maintainability-percentage/itw-creative-works/social-selectors.svg">
+  <img src="https://img.shields.io/npm/dm/social-selectors.svg">
+  <img src="https://img.shields.io/node/v/social-selectors.svg">
+  <img src="https://img.shields.io/website/https/itwcreativeworks.com.svg">
+  <img src="https://img.shields.io/github/license/itw-creative-works/social-selectors.svg">
+  <img src="https://img.shields.io/github/contributors/itw-creative-works/social-selectors.svg">
+  <img src="https://img.shields.io/github/last-commit/itw-creative-works/social-selectors.svg">
   <br>
   <br>
+  <a href="https://itwcreativeworks.com">Site</a> | <a href="https://www.npmjs.com/package/social-selectors">NPM Module</a> | <a href="https://github.com/itw-creative-works/social-selectors">GitHub Repo</a>
+  <br>
+  <br>
+  <strong>social-selectors</strong> is an API of CSS selectors for various elements on social media sites. This module puts a constantly updated library at your finger tips and takes the struggle out of dealing with third party, constantly changing CSS classes and IDs.
+  <br>
+</p>
 
-![GitHub package.json version](https://img.shields.io/github/package-json/v/itw-creative-works/social-selectors.svg)
-
-![David](https://img.shields.io/david/itw-creative-works/social-selectors.svg)
-![David](https://img.shields.io/david/dev/itw-creative-works/social-selectors.svg) <!-- ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/social-selectors/social-selectors.svg) -->
-![npm bundle size](https://img.shields.io/bundlephobia/min/social-selectors.svg)
-![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability-percentage/itw-creative-works/social-selectors.svg)
-![npm](https://img.shields.io/npm/dm/social-selectors.svg) <!-- [![NPM total downloads](https://img.shields.io/npm/dt/social-selectors.svg?style=flat)](https://npmjs.org/package/social-selectors) -->
-![node](https://img.shields.io/node/v/social-selectors.svg)
-![Website](https://img.shields.io/website/https/itwcreativeworks.com.svg)
-![GitHub](https://img.shields.io/github/license/itw-creative-works/social-selectors.svg)
-![GitHub contributors](https://img.shields.io/github/contributors/itw-creative-works/social-selectors.svg)
-![GitHub last commit](https://img.shields.io/github/last-commit/itw-creative-works/social-selectors.svg)
-
-# SocialSelectors
-**social-selectors** is an API of CSS selectors for various elements on social media sites. This module puts a constantly updated library at your finger tips and takes the struggle out of dealing with third party, constantly changing CSS classes and IDs.
-
-[Site](https://itwcreativeworks.com) | [NPM Module](https://www.npmjs.com/package/social-selectors) | [GitHub Repo](https://github.com/itw-creative-works/social-selectors)
-
-</div>
-
+## What is Social Selectors?
 SO... you're trying to get the css selector for the _follow button_ on Twitter. **Which would you rather use?**
 
 ```js
 '.css-1dbjc4n.r-obd0qt.r-18u37iz.r-1w6e6rj.r-1h0z5md.r-dnmrzs *[data-testid*="-follow"]'
 // OR //
-'pages.profile.elements.followButton.normal.selector'
+'profile.followButton.selector'
 ```
 
 Well, now you don't have to manage those ugly, system generated css selectors anymore!
