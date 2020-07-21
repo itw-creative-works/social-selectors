@@ -7,16 +7,11 @@ const named          = require('vinyl-named');
 const plumber        = require('gulp-plumber');
 const webpackStream  = require('webpack-stream');
 const webpack        = require('webpack');
+const path           = require('path');
 let tools            = new (require('../../libraries/tools.js'));
 let Global           = require('../../libraries/global.js');
 
-
-const entry = [];
-for (var i = 0; i <= config.js.entry.length - 1; i++) {
-  entry.push(config.assets + config.assetsSubpath + '/' + config.js.src + '/' + config.js.entry[i]);
-}
-
-if (config.tasks.eslint && argv.skipESLint != 'true') {
+if (config.tasks.eslint && argv.skipESLint !== 'true') {
   config_webpack.module.rules.push(config.eslintLoader);
 }
 
@@ -24,16 +19,17 @@ config_webpack.watch = argv.watch;
 config_webpack.mode = argv.mode || config_webpack.mode;
 
 gulp.task('webpack', async function () {
+  const prePath = `${config.assets + config.assetsSubpath}/${config.js.src}`;
   await tools.poll(function () {
-    // console.log('webpack polling Global.get(prefillStatus)....', Global.get('prefillStatus'));
-    return Global.get('prefillStatus') == 'done';
+    return Global.get('prefillStatus') === 'done';
   }, {timeout: 60000});
-  return gulp.src(entry)
+  await gulp.src([`${prePath}/**/*.js`, `!${prePath}/app/app.js`, `!${prePath}/app/service-worker.js`])
     .pipe(plumber())
     .pipe(named())
     .pipe(babel(config.babel))
     .pipe(webpackStream(config_webpack, webpack))
-    .pipe(gulp.dest(config.assets + '/' + config.js.dest));
+    .pipe(gulp.dest(`${config.assets}/${config.js.dest}`));
+
 });
 
 // For internal use only
