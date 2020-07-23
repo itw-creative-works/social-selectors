@@ -32,8 +32,8 @@ gulp.task("_prefill", async () => {
           "*/" + "\n" +
           ""
         )
-        await createFile('./_includes/app/global/foot.html', '<!-- App Foot Content  -->')
-        await createFile('./_includes/app/global/head.html', '<!-- App Head Content  -->')
+        await createFile('./_includes/app/global/foot.html', '<!-- App Foot Content -->')
+        await createFile('./_includes/app/global/head.html', '<!-- App Head Content -->')
 
         await createFile('./_includes/app/misc/ads.txt', '')
         await createFile('./_includes/app/misc/budget.json', '')
@@ -166,6 +166,7 @@ gulp.task("_prefill", async () => {
         fs.dir(`./assets/_src/images/og`);
 
         fs.dir(`./assets/_src/sass/theme`);
+        fs.dir(`./assets/_src/js/theme`);
 
         fs.dir(`./assets/_src-uncompiled`);
 
