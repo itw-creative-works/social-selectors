@@ -2,6 +2,8 @@
 ### ALL PAGES ###
 layout: master/global/default
 permalink: /
+sitemap:
+  include: false
 
 ### REGULAR PAGES ###
 meta:
