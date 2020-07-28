@@ -96,14 +96,18 @@
         } else if (payload.location == 'hosted') {
           var request = (workingPath.substring(0,5).indexOf('https') > -1) ? require('https') : require('http');
           var full = '';
+          // console.log('+++++1');
           request.get(workingPath, function(res) {
+            // console.log('+++++2', res);
             // console.log('statusCode:', res.statusCode);
             // console.log('headers:', res.headers);
             res.on('data', function(chunk) {
+              // console.log('+++++chunk', chunk);
               full += chunk;
             });
 
             res.on('end', function() {
+              // console.log('+++++end');
               try {
                 This.library = JSON.parse(full.toString());
                 This.loaded = true;
@@ -141,6 +145,7 @@
             // });
 
           }).on('error', function(e) {
+            // console.log('+++++ERROR', e);
             This.library = e;
             This.loaded = false;
             This.error = e;
