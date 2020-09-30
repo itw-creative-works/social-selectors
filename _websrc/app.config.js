@@ -1,7 +1,7 @@
 module.exports = {
   tasks: {
     copy: true,
-    jsonMinify: true,
+    minifyJSON: true,
   },
   watch: function(gulp, watch) {
     return [
@@ -14,7 +14,7 @@ module.exports = {
       watch([
         'src/libraries/**/*',
       ], function () {
-        gulp.start('jsonMinify');
+        gulp.start('minifyJSON');
         gulp.start('jekyll-build');
 
       })

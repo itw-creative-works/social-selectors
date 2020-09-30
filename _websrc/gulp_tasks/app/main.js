@@ -15,7 +15,7 @@ gulp.task('copy', function() {
     .pipe(gulp.dest(destination));
 });
 
-gulp.task('jsonMinify', async function() {
+gulp.task('minifyJSON', async function() {
 
   await del(['module/libraries/**/*']);
 
