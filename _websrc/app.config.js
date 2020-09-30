@@ -1,6 +1,6 @@
 module.exports = {
   tasks: {
-    copy: true,
+    copyMain: true,
     minifyJSON: true,
   },
   watch: function(gulp, watch) {
@@ -8,7 +8,7 @@ module.exports = {
       watch([
         './src/index.js',
       ], function () {
-        gulp.start('copy');
+        gulp.start('copyMain');
         gulp.start('jekyll-build');
       }),
       watch([

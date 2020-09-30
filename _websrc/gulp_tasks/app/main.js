@@ -10,7 +10,7 @@ let source_index = './src';
 let source_json = './src/libraries';
 let destination = './module';
 
-gulp.task('copy', function() {
+gulp.task('copyMain', function() {
   return gulp.src(source_index + '/index.js', {base: source_index})
     .pipe(gulp.dest(destination));
 });
