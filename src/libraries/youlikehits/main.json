@@ -11,13 +11,19 @@
       "selector": "a[href*='login.php']"
     },
     "isCaptcha": {
-      "selector": "#captcha",
+      "selector": "#captcha .h-captcha iframe",
     },
-    "captchaFormInput": {
-      "selector": "#captcha input[type='text']",
+    "captchaSiteKey": {
+      "selector": "#captcha .h-captcha",
+      "object": {"selector": "#captcha .h-captcha", "retrieve": [ "data-sitekey" ], "index": 0 },
     },
     "captchaFormSubmitButton": {
       "selector": "#captcha input[type='submit']",
+    },
+
+
+    "captchaFormInput": {
+      "selector": "#captcha input[type='text']",
     },
     "captchaFormImage": {
       "selector": "#captcha img"
@@ -25,6 +31,8 @@
     "captchaFailedMessage": {
       "object": {"selector": "div font", "filters": [ {"match": { "innerText": "/did not successfully solve/i" }} ], "index": 0 },
     },
+
+
 
     "timerText": {
       "object": {"selector": "span", "filters": [ {"match": { "innerText": "/Timer:/i" }} ], "index": 0 },
