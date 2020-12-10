@@ -72,7 +72,8 @@
           "regex": ""
         },
         "element": {
-          "selector": ".css-1dbjc4n.r-obd0qt.r-18u37iz.r-1w6e6rj.r-1wtj0ep > a" // The div RIGHT above the A tag that is a parent of the profile picture
+          /* "selector": ".css-1dbjc4n.r-obd0qt.r-18u37iz.r-1w6e6rj.r-1wtj0ep > a" // The div RIGHT above the A tag that is a parent of the profile picture */
+          "selector": "a[href*='/header_photo']" // This does not match ever profile but we dont want profiles that dont have headers so fk it
         }
       },
       "indicators": {
@@ -106,7 +107,8 @@
         // Interactables
         "followButton": {
           "normal": {
-            "selector": ".css-1dbjc4n.r-obd0qt.r-18u37iz.r-1w6e6rj.r-1h0z5md.r-dnmrzs *[data-testid*='-follow']"
+            /* "selector": ".css-1dbjc4n.r-obd0qt.r-18u37iz.r-1w6e6rj.r-1h0z5md.r-dnmrzs *[data-testid*='-follow']" */
+            "selector": "a[href*='/photo'] + div div[data-testid*='-follow']"
           },
           "back": {
             "selector": "" // Example:
@@ -117,7 +119,8 @@
         },
         "unfollowButton": {
           "normal": {
-            "selector": ".css-1dbjc4n.r-obd0qt.r-18u37iz.r-1w6e6rj.r-1h0z5md.r-dnmrzs *[data-testid*='-unfollow']"
+            /* "selector": ".css-1dbjc4n.r-obd0qt.r-18u37iz.r-1w6e6rj.r-1h0z5md.r-dnmrzs *[data-testid*='-unfollow']" */
+            "selector": "a[href*='/photo'] + div div[data-testid*='-unfollow']"
           },
           "back": {
             "selector": ""
@@ -132,9 +135,6 @@
         "profileLink(array)": {
           "selector": "article a.css-4rbku5.css-18t94o4.css-1dbjc4n.r-1loqt21.r-1wbh5a2.r-dnmrzs.r-1ny4l3l"
         },
-        "followersProfileLink(array)": {
-          "selector": "*[aria-label='Timeline: Followers'] a" // example: https://twitter.com/FortniteGame/followers
-        },
         // Metrics
         "postCount": {
           "selector": ""
@@ -142,6 +142,9 @@
         "followerCount": {
           // "selector": ".css-1dbjc4n.r-ku1wi2.r-1j3t67a.r-m611by > div:nth-of-type(5) > div:nth-of-type(2) > a", // Doesnt work on mobile, also returns a NodeList? not sure why
           "selector": "[href$='/followers']"
+        },
+        "followersProfileLink(array)": {
+          "selector": "*[aria-label='Timeline: Followers'] a" // example: https://twitter.com/FortniteGame/followers
         },
         "followingCount": {
           // "selector": ".css-1dbjc4n.r-ku1wi2.r-1j3t67a.r-m611by > div:nth-of-type(5) > div:nth-of-type(1) > a", // Doesnt work on mobile, also returns a NodeList? not sure why
@@ -182,19 +185,25 @@
           "selector": ""
         },
         "likeButton": {
-          "selector": "div.css-1dbjc4n.r-18u37iz.r-1h0z5md.r-3qxfft.r-h4g966.r-rjfia div[aria-label='Like']"
+          /* "selector": "div.css-1dbjc4n.r-18u37iz.r-1h0z5md.r-3qxfft.r-h4g966.r-rjfia div[aria-label='Like']" */
+          "selector": "div[aria-label='Like']"
         },
         "unlikeButton": {
-          "selector": "div.css-1dbjc4n.r-18u37iz.r-1h0z5md.r-3qxfft.r-h4g966.r-rjfia div[aria-label='Liked']"
+          /* "selector": "div.css-1dbjc4n.r-18u37iz.r-1h0z5md.r-3qxfft.r-h4g966.r-rjfia div[aria-label='Liked']" */
+          "selector": "div[aria-label='Liked']"
         },
         "repostButton": {
-          "selector": "div.css-1dbjc4n.r-18u37iz.r-1h0z5md.r-3qxfft.r-h4g966.r-rjfia div[aria-label='Retweet']"
+          /* "selector": "div.css-1dbjc4n.r-18u37iz.r-1h0z5md.r-3qxfft.r-h4g966.r-rjfia div[aria-label='Retweet']" */
+          "selector": "div[aria-label='Retweet']"
         },
         "repostButtonConfirm": {
-          "selector": "div[data-testid='retweetConfirm']"
+          /* "selector": "div[data-testid='retweetConfirm']" */
+          "selector": "div[aria-modal='true'] div[data-testid='tweetButton']"
+
         },
         "unrepostButton": {
-          "selector": "div.css-1dbjc4n.r-18u37iz.r-1h0z5md.r-3qxfft.r-h4g966.r-rjfia div[aria-label='Retweeted']"
+          /* "selector": "div.css-1dbjc4n.r-18u37iz.r-1h0z5md.r-3qxfft.r-h4g966.r-rjfia div[aria-label='Retweeted']" */
+          "selector": "div[aria-label='Retweeted']"
         },
         "followButton": {
           "normal": {
