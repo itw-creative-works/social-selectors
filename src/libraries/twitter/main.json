@@ -174,12 +174,12 @@
     "repostButton": {
       "selector": "div[aria-label='Retweet']"
     },
-    "repostButton_confirmButton1": {
+    "repostButton_confirmButton": {
       "selector": "div[aria-modal='true'] data-testid='retweetConfirm'"
     },
-    "repostButton_confirmButton2": {
+    /* "repostButton_confirmButton2": {
       "selector": "div[aria-modal='true'] div[data-testid='tweetButton']"
-    },
+    }, */
     "unrepostButton": {
       "selector": "div[aria-label='Retweeted']"
     },
