@@ -155,10 +155,10 @@
       "selector": "article video",
     }, */
     "isLiked": {
-      "selector": "$get(pages.post.elements.unlikeButton.selector)"
+      "selector": "$get(post.elements.unlikeButton.selector)"
     },
     "isReposted": {
-      "selector": "$get(pages.post.elements.unrepostButton.selector)",
+      "selector": "$get(post.elements.unrepostButton.selector)",
     },
     // Actions
     "shareButton": { // Good load test
