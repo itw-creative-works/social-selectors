@@ -45,6 +45,10 @@
       "selector": ".header__userNav .header__userNavUsernameButton",
     },
 
+    "footer": {
+      "selector": ".footer"
+    }
+
 
   },
   "home": {
