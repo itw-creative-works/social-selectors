@@ -5,6 +5,10 @@ const plumber    = require('gulp-plumber');
 const responsive = require('gulp-responsive');
 const cached     = require('gulp-cached');
 const argv       = require('yargs').argv;
+const sharp      = require('sharp');
+const glob       = require('glob');
+const jetpack    = require('fs-jetpack');
+
 // const pngquant   = require('imagemin-pngquant');
 // const imagemin   = require('gulp-imagemin');
 
@@ -20,12 +24,57 @@ const argv       = require('yargs').argv;
 //     .pipe(gulp.dest(config.assets + '/' + config.imagemin.dest));
 // });
 
-gulp.task('imageminResponsive', function () {
+function getBlogImages() {
+  return new Promise(function(resolve, reject) {
+    let getDirectories = function (src, callback) {
+      glob(src + '/**/*', callback);
+    };
+
+    getDirectories('assets/_src/images/blog/posts', function (err, res) {
+      if (err) {
+        console.log('Error', err);
+      } else {
+        return resolve(res);
+      }
+    });
+  });
+}
+
+gulp.task('imageminResponsive', async function () {
   if (argv.skipImageMin == 'true') {
     console.log('Skipping imageminResponsive');
     return;
   }
   console.log('Performing imageminResponsive');
+
+  let images = await getBlogImages();
+  const regex = /(\.jpg|\.jpeg|\.png)/img;
+
+  for (var i = 0, l = images.length; i < l; i++) {
+    const imgPath = images[i];
+    const imgPathNew = imgPath.replace(regex, '-new$1');
+
+    if (!imgPath.match(regex)) { continue }
+    const newImage = await sharp(imgPath);
+    const newImageMeta = await newImage.metadata();
+    if (newImageMeta.width < 1024) {
+      console.log('Fixing image', imgPath);
+      jetpack.remove(imgPathNew);
+      await newImage
+        .resize({ width: 1024 })
+        .toFile(imgPathNew)
+      jetpack.remove(imgPath);
+      jetpack.rename(imgPathNew, imgPath.split('/').pop())
+    }
+    // if (image && image.bitmap && image.bitmap.width < 1024) {
+    //   console.log('Fixing image', imgPath);
+    //   const ratio = (1024 / image.bitmap.width);
+    //   await image.resize(Math.floor(image.bitmap.width * ratio), Math.floor(image.bitmap.height * ratio));
+    //   // await image.quality(quality);
+    //   await image.writeAsync(imgPath);
+    // }
+  }
+
   return gulp.src([config.assets + config.assetsSubpath + '/' + config.imagemin.src + '/**/*.{jpg,jpeg,png}', '!' + config.assets + config.assetsSubpath + '/' + config.imagemin.src + '/favicon/**/*'])
     .pipe(cached('images'))
     .pipe(responsive({

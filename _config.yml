@@ -109,6 +109,7 @@ settings:
   include-html5shiv: true # true | false
   include-socialsharekit: true # true | false
   include-debug-performance: false # true | false
+  blog-post-image-class: "" # class will be applied to all blog post images using the master include
   manager-configuration: "
     {
       libraries: {
@@ -166,7 +167,7 @@ pagination:
   enabled: true
   per_page: 6
   offset: 0
-  permalink: '/blog/page/:num/'
+  permalink: '/page/:num/'
   title: ':title - page :num'
   limit: 0
   sort_field: 'date'
