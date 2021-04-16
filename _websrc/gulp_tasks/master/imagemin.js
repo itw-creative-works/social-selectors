@@ -41,11 +41,14 @@ function getBlogImages() {
   });
 }
 
-gulp.task('imageminResponsive', async function (done) {
+gulp.task('imageminResponsive', async function () {
   if (argv.skipImageMin === 'true') {
     console.log('Skipping imageminResponsive');
-    return;
+    return Promise.resolve();
   }
+
+  tools.startTask('imageminResponsive');
+
   console.log('Performing imageminResponsive');
 
   let images = await getBlogImages();
@@ -208,5 +211,5 @@ gulp.task('imageminResponsive', async function (done) {
       errorOnUnusedConfig: false
     }))
     .pipe(gulp.dest(config.assets + '/' + config.imagemin.dest))
-    .pipe(tools.complete('imageminResponsive'))
+    .pipe(tools.completeTask('imageminResponsive'))
 });

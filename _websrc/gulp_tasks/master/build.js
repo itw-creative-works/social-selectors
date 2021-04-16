@@ -21,7 +21,6 @@ let firstBuild = true;
 function areTasksCompleted() {
   let completed = true;
   const tasks = Object.keys(Global.get(`completed`, {_faketask: new Date()}));
-
   for (var i = 0, l = tasks.length; i < l; i++) {
     const task = tasks[i];
     const time = Global.get(`completed.${task}`, new Date(0));
@@ -38,7 +37,7 @@ function areTasksCompleted() {
 /**
  * Build the Jekyll Site
  */
-gulp.task('jekyll-build', async function (done) {
+gulp.task('jekyll-build', async function () {
   return new Promise(async function(resolve, reject) {
     await tools.poll(function () {
       return Global.get('prefillStatus') === 'done';
@@ -47,6 +46,10 @@ gulp.task('jekyll-build', async function (done) {
     // Other build tasks
     await tools.poll(function () {
       return areTasksCompleted();
+    }, {timeout: 1000 * 60 * 3, interval: 1000});
+
+    await tools.poll(function () {
+      return fs.exists('./assets/js/main.js') && fs.exists('./assets/css/main.css');
     }, {timeout: 1000 * 60 * 3, interval: 1000});
 
     let jekyllConfig = config.jekyll.config.default;
