@@ -20,10 +20,11 @@
   },
   "content": {
     "playButton": {
-      "selector": "span[title='Play'].play-button.play-button-cloudcast:not(.pause-state)",
+      "_selector": "span[title='Play'].play-button.play-button-cloudcast:not(.pause-state)",
+      "selector": "span.play-button.play-button-cloudcast:not(.pause-state)",
     },
     "pauseButton": {
-      "selector": "span[title='Play'].play-button.play-button-cloudcast.pause-state",
+      "selector": "span.play-button.play-button-cloudcast.pause-state",
     }
   }
 
