@@ -4,7 +4,8 @@ permalink: /master-service-worker.js
 sitemap:
   include: false
 ---
-;
+; // This fixes the frontmatter formatting
+
 // self.addEventListener('install', function(event) {
 // });
 var SWManager = {
@@ -20,7 +21,8 @@ var SWManager = {
     cachePolyfill: false,
   },
   cache: {
-    name: 'default-1.0.0'
+    breaker: '{{ site.time | date: "%s" }}',
+    name: ''
   }
 };
 
@@ -37,8 +39,8 @@ try {
 
 // Load Firebase Messaging
 try {
-  importScripts('https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js');
-  importScripts('https://www.gstatic.com/firebasejs/8.3.1/firebase-messaging.js');
+  importScripts('https://www.gstatic.com/firebasejs/{firebase-version}/firebase-app.js');
+  importScripts('https://www.gstatic.com/firebasejs/{firebase-version}/firebase-messaging.js');
 
   // if (typeof firebase === 'undefined') {
   //   throw new Error('hosting/init-error: Firebase SDK not detected.');
@@ -55,7 +57,7 @@ try {
 try {
   // importScripts('libraries/serviceworker-cache-polyfill.js');
   SWManager.libraries.cachePolyfill = true;
-  SWManager.cache.name = (SWManager.brand.name.toLowerCase().replace(' ', '') || 'default') + '-' + SWManager.version;
+  SWManager.cache.name = (SWManager.brand.name.toLowerCase().replace(' ', '') || 'default') + '-' + SWManager.cache.breaker;
   log('master-service-worker.js cache name = ' + SWManager.cache.name);
   // Refresh button breaks: https://redfin.engineering/how-to-fix-the-refresh-button-when-using-service-workers-a8e27af6df68
   // - https://redfin.engineering/service-workers-break-the-browsers-refresh-button-by-default-here-s-why-56f9417694
