@@ -25,6 +25,9 @@
     },
     "pauseButton": {
       "selector": "span.play-button.play-button-cloudcast.pause-state",
+    },
+    "isPlaying": {
+      "selector": "$get(content.pauseButton.selector)",
     }
   }
 
