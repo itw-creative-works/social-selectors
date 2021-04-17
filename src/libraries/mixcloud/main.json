@@ -18,7 +18,7 @@
     },
 
   },
-  "content": {
+  "mix": {
     "playButton": {
       "_selector": "span[title='Play'].play-button.play-button-cloudcast:not(.pause-state)",
       "selector": "span.play-button.play-button-cloudcast:not(.pause-state)",
