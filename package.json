@@ -1,6 +1,6 @@
 {
   "name": "social-selectors",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "A library of selectors for CSS elements on social media sites.",
   "main": "module/index.js",
   "scripts": {
