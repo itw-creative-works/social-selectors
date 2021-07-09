@@ -106,8 +106,11 @@
     "viewFollowingButton": {
       "object": "$get(profile.followingCount.object)",
     },
+    "postContainer": {
+      "selector": ".video-feed"
+    },
     "postLink": {
-      "selector(array)": ".video-feed video"
+      "selector(array)": ".video-feed .video-feed-item"
     },
     "suggestedProfileLink": {
       "selector(array)": ".user-list a[href*='/@'][style*=block]"
