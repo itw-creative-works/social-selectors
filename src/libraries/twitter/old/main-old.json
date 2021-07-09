@@ -1,0 +1,281 @@
+{
+  "globals": {
+    // Example: https://twitter.com/
+    "indicators": {
+      "loggedIn": {
+        "selector": "*[href='/compose/tweet']", // DEPRECATE SOON
+      },
+      "isLoggedIn": {
+        "selector": "*[href='/compose/tweet']",
+      },
+      "legacyUi": {
+        "selector": ".topbar.js-topbar",
+      },
+      "viewingPopup": {
+        "selector": ""
+      },
+      // *[href="/notifications"]
+      // *[aria-label="Profile"]
+      // *[href="/compose/tweet"]
+
+      // "viewingNotificationPopup": {
+      //   "selector": "._7UhW9.x-6xq.yUEEX.KV-D4.uL8Hv"
+      // }
+
+    },
+    "elements": {
+      "nav": {
+        "profile": {
+          "selector": ""
+        },
+        "loginButton": {
+          "selector": "*[href='/login']"
+        }
+      },
+    }
+  },
+  "pages": {
+    // Home
+    "home": {
+
+    },
+
+    // Feed
+    "feed": {
+      "meta": {
+        "url": {
+          "regex": ""
+        },
+        "element": {
+          "selector": ""
+        }
+      },
+      "indicators": {
+
+      },
+      "elements": {
+        "profileLink(array)": {
+          // "selector": "*[aria-label='Timeline: Your Home Timeline'] a [src*='https://pbs.twimg.com/profile_images']", // Works but not a slector for A TAG
+          // "selector": "article a.css-4rbku5.css-18t94o4.css-1dbjc4n.r-sdzlij.r-1loqt21.r-1adg3ll.r-1udh08x.r-13qz1uu", // Selects profile picture A tag
+          "selector": "$get(pages.profile.elements.profileLink(array).selector)", // Selects username A tag
+        },
+        "postLink(array)": {
+          "selector": "$get(pages.profile.elements.postLink(array).selector)"
+        }
+      }
+    },
+    // Profile
+    "profile": {
+      // example: https://twitter.com/FortniteGame
+      "meta": {
+        "url": {
+          "regex": ""
+        },
+        "element": {
+          "selector": ".css-1dbjc4n.r-obd0qt.r-18u37iz.r-1w6e6rj.r-1wtj0ep > a" // The div RIGHT above the A tag that is a parent of the profile picture
+        }
+      },
+      "indicators": {
+        "isPrivate": {
+          "selector": "*[aria-label='Protected account']"
+        },
+        "isFollowing": {
+          "normal": {
+            "selector": "$get(pages.profile.elements.unFollowButton.normal.selector)"
+          },
+          "back": {
+            "selector": ""
+          },
+          "private": {
+            "selector": ""
+          }
+        },
+        // "isFollowedBy": {
+        //   "normal": {
+        //     "selector": ""
+        //   },
+        //   "back": {
+        //     "selector": ""
+        //   },
+        //   "private": {
+        //     "selector": ""
+        //   }
+        // },
+      },
+      "elements": {
+        // Interactables
+        "followButton": {
+          "normal": {
+            "selector": ".css-1dbjc4n.r-obd0qt.r-18u37iz.r-1w6e6rj.r-1h0z5md.r-dnmrzs *[data-testid*='-follow']"
+          },
+          "back": {
+            "selector": "" // Example:
+          },
+          "private": {
+            "selector": ""
+          }
+        },
+        "unfollowButton": {
+          "normal": {
+            "selector": ".css-1dbjc4n.r-obd0qt.r-18u37iz.r-1w6e6rj.r-1h0z5md.r-dnmrzs *[data-testid*='-unfollow']"
+          },
+          "back": {
+            "selector": ""
+          },
+          "private": {
+            "selector": ""
+          }
+        },
+        "postLink(array)": {
+          "selector": "article a[href*='/status/']:not([href*='/photo/'])"
+        },
+        "profileLink(array)": {
+          "selector": "article a.css-4rbku5.css-18t94o4.css-1dbjc4n.r-1loqt21.r-1wbh5a2.r-dnmrzs.r-1ny4l3l"
+        },
+        "followersProfileLink(array)": {
+          "selector": "*[aria-label='Timeline: Followers'] a" // example: https://twitter.com/FortniteGame/followers
+        },
+        // Metrics
+        "postCount": {
+          "selector": ""
+        },
+        "followerCount": {
+          // "selector": ".css-1dbjc4n.r-ku1wi2.r-1j3t67a.r-m611by > div:nth-of-type(5) > div:nth-of-type(2) > a", // Doesnt work on mobile, also returns a NodeList? not sure why
+          "selector": "[href$='/followers']"
+        },
+        "followingCount": {
+          // "selector": ".css-1dbjc4n.r-ku1wi2.r-1j3t67a.r-m611by > div:nth-of-type(5) > div:nth-of-type(1) > a", // Doesnt work on mobile, also returns a NodeList? not sure why
+          "selector": "[href$='/following']"
+        },
+      }
+    },
+    // Post
+    "post": {
+      // Example: https://twitter.com/FortniteGame/status/1171211685295579136
+      "meta": {
+        "url": {
+          "regex": ""
+        },
+        "element": {
+          "selector": ""
+        }
+      },
+      "indicators": {
+        "isLiked": {
+          "selector": "$get(pages.post.elements.unlikeButton.selector)"
+        },
+        "isReposted": {
+          "selector": "$get(pages.post.elements.unrepostButton.selector)",
+        },
+        "isFollowing": {
+          "normal": {
+            "selector": "",
+          }
+        },
+
+        "isLikesBoxOpen": {
+          "selector": ""
+        },
+      },
+      "elements": {
+        "posterUsername": {
+          "selector": ""
+        },
+        "likeButton": {
+          "selector": "div.css-1dbjc4n.r-18u37iz.r-1h0z5md.r-3qxfft.r-h4g966.r-rjfia div[aria-label='Like']"
+        },
+        "unlikeButton": {
+          "selector": "div.css-1dbjc4n.r-18u37iz.r-1h0z5md.r-3qxfft.r-h4g966.r-rjfia div[aria-label='Liked']"
+        },
+        "repostButton": {
+          "selector": "div.css-1dbjc4n.r-18u37iz.r-1h0z5md.r-3qxfft.r-h4g966.r-rjfia div[aria-label='Retweet']"
+        },
+        "repostButtonConfirm": {
+          "selector": "div[data-testid='retweetConfirm']"
+        },
+        "unrepostButton": {
+          "selector": "div.css-1dbjc4n.r-18u37iz.r-1h0z5md.r-3qxfft.r-h4g966.r-rjfia div[aria-label='Retweeted']"
+        },
+        "followButton": {
+          "normal": {
+            "selector": ""
+          }
+        },
+        "unfollowButton": {
+          "normal": {
+            "selector": ""
+          }
+        },
+        "viewLikesButton": {
+          "selector": "a[href*='/likes']"
+        },
+        "viewLikesBoxFeed": {
+          "selector": ""
+        },
+        "viewLikesBoxProfileLink(array)": {
+          "selector": "div[aria-modal='true'] a"
+        },
+        // Metrics
+        "likeCount": {
+          "selector": "[href$='/likes']"
+        },
+        "repostCount": {
+          "selector": "[href$='/retweets']"
+        },
+        "datePosted": {
+          "selector": ".css-901oao.r-1re7ezh.r-1qd0xha.r-a023e6.r-16dba41.r-ad9z0x.r-zso239.r-bcqeeo.r-qvutc0 > span:nth-of-type(1)" //@@@FIX
+        },
+      },
+
+    },
+
+    // Search
+    "search": {
+      // Example: https://www.instagram.com/explore/tags/cats/
+      "meta": {
+        "url": {
+          // "regex": "/https:\/\/instagram.com\/p\//"
+        },
+        "element": {
+          // "selector": ""
+        }
+      },
+      "indicators": {
+
+      },
+      "elements": {
+        "profileLink(array)": {
+          "selector": "$get(pages.profile.elements.profileLink(array).selector)", // Selects username A tag
+        },
+        "postLink(array)": {
+          "selector": "$get(pages.profile.elements.postLink(array).selector)"
+        }
+      },
+
+    },
+
+    // Error
+    "error": {
+      "meta": {
+        "url": {
+          "regex": ""
+        },
+        "element": {
+          "selector": "*[data-testid='error-detail']" // Example: https://twitter.com/noexist999999999999999999
+        }
+      },
+    },
+    "rateLimited": {
+      "meta": {
+        "url": {
+          // "regex": "http://twitter.com/i/rate-limited"
+          "regex": "(twitter.com\\/i\\/rate-limited)($|\\/$|\\/|\\?|\\/\\?|\\#|\\/\\#)"
+        }
+      }
+    }
+
+  }
+}
+
+/* Comment test */
+// Comment test
