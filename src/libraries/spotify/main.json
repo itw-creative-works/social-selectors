@@ -1,0 +1,30 @@
+{
+  "global": {
+    // Indicators
+    "isOnPage": {
+      "url": "/spotify\\.com/"
+    },
+    "isEnglish": {
+      "object": { "selector": "html[lang*='en']", "wait": 15000 },
+    },
+
+  },
+  "track": {
+    // Indicators
+    "isOnPage": {
+      "url": "/spotify\\.com\\/track/",
+    },
+    // Actions
+    "playButton": {
+      "selector": "main button[data-testid='play-button']",
+    },
+  },
+  "error": {
+    // Indicators
+    "spamWarning": {
+      "selector": ".spamWarning"
+    }
+  }
+
+
+}
