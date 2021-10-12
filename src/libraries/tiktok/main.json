@@ -21,16 +21,17 @@
     "isLoggedOut": {
       "selector": "",
       /* "object": { "selector": "nav a, main article button", "filters": [ {"match": { "innerText": "/Log In|Sign Up|Continue as/i" }} ] }, */
-      "object": { "selector": ".login-button" },
+      "object": { "selector": "*[class*='StyledLoginButton']" },
     },
     "loginButton": {
       "object": "$get(global.isLoggedOut.object)",
     },
     "profilePicture": {
-      "selector": ".menu-right .tiktok-avatar",
+      "selector": "*[class*='DivProfileContainer']",
     },
     "sessionMetaData": {
       "selector": "#__NEXT_DATA__",
+      "variable": "SIGI_STATE.AppContext.appContext.$user.nickName",
     },
     "isPopupOpen": {
       "selector": "div[role='dialog']"
@@ -80,24 +81,29 @@
     // Indicators
     // Good for testing loaded
     "isOnPage": {
-      "selector": ".share-layout-main",
+      /* "selector": ".share-layout-main", */
+      "selector": "*[class*='DivShareLayoutContent']",
     },
     "isPrivate": {
       "object": {"selector": "_NOEXIST" },
     },
     // Actions
     "followButton": {
-      "object": {"selector": ".share-info button.follow-button:not(.hide)" },
+      /* "object": {"selector": ".share-info button.follow-button:not(.hide)" }, */
+      "object": {"selector": "*[data-e2e*='follow-button']", "filters": [ {"match": { "innerText": "/Follow/i" }} ] },
     },
     // Stats
     "followerCount": {
-      "object": {"selector": ".count-infos strong[title*='Follower']" },
+      /* "object": {"selector": ".count-infos strong[title*='Follower']" }, */
+      "object": {"selector": "*[data-e2e='followers-count']" },
     },
     "followingCount": {
-      "object": {"selector": ".count-infos strong[title*='Following']" },
+      /* "object": {"selector": ".count-infos strong[title*='Following']" }, */
+      "object": {"selector": "*[data-e2e='following-count']" },
     },
     "likeCount": {
-      "object": {"selector": ".count-infos strong[title*='Like']" },
+      /* "object": {"selector": ".count-infos strong[title*='Like']" }, */
+      "object": {"selector": "*[data-e2e='likes-count']" },
     },
     // Explore
     "viewFollowersButton": {
@@ -107,13 +113,15 @@
       "object": "$get(profile.followingCount.object)",
     },
     "postContainer": {
-      "selector": ".video-feed"
+      /* "selector": ".video-feed", */
+      "selector": "*[data-e2e='user-post-item-list']",
     },
     "postLink": {
-      "selector(array)": ".video-feed .video-feed-item"
+      /* "selector(array)": ".video-feed .video-feed-item", */
+      "selector(array)": "*[data-e2e='user-post-item-list'] *[class*='PlayerContainer']",
     },
     "suggestedProfileLink": {
-      "selector(array)": ".user-list a[href*='/@'][style*=block]"
+      "selector(array)": "*[class*='DivSuggestedAccounts'] *[class*='DivUserItem']"
     }
 
   },
