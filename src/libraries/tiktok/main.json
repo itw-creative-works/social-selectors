@@ -196,19 +196,22 @@
       "selector": ".DraftEditor-root"
     },
     "commentList": {
-      "selector": "article"
+      "selector": "*[class*='DivCommentListContainer']"
     },
 
     // Explore
     "commentContainer": {
       "object": {"selector": ".comment-container"}
     },
-    "commentProfileLink": {
+    /* "commentProfileLink": {
       "object": {"selector": ".comment-container .comment-item a[href*='/@']"}
+    }, */
+    "commentContainer_profileLink": {
+      "object": {"selector": "*[class*='DivCommentListContainer'] *[class*='DivCommentItemContainer'] a[href*='/@']"}
     },
-    "viewLikesButton": {
+    /* "viewLikesButton": {
       "object": "$get(post.likeCount.object)",
-    },
+    }, */
 
   },
   "post_likes": {
