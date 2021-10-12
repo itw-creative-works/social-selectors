@@ -44,7 +44,8 @@
       "selector": "input[name='q']",
     },
     "searchBar_dropdown": {
-      "selector": ".search-container .sug-container",
+      /* "selector": ".search-container .sug-container", */
+      "selector": "*[class*='DivSearchFormContainer'] *[data-e2e*='content-sug-item']",
     },
     "notificationsReminder_disable": {
       "object": { "selector": "button", "filters": [ {"match": { "innerText": "/Not Now/i" }} ] },
@@ -53,9 +54,9 @@
       "selector(array)": "div[role='presentation'] img",
     }, */
     // Explore
-    "postLink": {
+    /* "postLink": {
       "selector(array)": "a[href*='/p/'] > div div:nth-child(2)",
-    },
+    }, */
   },
   "home": {
     // Indicators
@@ -63,9 +64,9 @@
       "url": "/instagram.com($|\\/$|\\?|\\/\\?|\\#|\\/\\#)/",
     },
     // Actions
-    "continueAsButton": {
+    /* "continueAsButton": {
       "object": { "selector": "button", "filters": [ {"match": { "innerText": "/Continue as/i" }} ] },
-    },
+    }, */
   },
   "search": {
     // Indicators
@@ -74,8 +75,10 @@
     },
     // Actions
     "profileLink": {
-      "selector(array)": ".search a[href*='/@']"
-    }
+      /* "selector(array)": ".search a[href*='/@']", */
+      "selector(array)": "*[class*='DivMainContainer'] a[data-e2e*='search-card-user-link'][href*='/@']",
+
+    },
   },
   "profile": {
     // Indicators
@@ -158,26 +161,32 @@
       "selector": ".user-info-container",
     },
     "isLiked": {
-      "selector": ".action-container .icons.like.liked",
+      /* "selector": ".action-container .icons.like.liked", */
+      "selector": "*[data-e2e='browse-like-icon'] svg[fill*='rgba(254, 44, 85, 1.0)']",
     },
     // Actions
     "followButton": {
-      "object": {"selector": ".user-info-container button.follow-button", "filters": [ {"match": { "innerText": "/Follow$/i" }} ] },
+      /* "object": {"selector": ".user-info-container button.follow-button", "filters": [ {"match": { "innerText": "/Follow$/i" }} ] }, */
+      "object": {"selector": "*[class*='DivInfoContainer'] *[class*='StyledFollowButton']", "filters": [ {"match": { "innerText": "/Follow$/i" }} ] },
     },
     "likeButton": {
-      "selector": ".action-container .icons.like:not(.liked)",
+      /* "selector": ".action-container .icons.like:not(.liked)", */
+      "selector": "*[data-e2e='browse-like-icon'] svg[fill*='rgba(22, 24, 35, 1.0)']",
     },
     "commentLikeButton": {
-      "object": {"selector": ".comment-container .like-container img[src*='unlike']"}
+      /* "object": {"selector": ".comment-container .like-container img[src*='unlike']"} */
+      "object": {"selector": "*[class*='DivLikeWrapper'] svg[fill='currentColor']"}
     },
 
 
     // Stats
     "likeCount": {
-      "object": {"selector": ".video-infos-container .like-text" },
+      /* "object": {"selector": ".video-infos-container .like-text" }, */
+      "object": {"selector": "*[data-e2e='browse-like-count']" },
     },
     "commentCount": {
-      "object": {"selector": ".video-infos-container .comment-text" },
+      /* "object": {"selector": ".video-infos-container .comment-text" }, */
+      "object": {"selector": "*[data-e2e='browse-comment-count']" },
     },
     "postDate": {
       "object": {"selector": "_NOEXIST" },
