@@ -21,7 +21,7 @@
     "isLoggedOut": {
       "selector": "",
       /* "object": { "selector": "nav a, main article button", "filters": [ {"match": { "innerText": "/Log In|Sign Up|Continue as/i" }} ] }, */
-      "object": { "selector": "*[class*='StyledLoginButton']" },
+      "object": { "selector": "*[class*='StyledLoginButton'], .login-button" },
     },
     "loginButton": {
       "object": "$get(global.isLoggedOut.object)",
