@@ -84,47 +84,57 @@
     // Indicators
     // Good for testing loaded
     "isOnPage": {
-      /* "selector": ".share-layout-main", */
-      "selector": "*[class*='DivShareLayoutContent']",
+      "selector": ".share-layout-main .video-feed",
+      /* "selector": "*[class*='DivShareLayoutContent']", */
     },
     "isPrivate": {
       "object": {"selector": "_NOEXIST" },
     },
+    "isFollowing": {
+      "object": "$get(profile.unfollowButton.object)",
+    },
     // Actions
     "followButton": {
       /* "object": {"selector": ".share-info button.follow-button:not(.hide)" }, */
-      "object": {"selector": "*[data-e2e*='follow-button']", "filters": [ {"match": { "innerText": "/Follow/i" }} ] },
+      /* "object": {"selector": "*[data-e2e*='follow-button']", "filters": [ {"match": { "innerText": "/Follow/i" }} ] }, */
+      "object": {"selector": ".follow-button-wrap button.follow-button", },
+    },
+    "unfollowButton": {
+      "object": {"selector": ".message-container:not(.hide) .follow-button-wrap", },
     },
     // Stats
-    "followerCount": {
-      /* "object": {"selector": ".count-infos strong[title*='Follower']" }, */
-      "object": {"selector": "*[data-e2e='followers-count']" },
-    },
     "followingCount": {
       /* "object": {"selector": ".count-infos strong[title*='Following']" }, */
-      "object": {"selector": "*[data-e2e='following-count']" },
+      "object": {"selector": ".count-infos .number", "index": 0 },
+    },
+    "followerCount": {
+      /* "object": {"selector": ".count-infos strong[title*='Follower']" }, */
+      /* "object": {"selector": "*[data-e2e='followers-count']" }, */
+      "object": {"selector": ".count-infos .number", "index": 1 },
     },
     "likeCount": {
       /* "object": {"selector": ".count-infos strong[title*='Like']" }, */
-      "object": {"selector": "*[data-e2e='likes-count']" },
+      /* "object": {"selector": "*[data-e2e='likes-count']" }, */
+      "object": {"selector": ".count-infos .number", "index": 2 },
     },
     // Explore
-    "viewFollowersButton": {
+    /* "viewFollowersButton": {
       "object": "$get(profile.followerCount.object)",
-    },
-    "viewFollowingButton": {
+    }, */
+    /* "viewFollowingButton": {
       "object": "$get(profile.followingCount.object)",
-    },
+    }, */
     "postContainer": {
-      /* "selector": ".video-feed", */
-      "selector": "*[data-e2e='user-post-item-list']",
+      "selector": ".video-feed",
+      /* "selector": "*[data-e2e='user-post-item-list']", */
     },
     "postLink": {
-      /* "selector(array)": ".video-feed .video-feed-item", */
-      "selector(array)": "*[data-e2e='user-post-item-list'] *[class*='PlayerContainer']",
+      "selector(array)": ".video-feed .video-feed-item",
+      /* "selector(array)": "*[data-e2e='user-post-item-list'] *[class*='PlayerContainer']", */
     },
     "suggestedProfileLink": {
-      "selector(array)": "*[class*='DivSuggestedAccounts'] *[class*='DivUserItem']"
+      /* "selector(array)": "*[class*='DivSuggestedAccounts'] *[class*='DivUserItem']", */
+      "selector(array)": "*[class*='DivSuggestedAccounts'] *[class*='DivUserItem']",
     }
 
   },
@@ -157,36 +167,44 @@
   "post": {
     // Indicators
     "isOnPage": {
-      "url": "(instagram.com\\/p\\/.*?)($|\\/$|\\/|\\?|\\/\\?|\\#|\\/\\#)",
+      /* "url": "(instagram.com\\/p\\/.*?)($|\\/$|\\/|\\?|\\/\\?|\\#|\\/\\#)", */
       "selector": ".user-info-container",
+      /* "selector": ".video-infos-container", */
     },
     "isLiked": {
-      /* "selector": ".action-container .icons.like.liked", */
-      "selector": "*[data-e2e='browse-like-icon'] svg[fill*='rgba(254, 44, 85, 1.0)']",
+      "selector": ".action-container .icons.like.liked",
+      /* "selector": "*[data-e2e='browse-like-icon'] svg[fill*='rgba(254, 44, 85, 1.0)']", */
+    },
+    "isFollowing": {
+      "object": "$get(post.unfollowButton.object)",
     },
     // Actions
     "followButton": {
-      /* "object": {"selector": ".user-info-container button.follow-button", "filters": [ {"match": { "innerText": "/Follow$/i" }} ] }, */
-      "object": {"selector": "*[class*='DivInfoContainer'] *[class*='StyledFollowButton']", "filters": [ {"match": { "innerText": "/Follow$/i" }} ] },
+      "object": {"selector": ".user-info-container button.follow-button", "filters": [ {"match": { "innerText": "/Follow$/i" }} ] },
+      /* "object": {"selector": "*[class*='DivInfoContainer'] *[class*='StyledFollowButton']", "filters": [ {"match": { "innerText": "/Follow$/i" }} ] }, */
+    },
+    "unfollowButton": {
+      "object": {"selector": ".user-info-container button.follow-button", "filters": [ {"match": { "innerText": "/Follow$/i" }} ] },
+      /* "object": {"selector": "*[class*='DivInfoContainer'] *[class*='StyledFollowButton']", "filters": [ {"match": { "innerText": "/Follow$/i" }} ] }, */
     },
     "likeButton": {
-      /* "selector": ".action-container .icons.like:not(.liked)", */
-      "selector": "*[data-e2e='browse-like-icon'] svg[fill*='rgba(22, 24, 35, 1.0)']",
+      "selector": ".action-container .icons.like:not(.liked)",
+      /* "selector": "*[data-e2e='browse-like-icon'] svg[fill*='rgba(22, 24, 35, 1.0)']", */
     },
     "commentLikeButton": {
-      /* "object": {"selector": ".comment-container .like-container img[src*='unlike']"} */
-      "object": {"selector": "*[class*='DivLikeWrapper'] svg[fill='currentColor']"}
+      "object": {"selector": ".comment-container .like-container img[src*='unlike']"}
+      /* "object": {"selector": "*[class*='DivLikeWrapper'] svg[fill='currentColor']"} */
     },
 
 
     // Stats
     "likeCount": {
-      /* "object": {"selector": ".video-infos-container .like-text" }, */
-      "object": {"selector": "*[data-e2e='browse-like-count']" },
+      "object": {"selector": ".video-infos-container .like-text" },
+      /* "object": {"selector": "*[data-e2e='browse-like-count']" }, */
     },
     "commentCount": {
-      /* "object": {"selector": ".video-infos-container .comment-text" }, */
-      "object": {"selector": "*[data-e2e='browse-comment-count']" },
+      "object": {"selector": ".video-infos-container .comment-text" },
+      /* "object": {"selector": "*[data-e2e='browse-comment-count']" }, */
     },
     "postDate": {
       "object": {"selector": "_NOEXIST" },
