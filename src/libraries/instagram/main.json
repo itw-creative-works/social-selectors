@@ -167,11 +167,12 @@
       "selector": "form textarea[placeholder*='comment']"
     },
     "commentButton_confirmButton": {
-      "object": {"selector": "form button", "filters": [ {"match": { "innerText": "/Post$/i" }} ] },
+      /* "object": {"selector": "form button", "filters": [ {"match": { "innerText": "/Post$/i" }} ] }, */
+      "object": {"selector": "form[method*='POST'] button", index: 1 },
     },
-    "commentList": {
+    /* "commentList": {
       "selector": "article"
-    },
+    }, */
 
     // Explore
     "commentProfileLink": {
