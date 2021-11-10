@@ -213,9 +213,6 @@
     "commentButton": {
       "selector": ".DraftEditor-root"
     },
-    "commentList": {
-      "selector": "*[class*='DivCommentListContainer']"
-    },
 
     // Explore
     "commentContainer": {
