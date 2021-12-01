@@ -774,15 +774,17 @@ post-vars:
                   body = body.replace(/<style[^>]*>((.|[\n\r])*)<\/style>/im, ''); // Remove style
                   // body = body.replace(/<div id="header"[^>]*>((.|[\n\r])*?)<\/div>/im, ''); // Remove style
 
-                  var title = data.match(/<div id="title"[^>]*>((.|[\n\r])*?)<\/div>/im)[1]; // extract title
+                  var title = (data.match(/<div id="title"[^>]*>((.|[\n\r])*?)<\/div>/im) || [])[1]; // extract title
+                  title = (title || '')
+                    .replace('.docx', '')
+                    .replace('.doc', '')
 
-                  var titleEl = dom.select('#title');
+                  dom.select('#title').setValue(turndownService.turndown(title))
 
                   // Fix no spaces with links
                   // body = body.replace(/><a/img, '> <a');
                   // body = body.replace(/><\/a/img, '> </a');
                   // body = body.replace(/<\/a></img, ' </a><');
-                  titleEl.setValue(turndownService.turndown(title))
                   // setTimeout(function () {
                   triggerTitleChange('title')
                   // }, 300);
@@ -848,7 +850,7 @@ post-vars:
 
                   // remove first image and set it to the main image field
                   var imageMatchingRegex = /!\[\]\((.*?)\)/im
-                  var firstImage = markdown.match(imageMatchingRegex)[1]
+                  var firstImage = (markdown.match(imageMatchingRegex) || [])[1]
                   markdown = markdown.replace(imageMatchingRegex, '');
 
                   dom.select('#headerImageURL').setValue(firstImage || '');
@@ -860,10 +862,14 @@ post-vars:
                   markdown = splice(markdown, getPos(markdown, '\n', 1, false), 0, '\n\n{{ page.post-vars.ad }}\n\n')
                   markdown = splice(markdown, getPos(markdown, '\n', 5, true), 0, '\n\n{{ page.post-vars.ad }}\n\n')
 
+                  // Replace extra line breaks to make it look nice
+                  markdown = markdown.replace(/\n{3,}/g,'\n\n')
+
+                  // Trim
                   markdown = markdown.trim()
 
                   // Set exceprt
-                  dom.select('#excerpt').setValue(markdown.match(/(?:.*?\.){2}/, ''))[0];
+                  dom.select('#excerpt').setValue((markdown.match(/(?:.*?\.){2}/, '') || [])[0]);
 
                   dom.select('#body').setValue(markdown);
                   dom.select('#google-doc-error').hide();
