@@ -74,10 +74,15 @@ settings:
   "
 ---
 {% assign is-sign-up-page = false %}
-{% assign subtitle-text = 'to' %}
-{%- if page.meta.breadcrumb == 'Sign up' -%}
+{% assign is-sign-in-page = false %}
+{% assign subtitle-text = 'for' %}
+
+{%- if page.permalink == '/authentication/signup/' -%}
   {% assign is-sign-up-page = true %}
   {% assign subtitle-text = 'for' %}
+{%- elsif page.permalink == '/authentication/signin/' -%}
+  {% assign is-sign-in-page = true %}
+  {% assign subtitle-text = 'to' %}
 {%- endif -%}
 
 <script>
@@ -200,6 +205,7 @@ settings:
           </div>
 
           <!-- Form -->
+          {%- if is-sign-up-page == true or is-sign-in-page == true -%}
           <form id="auth-container" onsubmit="return false;" hidden>
             <div class="text-center">
               <div class="mb-5">
@@ -273,10 +279,10 @@ settings:
               {%- if is-sign-up-page == true -%}
                 <label class="form-label" for="signupSrPassword">Password</label>
               {%- else -%}
-                <label class="form-label w-100" for="signupSrPassword" tabindex="0">
+                <label class="form-label w-100" for="signupSrPassword" tabindex="-1">
                   <span class="d-flex justify-content-between align-items-center">
                     <span>Password</span>
-                    <a class="form-label-link mb-0" href=".{{ site.url }}/forgot">Forgot Password?</a>
+                    <a class="form-label-link mb-0" href="{{ site.url }}/forgot" tabindex="-1">Forgot Password?</a>
                   </span>
                 </label>
               {%- endif -%}
@@ -312,14 +318,14 @@ settings:
             <div class="form-check mb-4">
               <input class="form-check-input auth-newsletter-input" type="checkbox" value="" id="newsletterCheckbox">
               <label class="form-check-label" for="newsletterCheckbox">
-                I agree to sign up for account promotions and receive marketing newsletters. Learn more in our <a href="{{ site.url }}/privacy">Privacy Policy</a>
+                I agree to sign up for account promotions and receive marketing newsletters. Learn more in our <a href="{{ site.url }}/privacy">Privacy Policy</a>.
               </label>
               <span class="invalid-feedback">Please accept our Terms and Conditions.</span>
             </div>
             <div class="form-check mb-4">
               <input class="form-check-input auth-terms-input" type="checkbox" value="" id="termsCheckbox" required>
               <label class="form-check-label" for="termsCheckbox">
-                I accept the <a href="{{ site.url }}/terms">Terms and Conditions</a>
+                I accept the <a href="{{ site.url }}/terms">Terms and Conditions</a>.
               </label>
               <span class="invalid-feedback">Please accept our Terms and Conditions.</span>
             </div>
@@ -341,6 +347,15 @@ settings:
 
 
           </form>
+          {%- else -%}
+          <div class="d-grid">
+            <div class="mb-3 text-center">
+              An account is required for <strong>{{ site.brand.name }}</strong>.
+            </div>
+            <a id="" class="btn btn-primary" href="{{ site.url }}/authentication/signup">Sign up for an account</a>
+          </div>
+          {%- endif -%}
+
           <!-- End Form -->
         </div>
       </div>
@@ -383,6 +398,7 @@ settings:
   var providerDetails = {}
   var redirectIsValid = false;
   var redirectUrl;
+  var qsToken;
 
   Manager.auth().ready(function () {
     dom = Manager.dom();
@@ -395,6 +411,7 @@ settings:
       : 'https://us-central1-PROJECT_ID.cloudfunctions.net/bm_api'
 
     redirectUrl = decodeURIComponent(url.searchParams.get('destination') || '{{ site.url }}');
+    qsToken = decodeURIComponent(url.searchParams.get('token') || '');
     // console.log('--redirectUrl', redirectUrl);
     serverApiURL = serverApiURL.replace(/PROJECT_ID/g, Manager.properties.options.libraries.firebase_app.config.projectId)
     redirectIsValid = Manager.isValidRedirectUrl(redirectUrl)
@@ -407,6 +424,7 @@ settings:
         console.log('----result', result);
         display();
         if (!action) {
+          display('hidden');
           if (url.searchParams.get('signout')) {
             console.log('----SIGNOUT');
             action = true;
@@ -417,11 +435,21 @@ settings:
             })
             .finally(function () {
               url.searchParams.delete('signout')
-              console.log('----nav to', url.toString());
-              window.location.href = url.toString();
+              redirect(url.toString())
             })
           } else {
-            if (result && result.user) {
+            // console.log('----qsToken', qsToken);
+            // qsToken can be set on its own to simply sign in with it
+            if (qsToken) {
+              console.log('signInWithCustomToken(qsToken)', qsToken);
+              firebase.auth().signInWithCustomToken(qsToken)
+              .then(function (r) {
+                redirect(redirectUrl)
+              })
+              .catch(function (e) {
+                display(e);
+              })
+            } else if (result && result.user) {
               createCustomToken({user: result.user})
             } else {
               action = true;
@@ -453,7 +481,7 @@ settings:
                       providerDetails = data;
                       firebase.auth().onAuthStateChanged(function (user) {
                         if (user) {
-                          display('hide');
+                          display('hidden');
                           createCustomToken({user: user})
                         }
                       })
@@ -533,6 +561,11 @@ settings:
     });
   }
 
+  function redirect(url) {
+    console.log('Redirecting to', url);
+    window.location.href = url;
+  }
+
   function launch() {
     // if (url.searchParams.get('inApp') === 'true' && window.electronManager) {
     if (window.electronManager) {
@@ -560,7 +593,7 @@ settings:
       }, 1000);
       // console.log('----redirectUrl', redirectUrl);
       // window.location.href = 'somiibo://dashboard?signin-with-token=true&token=' + window.tokenResult;
-      window.location.href = redirectUrl;
+      redirect(redirectUrl)
     }
   }
 
@@ -582,7 +615,7 @@ settings:
           if (res.status >= 200 && res.status < 300) {
             res.json()
             .then(function (data) {
-              console.log('Success', data);
+              console.log('Custom token', data.token);
               window.tokenResult = data.token;
               launch();
             })
@@ -610,6 +643,8 @@ settings:
     var providerBtnEl = dom.select('a[data-provider]')
     var emailAndPassForm = dom.select('#email-and-password-form')
     var authOrSeparatorEl = dom.select('#auth-or-separator')
+
+    console.log('display()', type, msg);
 
     alertEl
       .setAttribute('hidden', true)
@@ -676,7 +711,7 @@ settings:
       spinnerEl
         .setAttribute('hidden', true)
       // console.error(type);
-    } else if (type === 'success' || type === 'hide') {
+    } else if (type === 'success' || type === 'hidden') {
       if (type === 'success') {
         alertEl
           .addClass('alert-success')

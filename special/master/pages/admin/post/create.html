@@ -36,7 +36,7 @@ post-vars:
 
       </div>
       <div class="col col-auto">
-        <a href="" onclick="return false;" class="btn btn-lg btn-outline-secondary w-100" id="" data-toggle="modal" data-target="#importGoogleDoc">Import from Google Docs</a>
+        <a href="" onclick="return false;" class="btn btn-lg btn-outline-secondary w-100" id="" data-bs-toggle="modal" data-bs-target="#importGoogleDoc">Import from Google Docs</a>
       </div>
     </div> <!-- / .row -->
   </div>
@@ -138,7 +138,7 @@ post-vars:
             The date of the post
           </small>
           <div class="input-group mb-3">
-            <input type="date" class="form-control" id="date" name="date" placeholder="2019-12-04">
+            <input type="date" class="form-control" id="date" name="date" placeholder="2019-12-04" required>
           </div>
         </div>
       </div>
@@ -273,7 +273,7 @@ post-vars:
       <div class="col-12">
         <div class="d-flex justify-content-between mt-3">
           <a href="" onclick="return false;" class="btn btn-lg btn-secondary w-100 me-3" id="stackedit-edit">Edit in StackEdit</a>
-          <a href="" onclick="return false;" class="btn btn-lg btn-outline-secondary w-100" id="" data-toggle="modal" data-target="#importGoogleDoc">Import from Google Docs</a>
+          <a href="" onclick="return false;" class="btn btn-lg btn-outline-secondary w-100" id="" data-bs-toggle="modal" data-bs-target="#importGoogleDoc">Import from Google Docs</a>
         </div>
       </div>
     </div>
@@ -390,7 +390,7 @@ post-vars:
                 </div>
                 <div class="ms-3">
                   <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="invoiceEmailDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="invoiceEmailDropdownButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Insert
                     </button>
                     <div class="dropdown-menu" aria-labelledby="invoiceEmailDropdownButton" id="invoiceEmailDropdownList">
@@ -981,11 +981,11 @@ post-vars:
                   links = markdown.match(/(?:\[(.*?)\]\((.*?)\))/img) || [];
                   // Fix Google Links
                   for (var i = 0; i < links.length; i++) {
-                    if (markdown.indexOf('!' + links[i]) == -1) {
+                    if (markdown.indexOf('!' + links[i]) === -1) {
                       var alt = ((links[i].match(/\[(.*?)\]/img)|| [])[0]+'').replace(/(\[|\])/img, '');
                       var link = ((links[i].match(/\((.*?)\)/img)|| [])[0]+'').replace(/(\(|\))/img, '').replace(/\s.*?"(.*?)"\s*/g,'');
                       var newLink = false;
-                      var needsReplacing = link.indexOf('url?q=') != -1;
+                      var needsReplacing = link.indexOf('url?q=') !== -1;
                       if (needsReplacing) {
                         newLink = new URLSearchParams(link.split('?')[1]).get('q');
                         // console.log('Extracted link:', newLink);
@@ -1129,7 +1129,7 @@ post-vars:
 
     dom.select('#title').setValue(fields.title || '');
     dom.select('#url').setValue((fields.url || '').replace(/\/(.*?)\//,'').replace(/\//,''));
-    dom.select('#date').setValue(date);
+    dom.select('#date').setValue(date.toISOString().split('T')[0]);
     dom.select('#id').setValue(fields.id || 1);
     dom.select('#author').setValue(fields.author || '');
     dom.select('#affiliate').setValue(fields.affiliateSearchTerm || '');
@@ -1146,9 +1146,9 @@ post-vars:
     var env = buildFile.environment;
     dom.select('#processingAddy_dev').setInnerHTML(serverDev).setAttribute('value', serverDev);
     dom.select('#processingAddy_prod').setInnerHTML(serverProd).setAttribute('value', serverProd);
-    dom.select('#processingAddy').setValue(env == 'development' ? serverDev : serverProd);
+    dom.select('#processingAddy').setValue(env === 'development' ? serverDev : serverProd);
     dom.select('#processingAddy_prodDev').setInnerHTML(serverProdDev).setAttribute('value', serverProdDev);
-    if (Manager.properties.meta.environment != 'development') {
+    if (Manager.properties.meta.environment !== 'development') {
       dom.select('#processingAddy_prodDev').hide();
     }
 
