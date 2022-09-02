@@ -221,9 +221,9 @@ admin:
                   Text preview of the post
                 </small>
                 <small class="text-muted word-and-character-count" data-count-source="#excerpt">(0 characters, 1 words)</small>
-              </div>
+              </div> 
 
-              <textarea id="excerpt" name="excerpt" class="form-control" placeholder="My post preview" rows="2" spellcheck="true"></textarea>
+              <textarea id="excerpt" name="excerpt" class="form-control" placeholder="My post preview" rows="4" spellcheck="true"></textarea>
             </div>
             <!-- End Form -->
           </div>
@@ -231,17 +231,28 @@ admin:
         </div>
 
         <div class="row">
-          <div class="col-sm-12">
-            <!-- Form -->
-            <div class="mb-4">
-              <label for="headerImageURL" class="_form-label text-dark">Header Image URL</label>
-              <small class="d-block _form-text text-muted">
-                Image preview of the post. Will be named the same as the title of the post
-              </small>
-              <input type="url" class="form-control" name="headerImageURL" id="headerImageURL" placeholder="https://unsplash.com/your-image" aria-label="https://unsplash.com/your-image" required>
+          <div class="col-md-8 col-lg-10 col-xxl-11">
+            <div>
+              <!-- Form -->
+              <div class="mb-4">
+                <label for="headerImageURL" class="_form-label text-dark">Header Image URL</label>
+                <small class="d-block _form-text text-muted">
+                  Image preview of the post. Will be named the same as the title of the post
+                </small>
+                <input type="url" class="form-control" name="headerImageURL" id="headerImageURL" placeholder="https://unsplash.com/your-image" aria-label="https://unsplash.com/your-image" required>
+              </div>
+              <!-- End Form -->                   
             </div>
-            <!-- End Form -->
           </div>
+
+          <div class="col-md-4 col-lg-2 col-xxl-1">
+              <img class="img-fluid img-thumbnail mb-1" id="headerImageURLPreview" src="" alt="" style="min-width: 100%; min-height: 10px">
+              <span id="preview-icon-error" class="text-danger" hidden>Error loading image...</span>
+            <div>
+              <a href="javascript:;" class="btn btn-lg btn-soft-primary w-100 me-3" id="randomize-preview-image">Get new image</a>
+            </div>
+          </div>
+
         </div>
 
       </div>
@@ -639,13 +650,17 @@ admin:
 
 <script type="text/javascript">
   // fields
+  var UNSPLASH_API_KEY = 'lWKjK_iq12b0DlVLVK8Dvazm7fkmNpq6Ai18N0lnwmI';
   var fields = {};
   var authors = [];
   var publicSiteUrl = '{{ site.url }}';
 
-  {% for post in site.posts limit:1 %}
+  {% assign latest-post = site.posts.first %}
+
   // console.log('----LOOP TITLE', '{{ post.post.title }}');
   // console.log('----LOOP ID', '{{ post.post.id }}');
+  // console.log('----', "{{ latest-post.post.id }}");
+  // console.log('----', parseInt("{{ latest-post.post.id }}") || 1);
   fields = {
     // title: "{{ post.post.title }}",
     title: "",
@@ -653,17 +668,15 @@ admin:
     url: "",
     // excerpt: "{{ post.post.excerpt }}",
     excerpt: "",
-    id: parseInt("{{ post.post.id }}") + 1,
-    author: "{{ post.post.author }}",
-    date: new Date().toISOString().split('T')[0] || '{{ post.date | date: "%Y-%m-%d" }}',
+    id: (parseInt("{{ latest-post.post.id }} || 0") + 1) || 1,
+    author: "{{ latest-post.post.author }}",
+    date: new Date().toISOString().split('T')[0] || '{{ latest-post.date | date: "%Y-%m-%d" }}',
     affiliateSearchTerm: "{{ post.post.affiliate-search-term }}",
-    tags: [{% for tag in post.post.tags %}"{{ tag }}",{% endfor %}],
-    categories: [{% for category in post.post.categories %}"{{ category }}",{% endfor %}],
+    tags: [{% for tag in latest-post.post.tags %}"{{ tag }}",{% endfor %}],
+    categories: [{% for category in latest-post.post.categories %}"{{ category }}",{% endfor %}],
     replaceImagesIncludeTag: '{% raw %}{%- include /master/helpers/blog-image.html name="{name}" alt="{alt}" -%}{% endraw %}',
   }
-  {% endfor %}
 
-  {% assign post-test = site.posts.first %}
 
   // console.log('----post-test', '{{ post-test.post.id }}');
 
@@ -690,6 +703,8 @@ admin:
   Manager.ready(function() {
 
     var lastPost = Manager.storage().get('admin.post') || {};
+
+    console.log('Post storage', {jekyll: fields, storage: lastPost});
 
     // console.log('----lastPost.lastId', lastPost.lastId);
 
@@ -756,7 +771,9 @@ admin:
               triggerTitleChange('url')
             } else if (event.target.matches('.insert-invoice-email')) {
               event.preventDefault();
-              invoiceEmailEl.value = event.target.dataset.invoiceEmail
+              invoiceEmailEl.value = event.target.dataset.invoiceEmail;
+            } else if (event.target.matches('#randomize-preview-image')) {
+              randomizeHeaderImage();
             }
           });
 
@@ -846,6 +863,10 @@ admin:
                 return;
               }
 
+              // Fixes
+              data.title = data.title.replace(/"/img, '\'')
+              data.excerpt = data.excerpt.replace(/"/img, '\'')
+
               var lastUrl = 'blog/' + data.url;
               Manager.storage().set('admin.post.lastId', data.id)
               Manager.storage().set('admin.post.lastSlug', lastUrl)
@@ -922,8 +943,10 @@ admin:
               val
               .toLowerCase()
               .trim()
-              .replace(/\s/g, '-')
-              .replace(/[^ \w-]/igm, '')
+              .replace(/\s/g, '-') // replace spaces with dashes
+              .replace(/[^ \w-]/igm, '') //
+              .replace(/-+/g, '-') // if there are multiple dashes, replace with one
+              .replace(/(^-|-$)/g, '') // remove dashes from end
             )
           }
 
@@ -951,12 +974,37 @@ admin:
             }, 1);
           })
 
+          dom.select('#title').on('change', function(event) {
+            setTimeout(function () {
+              triggerTitleChange('title')
+            }, 1);
+          })
+
           dom.select('#url').on('blur', function(event) {
             setTimeout(function () {
               triggerTitleChange('url')
             }, 1);
+          })          
+
+          // 
+          dom.select('#headerImageURL').on('keydown', function(event) {
+            setTimeout(function () {
+              setHeaderImagePreview()
+            }, 1);
           })
 
+          dom.select('#headerImageURL').on('paste', function(event) {
+            setTimeout(function () {
+              setHeaderImagePreview()
+            }, 1);
+          })
+
+          dom.select('#headerImageURL').on('cut', function(event) {
+            setTimeout(function () {
+              setHeaderImagePreview()
+            }, 1);
+          })       
+          
           function displayWaiting() {
             clearTimeout(waitingTimeout);
             dom.select('#response .alert-danger').hide()
@@ -1126,6 +1174,7 @@ admin:
                   $('#importGoogleDoc').modal('toggle');
                   dom.select('#import-btn').removeAttribute('disabled');
 
+                  setHeaderImagePreview()
                   countChars();
                   countCharactersAndWords();
                 })
@@ -1248,6 +1297,29 @@ admin:
     // Finally, make everything visible
     dom.select('.loaded-false').hide();
     dom.select('.loaded-true').show();
+  }
+
+  function randomizeHeaderImage() {
+    var url = 'https://api.unsplash.com/photos/random?client_id=' + UNSPLASH_API_KEY + '&orientation=landscape&query=' + encodeURIComponent(dom.select('#excerpt').getValue() || dom.select('#title').getValue())
+    // console.log('===url', url);
+
+    fetch(url, {
+      method: 'GET',
+    })
+    .then(function (res) {
+      if (res.status >= 200 && res.status < 300) {
+        res.json()
+        .then(function (json) {
+          // console.log('---json', json);
+          dom.select('#headerImageURL').setValue(json.urls.regular)
+          setHeaderImagePreview();
+        })
+      }
+    })
+  }
+
+  function setHeaderImagePreview() {
+    dom.select('#headerImageURLPreview').setAttribute('src', dom.select('#headerImageURL').getValue());
   }
 
   function blockNavigation() {
