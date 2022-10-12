@@ -23,9 +23,11 @@ head:
         transition: unset !important;
       }
 
+      /*
       body {
-        // opacity: 0;
+        opacity: 0;
       }
+      */      
     </style>
     <style media="screen">
       .auth-signin-provider-btn * {
@@ -1826,10 +1828,11 @@ settings:
           $el.removeAttribute('disabled').removeClass('disabled').removeClass('text-muted');
         })
       } else if (event.target.matches('.connect-account-btn')) {
-        var $el = select(event.target);
         var provider = event.target.dataset.provider;
         var action = event.target.dataset.action;
         var scope = event.target.dataset.scope;
+        var $el = select(event.target);
+        var $identity = select('.connect-account-identity[data-provider="' + provider + '"]');
 
         try {
           scope = JSON.parse(decodeURIComponent(scope))
@@ -1873,6 +1876,7 @@ settings:
             }, 1000);
           } else {
             $el.setAttribute('data-action', 'connect').setInnerHTML('Connect')
+            $identity.setInnerHTML('')
             _enable()
           }
         })

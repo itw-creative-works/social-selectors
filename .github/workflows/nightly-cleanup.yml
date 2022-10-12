@@ -1,6 +1,7 @@
 name: 'Nightly Artifacts Cleanup'
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: '0 1 * * *' # every night at 1 am UTC
 
