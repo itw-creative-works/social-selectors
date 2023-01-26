@@ -1,9 +1,13 @@
 /*
+  Normal + verified
   https://www.instagram.com/cats_of_instagram/
-  https://www.instagram.com/cats.all.day/
-
   https://www.instagram.com/p/B99fX3uFZFX/
 
+  Private
+  https://www.instagram.com/the_arxyn/
+
+  No posts
+  https://www.instagram.com/wmvofficial/
 
 */
 {
@@ -15,26 +19,33 @@
     "isEnglish": {
       "object": { "selector": "html[lang*='en']", "wait": 15000 },
     },
-    "isOnMainSite": {
-      "selector": "img[alt='Instagram']",
-    },
+
+    // Should work...
+    // - https://www.instagram.com
+    // - https://www.instagram.com/accounts/login
+    // - https://www.instagram.com/cats_of_instagram/
+    // - https://www.instagram.com/p/B99fX3uFZFX/
     "isLoggedOut": {
       "selector": "",
-      "object": { "selector": "nav a, main article button", "filters": [ {"match": { "innerText": "/Log In|Sign Up|Continue as/i" }} ] },
+      "object": { "selector": "nav a, main button", "filters": [ {"match": { "innerText": "/Log In|Sign Up|Continue as/i" }} ] },
     },
     "profilePicture": {
-      "selector": "nav img[alt*='s profile']",
+      "selector": "img[alt*='s profile']",
     },
     "isPopupOpen": {
-      "selector": "div[role='presentation']"
+      "selector": "div[role='presentation'] TODO"
     },
     // Actions
     "searchBar": {
-      "selector": "nav input",
+      "object": { "selector": "a svg[aria-label='Search']", "positionMethod": "bounding", "wait": 30000 },
     },
-    "searchBar_dropdown": {
-      "selector": "div[role='dialog']",
-    },
+    // TODO
+    "searchBar_item": {
+      "object": { "selector": "[role='none'] a", "filters": [{"splice": [0, 5]}], "index": "$random", "wait": 30000 },
+    },    
+    // "searchBar_dropdown": {
+    //   "selector": "div[role='dialog']",
+    // },
     "notificationsReminder_disable": {
       "object": { "selector": "button", "filters": [ {"match": { "innerText": "/Not Now/i" }} ] },
     },
@@ -68,10 +79,11 @@
     // Indicators
     // Good for testing loaded
     "isOnPage": {
-      "selector": ".nZSzR h2, .nZSzR h1",
+      // "selector": "main header img",
+      "selector": "svg[aria-label='Options']",
     },
     "isPrivate": {
-      "object": {"selector": "h2", "filters": [ {"match": { "innerText": "/This Account is Private/i" }} ], "index": 0 },
+      "object": {"selector": "main h2", "filters": [ {"match": { "innerText": "/This Account is Private/i" }} ], "index": 0 },
     },
     // Actions
     "followButton": {
@@ -79,13 +91,13 @@
     },
     // Stats
     "followerCount": {
-      "object": {"selector": "header a", "filters": [ {"match": { "innerText": "/ followers$| follower$/i" }} ], "index": 0 },
+      "object": {"selector": "header li a", "filters": [ {"match": { "innerText": "/followers$|follower$/i" }} ], "index": 0 },
     },
     "followingCount": {
-      "object": {"selector": "header a", "filters": [ {"match": { "innerText": "/ following$/i" }} ], "index": 0 },
+      "object": {"selector": "header li a", "filters": [ {"match": { "innerText": "/following$/i" }} ], "index": 0 },
     },
     "postCount": {
-      "object": {"selector": "header span", "filters": [ {"match": { "innerText": "/ posts$| post$/i" }} ], "index": 0 },
+      "object": {"selector": "header li div", "filters": [ {"match": { "innerText": "/ posts$| post$/i" }} ], "index": 0 },
     },
     // Explore
     "viewFollowersButton": {
@@ -106,7 +118,7 @@
     },
     // Explore
     "profileLink": { // Good for testing loaded
-      "selector(array)": "div[role='presentation'] a.notranslate",
+      "selector(array)": "div[role='dialog'] a",
     },
   },
   "profile_following": {
@@ -128,56 +140,54 @@
       "url": "(instagram.com\\/p\\/.*?)($|\\/$|\\/|\\?|\\/\\?|\\#|\\/\\#)",
     },
     "isVideoPost": {
-      "selector": "article video",
-    },
-    "videoIsPlaying": {
-      "selector": "video[type='video/mp4'][loop]",
+      "selector": "main article video",
     },
     "isLiked": {
-      "selector": "section.ltpMr.Slqrh span:nth-child(1) button svg[aria-label='Unlike']",
-    },
-    // Actions
-    "shareButton": { // Good load test
-      "select": "section button svg[aria-label='Share Post']",
-    },
-    "followButton": {
-      "object": {"selector": "article button", "filters": [ {"match": { "innerText": "/Follow$|Follow back/i" }} ], "index": 0 },
-    },
-    "likeButton": {
-      "selector": "section.ltpMr.Slqrh span:nth-child(1) button",
-    },
-    "playButton": {
-      /* "selector": "span[aria-label='Play']", */
-      "selector": "div[aria-label='Control'][role='button']",
+      "selector": "div:is([role=presentation], [role=dialog]) section button svg[aria-label='Unlike']",
     },
 
+    // Actions
+    "shareButton": { // Good load test
+      "object": {"selector": "div:is([role=presentation], [role=dialog]) section button svg[aria-label='Share Post']", "wait": 30000, "positionMethod": "bounding" },
+    },
+    "followButton": {
+      "object": {"selector": "div:is([role=presentation], [role=dialog]) button", "filters": [ {"match": { "innerText": "/Follow$|Follow back/i" }} ], "wait": 1000, "positionMethod": "bounding" },
+    },
+    "likeButton": {
+      "object": {"selector": "div:is([role=presentation], [role=dialog]) section button svg[aria-label='Like']", "wait": 1000, "index": "$last", "positionMethod": "bounding" },
+    },
+    "videoPlayer": {
+      "selector": "$get(post.isVideoPost.selector)",
+    },
+    "videoPlayButton": {
+      "selector": "$get(post.isVideoPost.selector)",
+    },
+    "commentButton": {
+      "object": {"selector": "div:is([role=presentation], [role=dialog]) textarea[placeholder*='comment']", "wait": 1000, "positionMethod": "bounding" },
+    },
+    "commentButton_confirmButton": {
+      "object": {"selector": "div:is([role=presentation], [role=dialog]) form[method*='POST'] div[role='button']", "wait": 1000, "index": 1, "positionMethod": "bounding" },
+    },    
 
     // Stats
     "likeCount": {
-      "object": {"selector": "section.EDfFK.ygqzn button", "filters": [ {"match": { "innerText": "/ likes$|likes this$| others$/i" }} ], "index": "$last" },
+      // "object": {"selector": "div:is([role=presentation], [role=dialog]) a[href*='liked_by']", "filters": [ {"match": { "innerText": "/likes$|likes this$|others$/i" }} ], "index": "$last" },
+      "object": {"selector": "div:is([role=presentation], [role=dialog]) a[href*='liked_by']", "wait": 1000, "index": "$last", "positionMethod": "bounding" },
     },
     "postDate": {
-      "object": {"selector": "a[href*='/p/'] time", "retrieve": ["datetime"], "index": "$last" },
+      "object": {"selector": "div:is([role=presentation], [role=dialog]) a[href*='/p/'] time", "retrieve": ["datetime"], "index": "$last" },
     },
     "postHeader": {
-      "selector": "article header"
+      "object": {"selector": "div:is([role=presentation], [role=dialog]) article header", "wait": 1000, },
     },
 
-    "commentButton": {
-      "selector": "form textarea[placeholder*='comment']"
-    },
-    "commentButton_confirmButton": {
-      /* "object": {"selector": "form button", "filters": [ {"match": { "innerText": "/Post$/i" }} ] }, */
-      "object": {"selector": "form[method*='POST'] button", index: 1 },
-    },
     /* "commentList": {
       "selector": "article"
     }, */
 
     // Explore
     "commentProfileLink": {
-      "selector(array)": "article a img",
-      "object": {"selector": "div.eo2As a img", "filters": [{"splice": [1,4]}, {"isVisible": true}], "index": "$random"}
+      "object": {"selector": "div:is([role=presentation], [role=dialog]) article a img", "filters": [{"splice": [1, 4]}, {"isVisible": true}], "index": "$random"}
     },
     "viewLikesButton": {
       "object": "$get(post.likeCount.object)",
@@ -186,26 +196,16 @@
   },
   "post_likes": {
     "isOnPage": {
-      "selector(array)": "div[role='presentation'] a > div",
+      "object": {"selector": "div[role='dialog'] h1", "filters": [ {"match": { "innerText": "/Likes/i" }} ], "index": 0, "wait": 30000 },
     },
     "profileLink": {
-      "selector(array)": "$get(post_likes.isOnPage.selector(array))",
+      "object": {"selector": "div:is([role=presentation], [role=dialog]) div[style*='overflow: hidden'] a", "filters": [{"splice": [0, 4]}], "index": "$random", "wait": 30000 },
     },
-  },
-  "login": {
-    "isOnPage": {
-      "object": {"selector": "main p button", "filters": [ {"match": { "innerText": "/Sign Up$/i" }} ]},
-    }
   },
   "error": {
     // Indicators
-    "spamWarning": {
-      "selector": ".spamWarning",
-    },
     "timeout": {
       "object": {"selector": "body", "filters": [ {"match": { "innerText": "/wait a few minutes/i" }} ] },
-    }
-  }
-
-
+    },
+  },
 }

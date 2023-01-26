@@ -11,6 +11,8 @@
       "selector": ""
     },
     "isLoggedOut": {
+      // https://soundcloud.com
+      // https://soundcloud.com/*
       "object": {"selector": ".frontHero__signin button, header button", "filters": [{"match": {"innerText": "/Sign in/i"}}]},
     },
     "profileLink": {
@@ -60,7 +62,7 @@
       "selector": "a[href*='/search/sounds?']",
     },
     "filterTracks_byDate": {
-      "object": {"selector": "a span", "filters": [{"match": {"innerText": "/Added any time/"}}]},
+      "object": {"selector": ".searchOptions a", "filters": [{"match": {"innerText": "/Added /"}}]},
     },
     "filterTracks_byDate_pastWeek": {
       "selector": "a[href*='filter.created_at=last_week']",
@@ -139,20 +141,20 @@
     },
     // Actions
     "likeButton": {
-      "selector": ".listenEngagement button[aria-label*='Like']",
-      "object": {"selector": "button[aria-label*='Like']", "filters": [{"match": {"innerText": "/Like/"}}]},
+      "selector": "button[aria-label='Like']",
+      "object": {"selector": "button[aria-label='Like']", "filters": [{"match": {"innerText": "/Like/"}}]},
     },
     "repostButton": {
-      "selector": ".listenEngagement button[aria-label*='Repost']",
-      "object": {"selector": "button[aria-label*='Repost']", "filters": [{"match": {"innerText": "/Repost/"}}]},
+      "selector": "button[aria-label='Repost']",
+      "object": {"selector": "button[aria-label='Repost']", "filters": [{"match": {"innerText": "/Repost/"}}]},
     },
     "followButton": {
-      "selector": "button[aria-label*='Follow']",
-      "object": {"selector": "button[aria-label*='Follow']", "filters": [{"match": {"innerText": "/Follow/"}}]},
+      "selector": "button[aria-label='Follow']",
+      "object": {"selector": "button[aria-label='Follow']", "filters": [{"match": {"innerText": "/Follow/"}}]},
     },
     "shareButton": { // Good indicator for isLoaded
-      "selector": "button[aria-label*='Share']",
-      "object": {"selector": "button[aria-label*='Share']", "filters": [{"match": {"innerText": "/Share/"}}]},
+      "selector": "button[aria-label='Share']",
+      "object": {"selector": "button[aria-label='Share']", "filters": [{"match": {"innerText": "/Share/"}}]},
     },
     "disableRepostReminder_checkButton": {
       "selector": "input[name='dontRemind']"
