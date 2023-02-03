@@ -1,82 +1,84 @@
 /*
-  https://twitter.com/home
-  https://twitter.com/welcome2bishu
-  private: https://twitter.com/Mrtnzjrmh
-  tweet: https://twitter.com/theMAHsterr/status/1246987686981906435
+  Normal + verified
+  https://twitter.com/CatWorkers
+
+  Private
+  https://twitter.com/thikc
+
+  No posts
 */
 {
+  /*
+    Twitter Global Selectors
+    https://twitter.com
+  */
   "global": {
     // Indicators
     "isOnPage": {
       "url": "/twitter\\.com/",
     },
     "isEnglish": {
-      "object": { "selector": "html[lang*='en']", "wait": 15000 },
+      "object": { "selector": "html[lang*='en']"},
     },
     "isOnMainSite": {
       "selector": "",
     },
     "isLoggedOut": {
-      "selector": "a[href='/login']",
-      /* "object": { "selector": "button", "filters": [ {"match": { "innerText": "/Log In/i" }} ] }, */
+      "object": {"selector": "a[href='/login']"}
     },
     "profilePicture": {
-      /* "object": { "selector": "a[aria-label='Profile']", "retrieve": ["href"] }, */
-      "selector": "a[aria-label='Profile']",
+      "object": { "selector": "a[aria-label='Profile']", "retrieve": ["href"] },
     },
-    "isPopupOpen": {
-      "selector": "div[role='presentation']"
-    },
-    "popupCloseButton": {
-      "selector": "div[role='presentation'] div[aria-label='Close']"
-    },
+
     // Actions
     "searchBar": {
-      "selector": "input[placeholder*='Search Twitter'], div[data-testid='sidebarColumn'] input[placeholder*='Twitter']",
+      "selector": "input[data-testid='SearchBox_Search_Input']",
     },
     "exploreLink": {
       "selector": "a[href='/explore']"
     },
-    "profileUpdateDialog": {
-      "object": {"selector": "div[role='alertdialog'] span", "filters": [ {"match": { "innerText": "/update your profile/i" }} ] },
-    },
-    /* "searchBar_dropdown": {
-      "selector": "div[role='dialog']",
-    },
-    "notificationsReminder_disable": {
-      "object": { "selector": "button", "filters": [ {"match": { "innerText": "/Not Now/i" }} ] },
-    }, */
-    /* "viewEngagementPopup_profileLink": {
-      "selector(array)": "div[role='presentation'] img",
-    }, */
+
     // Explore
+    "profileLink": {
+      "selector(array)": "main img[src*='/profile_images/']",
+    },    
     "postLink": {
-      "selector(array)": "a time",
+      "selector(array)": "a[href*='/status'] time",
     },
   },
+
+  /*
+    Twitter Home Selectors
+    https://twitter.com/home
+  */  
   "home": {
     // Indicators
     "isOnPage": {
       "url": "/twitter.com\\/home($|\\/$|\\?|\\/\\?|\\#|\\/\\#)/",
     },
-    // Actions
-    /* "continueAsButton": {
-      "object": { "selector": "button", "filters": [ {"match": { "innerText": "/Continue as/i" }} ] },
-    }, */
   },
+
+  /*
+    Twitter Explore Selectors
+    https://twitter.com/explore
+  */    
   "explore": {
     // Indicators
     "isOnPage": {
       "url": "/twitter\\.com\\/explore/",
     },
-    // Actions
-
   },
+
+  /*
+    Twitter Search Selectors
+    https://twitter.com/search
+  */
   "search": {
     // Indicators
     "isOnPage": {
       "url": "/twitter\\.com\\/search/",
     },
+
     // Actions
     "topButton": {
       "object": {"selector": "main div[role='presentation'] a", "filters": [ {"match": { "innerText": "/Top/i" }} ] },
@@ -84,23 +86,32 @@
     "latestButton": {
       "object": {"selector": "main div[role='presentation'] a", "filters": [ {"match": { "innerText": "/Latest/i" }} ] },
     },
-
   },
+
+  /*
+    Twitter Profile Selectors
+    https://twitter.com/CatWorkers
+  */
   "profile": {
     // Indicators
-    // Good for testing loaded
     "isOnPage": {
       "selector": "a[href*='/header_photo']",
     },
-    // example https://twitter.com/thikc
+    "isLoaded": {
+      "selector": "$get(profile.isOnPage.selector)",
+    },
     "isPrivate": {
       "selector": "a[href*='/header_photo'] ~ div svg[aria-label='Protected account']",
     },
+
     // Actions
     "followButton": {
-      /* "object": {"selector": "a[href*='/header_photo'] ~ div div[role='button']", "filters": [ {"match": { "innerText": "/Follow$|Follow back$/i" }} ], "index": 0 }, */
-      "selector": "a[href*='/photo'] + div div[data-testid*='-follow']"
+      "selector": "a[href*='/header_photo'] + div div[data-testid*='-follow']"
     },
+    "unfollowButton": {
+      "selector": "a[href*='/header_photo'] + div div[data-testid*='-unfollow']"
+    },    
+
     // Stats
     "followerCount": {
       "selector": "a[href*='/followers']",
@@ -109,8 +120,9 @@
       "selector": "a[href*='/following']",
     },
     "postCount": {
-      "object": {"selector": "main div[dir='auto']", "filters": [ {"match": { "innerText": "/[0-9] Tweets$/" }} ], "index": 0 },
+      "object": {"selector": "h2[role='heading'] + div", "filters": [ {"match": { "innerText": "/[0-9]+ Tweets$/" }} ], "index": 0 },
     },
+
     // Explore
     "viewFollowersButton": {
       "selector": "$get(profile.followerCount.selector)",
@@ -118,8 +130,12 @@
     "viewFollowingButton": {
       "selector": "$get(profile.followingCount.selector)",
     },
-
   },
+
+  /*
+    Twitter Profile/Followers Selectors
+    https://twitter.com/CatWorkers/followers
+  */
   "profile_followers": {
     // Indicators
     "isOnPage": {
@@ -128,11 +144,17 @@
     "isEmpty": {
       "selector": "",
     },
+
     // Explore
-    "profileLink": { // Good for testing loaded
-      "selector(array)": "main img[src*='/profile_images/']",
+    "profileLink": {
+      "selector(array)": "$get(global.profileLink.selector(array))",
     },
   },
+
+  /*
+    Twitter Profile/Following Selectors
+    https://twitter.com/CatWorkers/following
+  */
   "profile_following": {
     // Indicators
     "isOnPage": {
@@ -141,95 +163,110 @@
     "isEmpty": {
       "selector": "",
     },
+
     // Explore
     "profileLink": {
-      "selector(array)": "$get(profile_followers.profileLink.selector(array))",
+      "selector(array)": "$get(global.profileLink.selector(array))",
     },
   },
+
+  /*
+    Twitter Post Selectors
+    https://twitter.com/CatWorkers/status/1619783420527378433
+  */  
   "post": {
     // Indicators
     "isOnPage": {
       "url": "/twitter.com\\/.*\\/status\\//",
     },
-    /* "isVideoPost": {
-      "selector": "article video",
-    }, */
+    "isLoaded": {
+      "object": {"selector": "article div[aria-label='Share Tweet']", "index": 0},
+    },    
     "isLiked": {
       "selector": "$get(post.unlikeButton.selector)"
     },
     "isReposted": {
       "selector": "$get(post.unrepostButton.selector)",
     },
+
     // Actions
-    "shareButton": { // Good load test
-      "selector": "div[aria-label='Share Tweet']",
-      "object": {"selector": "div[aria-label='Share Tweet']", "index": 0, "wait": 30000 },
-    },
     "likeButton": {
-      "selector": "div[aria-label='Like']"
+      "selector": "article div[aria-label='Like']"
     },
     "unlikeButton": {
-      "selector": "div[aria-label='Liked']"
+      "selector": "article div[aria-label='Liked']"
     },
     "repostButton": {
-      "selector": "div[aria-label='Retweet']"
+      "selector": "article div[aria-label='Retweet']"
     },
     "repostButton_confirmButton": {
-      "selector": "div[aria-modal='true'] data-testid='retweetConfirm'"
+      "selector": "div[data-testid='retweetConfirm']"
     },
-    /* "repostButton_confirmButton2": {
-      "selector": "div[aria-modal='true'] div[data-testid='tweetButton']"
-    }, */
     "unrepostButton": {
-      "selector": "div[aria-label='Retweeted']"
+      "selector": "article div[aria-label='Retweeted']"
     },
+    "commentList": {
+      "selector": "article",
+    },    
     "commentButton": {
-      "selector": "div[aria-label='Reply']" // OR the first instance of div[data-testid="reply"]
+      "selector": "div[class*='public-DraftEditor-content']",
     },
     "commentButton_confirmButton": {
-      "selector": "div[aria-modal='true'] div[data-testid='tweetButton']",
       "object": {"selector": "div[aria-modal='true'] div[role='button']", "filters": [ {"match": { "innerText": "/Reply$/i" }} ] },
-    },
-
-    "commentList": {
-      "selector": "article"
     },
 
     // Stats
     "likeCount": {
-      "selector": "article a[href*='/likes']"
+      "selector": "article a[href*='/likes']",
     },
     "repostCount": {
-      "selector": "article a[href*='/retweets']"
+      "selector": "article a[href*='/retweets']",
     },
     "postDate": {
-      "selector": ""
-      /* "object": {"selector": "a[href*='/p/'] time", "retrieve": ["datetime"], "index": "$last" }, */
+      "object": {"selector": "article time", "retrieve": ["datetime"], "index": 0 },
     },
 
     // Explore
     "commentProfileLink": {
-      /* "object": {"selector": "article img[src*='/profile_images/']", "filters": [{"splice": [1,'$last']}], "index": "$random"} */
-      "selector": "article img[src*='/profile_images/']"
+      "selector": "$get(global.profileLink.selector(array))",
     },
     "viewLikesButton": {
       "selector": "$get(post.likeCount.selector)",
     },
 
   },
+
+  /*
+    Twitter Post/Likes Selectors
+    https://twitter.com/CatWorkers/status/1619783420527378433/likes
+  */
   "post_likes": {
+    // Indicators
     "isOnPage": {
       "selector": "div[aria-label*='Timeline: Liked by'] img",
     },
+
+    // Explore
     "profileLink": {
       "selector(array)": "div[aria-label*='Timeline: Liked by'] img[src*='/profile_images/']",
     },
   },
+
+  /*
+    Twitter Post/Likes Selectors
+    https://twitter.com/CatWorkers/status/1619783420527378433/photo/1
+  */      
   "post_photo": {
+    // Indicators
     "isOnPage": {
       "url": "/twitter.com\\/.*\\/photo\\//",
     },
   },
+
+  /*
+    Twitter Error Selectors
+    https://twitter.com/*
+  */    
   "error": {
     // Indicators
     "spamWarning": {

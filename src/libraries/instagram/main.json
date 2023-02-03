@@ -8,16 +8,19 @@
 
   No posts
   https://www.instagram.com/wmvofficial/
-
 */
 {
+  /*
+    Instagram Global Selectors
+    https://www.instagram.com
+  */    
   "global": {
     // Indicators
     "isOnPage": {
       "url": "/instagram\\.com/",
     },
     "isEnglish": {
-      "object": { "selector": "html[lang*='en']", "wait": 15000 },
+      "object": { "selector": "html[lang*='en']" },
     },
 
     // Should work...
@@ -30,18 +33,18 @@
       "object": { "selector": "nav a, main button", "filters": [ {"match": { "innerText": "/Log In|Sign Up|Continue as/i" }} ] },
     },
     "profilePicture": {
-      "selector": "img[alt*='s profile']",
+      "object": {"selector": "img[alt*='s profile']", "retrieve": ['alt'], "index": 0}
     },
     "isPopupOpen": {
       "selector": "div[role='presentation'] TODO"
     },
+
     // Actions
     "searchBar": {
-      "object": { "selector": "a svg[aria-label='Search']", "positionMethod": "bounding", "wait": 30000 },
+      "object": { "selector": "a svg[aria-label='Search']", "positionMethod": "bounding", "retrieve": ['value'], "index": 0 },
     },
-    // TODO
     "searchBar_item": {
-      "object": { "selector": "[role='none'] a", "filters": [{"splice": [0, 5]}], "index": "$random", "wait": 30000 },
+      "object": { "selector": "[role='none'] a", "filters": [{"splice": [0, 5]}], "index": "$random"},
     },    
     // "searchBar_dropdown": {
     //   "selector": "div[role='dialog']",
@@ -52,29 +55,44 @@
     /* "viewEngagementPopup_profileLink": {
       "selector(array)": "div[role='presentation'] img",
     }, */
+
     // Explore
     "postLink": {
       "selector(array)": "a[href*='/p/'] > div div:nth-child(2)",
     },
   },
+
+  /*
+    Instagram Home Selectors
+    https://www.instagram.com
+  */      
   "home": {
     // Indicators
     "isOnPage": {
       "url": "/instagram.com($|\\/$|\\?|\\/\\?|\\#|\\/\\#)/",
     },
+
     // Actions
     "continueAsButton": {
       "object": { "selector": "button", "filters": [ {"match": { "innerText": "/Continue as/i" }} ] },
     },
   },
+
+  /*
+    Instagram Search Selectors
+    https://www.instagram.com/explore
+  */
   "search": {
     // Indicators
     "isOnPage": {
       "url": "/instagram\\.com\\/explore/",
     },
-    // Actions
-
   },
+
+  /*
+    Instagram Profile Selectors
+    https://www.instagram.com/cats_of_instagram/
+  */
   "profile": {
     // Indicators
     // Good for testing loaded
@@ -85,10 +103,12 @@
     "isPrivate": {
       "object": {"selector": "main h2", "filters": [ {"match": { "innerText": "/This Account is Private/i" }} ], "index": 0 },
     },
+
     // Actions
     "followButton": {
       "object": {"selector": "header button", "filters": [ {"match": { "innerText": "/Follow$|Follow back$/i" }} ], "index": 0 },
     },
+
     // Stats
     "followerCount": {
       "object": {"selector": "header li a", "filters": [ {"match": { "innerText": "/followers$|follower$/i" }} ], "index": 0 },
@@ -99,6 +119,7 @@
     "postCount": {
       "object": {"selector": "header li div", "filters": [ {"match": { "innerText": "/ posts$| post$/i" }} ], "index": 0 },
     },
+    
     // Explore
     "viewFollowersButton": {
       "object": "$get(profile.followerCount.object)",
@@ -106,8 +127,12 @@
     "viewFollowingButton": {
       "object": "$get(profile.followingCount.object)",
     },
-
   },
+
+  /*
+    Instagram Profile/Followers Selectors
+    https://www.instagram.com/cats_of_instagram/followers/
+  */
   "profile_followers": {
     // Indicators
     "isOnPage": {
@@ -116,11 +141,17 @@
     "isEmpty": {
       "selector": "",
     },
+
     // Explore
     "profileLink": { // Good for testing loaded
       "selector(array)": "div[role='dialog'] a",
     },
   },
+
+  /*
+    Instagram Profile/Following Selectors
+    https://www.instagram.com/cats_of_instagram/following/
+  */
   "profile_following": {
     // Indicators
     "isOnPage": {
@@ -129,16 +160,25 @@
     "isEmpty": {
       "selector": "",
     },
+
     // Explore
     "profileLink": {
       "selector(array)": "$get(profile_followers.profileLink.selector(array))",
     },
   },
+
+  /*
+    Instagram Post Selectors
+    https://www.instagram.com/p/B99fX3uFZFX/
+  */
   "post": {
     // Indicators
     "isOnPage": {
       "url": "(instagram.com\\/p\\/.*?)($|\\/$|\\/|\\?|\\/\\?|\\#|\\/\\#)",
     },
+    "isLoaded": {
+      "object": "div:is([role=presentation], [role=dialog]) section button svg[aria-label='Share Post']",
+    },    
     "isVideoPost": {
       "selector": "main article video",
     },
@@ -147,14 +187,14 @@
     },
 
     // Actions
-    "shareButton": { // Good load test
-      "object": {"selector": "div:is([role=presentation], [role=dialog]) section button svg[aria-label='Share Post']", "wait": 30000, "positionMethod": "bounding" },
-    },
+    // "shareButton": { // Good load test
+    //   "object": {"selector": "div:is([role=presentation], [role=dialog]) section button svg[aria-label='Share Post']", "positionMethod": "bounding" },
+    // },
     "followButton": {
-      "object": {"selector": "div:is([role=presentation], [role=dialog]) button", "filters": [ {"match": { "innerText": "/Follow$|Follow back/i" }} ], "wait": 1000, "positionMethod": "bounding" },
+      "object": {"selector": "div:is([role=presentation], [role=dialog]) button", "filters": [ {"match": { "innerText": "/Follow$|Follow back/i" }} ], "positionMethod": "bounding" },
     },
     "likeButton": {
-      "object": {"selector": "div:is([role=presentation], [role=dialog]) section button svg[aria-label='Like']", "wait": 1000, "index": "$last", "positionMethod": "bounding" },
+      "object": {"selector": "div:is([role=presentation], [role=dialog]) section button svg[aria-label='Like']", "index": "$last", "positionMethod": "bounding" },
     },
     "videoPlayer": {
       "selector": "$get(post.isVideoPost.selector)",
@@ -163,27 +203,23 @@
       "selector": "$get(post.isVideoPost.selector)",
     },
     "commentButton": {
-      "object": {"selector": "div:is([role=presentation], [role=dialog]) textarea[placeholder*='comment']", "wait": 1000, "positionMethod": "bounding" },
+      "object": {"selector": "div:is([role=presentation], [role=dialog]) textarea[placeholder*='comment']", "positionMethod": "bounding" },
     },
     "commentButton_confirmButton": {
-      "object": {"selector": "div:is([role=presentation], [role=dialog]) form[method*='POST'] div[role='button']", "wait": 1000, "index": 1, "positionMethod": "bounding" },
+      "object": {"selector": "div:is([role=presentation], [role=dialog]) form[method*='POST'] div[role='button']", "index": 1, "positionMethod": "bounding" },
     },    
 
     // Stats
     "likeCount": {
       // "object": {"selector": "div:is([role=presentation], [role=dialog]) a[href*='liked_by']", "filters": [ {"match": { "innerText": "/likes$|likes this$|others$/i" }} ], "index": "$last" },
-      "object": {"selector": "div:is([role=presentation], [role=dialog]) a[href*='liked_by']", "wait": 1000, "index": "$last", "positionMethod": "bounding" },
+      "object": {"selector": "div:is([role=presentation], [role=dialog]) a[href*='liked_by']", "index": "$last", "positionMethod": "bounding" },
     },
     "postDate": {
       "object": {"selector": "div:is([role=presentation], [role=dialog]) a[href*='/p/'] time", "retrieve": ["datetime"], "index": "$last" },
     },
     "postHeader": {
-      "object": {"selector": "div:is([role=presentation], [role=dialog]) article header", "wait": 1000, },
+      "object": {"selector": "div:is([role=presentation], [role=dialog]) article header", },
     },
-
-    /* "commentList": {
-      "selector": "article"
-    }, */
 
     // Explore
     "commentProfileLink": {
@@ -192,16 +228,25 @@
     "viewLikesButton": {
       "object": "$get(post.likeCount.object)",
     },
-
   },
+
+  /*
+    Instagram Post/Likes Selectors
+    https://www.instagram.com/p/B99fX3uFZFX/
+  */  
   "post_likes": {
     "isOnPage": {
-      "object": {"selector": "div[role='dialog'] h1", "filters": [ {"match": { "innerText": "/Likes/i" }} ], "index": 0, "wait": 30000 },
+      "object": {"selector": "div[role='dialog'] h1", "filters": [ {"match": { "innerText": "/Likes/i" }} ], "index": 0 },
     },
     "profileLink": {
-      "object": {"selector": "div:is([role=presentation], [role=dialog]) div[style*='overflow: hidden'] a", "filters": [{"splice": [0, 4]}], "index": "$random", "wait": 30000 },
+      "object": {"selector": "div:is([role=presentation], [role=dialog]) div[style*='overflow: hidden'] a", "filters": [{"splice": [0, 4]}], "index": "$random" },
     },
   },
+
+  /*
+    Instagram Error Selectors
+    https://www.instagram.com/*
+  */    
   "error": {
     // Indicators
     "timeout": {
