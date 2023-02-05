@@ -37,6 +37,9 @@
     "exploreLink": {
       "selector": "a[href='/explore']"
     },
+    "popupCloseButton": {
+      "object": { "selector": "div[role='dialog'] div", "filters": [ {"match": { "innerText": "/Got it/i" }} ] },
+    },    
 
     // Explore
     "profileLink": {
