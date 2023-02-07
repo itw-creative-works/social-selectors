@@ -5,7 +5,7 @@
       "url": "/youtube\\.com/",
     },
     "isEnglish": {
-      "object": { "selector": "html[lang*='en']", "wait": 15000 },
+      "object": { "selector": "html[lang*='en']" },
     },
     "isLoggedOut": {
       "selector": "a[href*='ServiceLogin']",
@@ -23,7 +23,7 @@
     },
     "playButton": {
       /* "selector": "span[aria-label='Play']", */
-      "selector": "button.ytp-play-button",
+      "selector": "button.ytp-play-button[title*='Play']",
     },
   },
   "search": {
