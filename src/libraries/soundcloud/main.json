@@ -1,3 +1,8 @@
+/*
+  --------------------
+  SoundCloud Selectors
+  --------------------
+*/
 {
   /*
     SoundCloud Global Selectors
@@ -23,7 +28,6 @@
       "selector": ".playControlsPanel__whyAds",
     },    
     
-
     // Actions
     "profileLink": {
       "selector": "$get(global.isLoggedIn.selector)",

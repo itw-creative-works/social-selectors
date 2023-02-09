@@ -1,17 +1,17 @@
 /*
   ----------------
-  Google Selectors
+  LinkedIn Selectors
   ----------------
 */
 {
   /*
-    Google Global Selectors
-    https://www.google.com/*
+    LinkedIn Global Selectors
+    https://www.linkedin.com/*
   */
   "global": {
     // Indicators
     "isOnPage": {
-      "url": "/google\\.com/",
+      "url": "/linkedin\\.com/",
     },
     "isEnglish": {
       "object": { "selector": "html[lang*='en']"},
@@ -19,8 +19,8 @@
     "isOnMainSite": {
       "selector": "",
     },
-    "isLoggedOut": {
-      "selector": "",
+    "isLoggedIn": {
+      "selector": "nav[class='global-nav__nav'] img[class*='global-nav__me-photo'",
     },
 
     // Actions
@@ -28,18 +28,15 @@
       "selector": "",
     },
     "searchBox": {
-      "selector": "input[name='q']",
+      "selector": "input[class='search-global-typeahead__input']",
     },
   },
 
   /*
-    Google Home Selectors
-    https://www.google.com
+    LinkedIn Home Selectors
+    https://www.linkedin.com
   */  
   "home": {
-    // Actions
-    "searchButton": {
-      "selector": "input[aria-label*='Google'][type='submit']",
-    },
+
   },
 }

@@ -1,4 +1,8 @@
 /*
+  -------------------
+  Instagram Selectors
+  -------------------
+
   Normal + verified
   https://www.instagram.com/cats_of_instagram/
   https://www.instagram.com/p/B99fX3uFZFX/
@@ -13,7 +17,7 @@
   /*
     Instagram Global Selectors
     https://www.instagram.com
-  */    
+  */
   "global": {
     // Indicators
     "isOnPage": {

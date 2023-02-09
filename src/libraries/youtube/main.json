@@ -1,4 +1,16 @@
+/*
+  -----------------
+  YouTUbe Selectors
+  -----------------
+
+  Home
+  https://www.youtube.com/
+*/
 {
+  /*
+    YouTube Global Selectors
+    https://www.youtube.com/*
+  */
   "global": {
     // Indicators
     "isOnPage": {
@@ -11,25 +23,44 @@
       "selector": "a[href*='ServiceLogin']",
     },
   },
+
+  /*
+    YouTube Home Selectors
+    https://www.youtube.com/*
+  */  
   "home": {
 
   },
-  "explore": {
 
-  },
-  "post": {
-    "videoIsPlaying": {
-      "selector": "button.ytp-play-button[title*='Pause']",
-    },
-    "playButton": {
-      /* "selector": "span[aria-label='Play']", */
-      "selector": "button.ytp-play-button[title*='Play']",
-    },
-  },
+  /*
+    YouTube Search Selectors
+    https://www.youtube.com/*
+  */  
   "search": {
 
   },
+
+  /*
+    YouTube Profile Selectors
+    https://www.youtube.com/*
+  */  
   "profile": {
 
+  },  
+
+  /*
+    YouTube Post Selectors
+    https://www.youtube.com/*
+  */  
+  "post": {
+    // Indicators
+    "videoIsPlaying": {
+      "selector": "button.ytp-play-button[title*='Pause']",
+    },
+
+    // Actions
+    "playButton": {
+      "selector": "button.ytp-play-button[title*='Play']",
+    },
   },
 }

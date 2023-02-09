@@ -1,4 +1,8 @@
 /*
+  -----------------
+  Twitter Selectors
+  -----------------
+
   Normal + verified
   https://twitter.com/CatWorkers
 
@@ -236,7 +240,6 @@
     "viewLikesButton": {
       "selector": "$get(post.likeCount.selector)",
     },
-
   },
 
   /*
@@ -277,8 +280,6 @@
     },
     "timeout": {
       "object": {"selector": "body", "filters": [ {"match": { "innerText": "/wait a few minutes/i" }} ] },
-    }
-  }
-
-
+    },
+  },
 }
