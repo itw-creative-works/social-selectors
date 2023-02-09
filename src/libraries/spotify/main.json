@@ -17,8 +17,24 @@
       "object": { "selector": "html[lang*='en']" },
     },
     "isLoggedIn": {
-      "object": { "selector": "button[data-testid='login-button']" },
+      "object": { "selector": "header button[data-testid='user-widget-link']" },
+    },    
+  },
+
+  /*
+    Spotify Signin Selectors
+    https://accounts.spotify.com/en/login
+  */  
+  "signin": {
+    // Properties
+    "properties": {
+      "url": "https://accounts.spotify.com/en/login",
     },
+
+    // Indicators
+    // "isOnPage": {
+    //   "url": "/spotify\\.com/"
+    // },
   },
 
   /*
@@ -33,7 +49,7 @@
 
     // Actions
     "playButton": {
-      "selector": "main button[data-testid='play-button']",
+      "selector": "main div[data-testid='action-bar-row'] button[data-testid='play-button']",
     },
   },
 
