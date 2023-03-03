@@ -297,6 +297,9 @@
     // Indicators
     "spamWarning": {
       "selector": ".spamWarning"
-    }
+    },
+    "isOffline": {
+      "selector": ".sc-button.sc-button-large.reload-button"
+    },
   }
 }
