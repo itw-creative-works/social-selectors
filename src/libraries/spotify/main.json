@@ -62,5 +62,8 @@
     "spamWarning": {
       "selector": ".spamWarning"
     },
+    "isOffline": {
+      "selector": "NOT_IMPLEMENTED_YET"
+    },    
   }
 }

@@ -190,16 +190,16 @@
   },
 
   /*
-    SoundCloud Track Selectors
+    SoundCloud Post Selectors
     https://soundcloud.com/thechainsmokers/the-chainsmokers-x-cheyenne
   */  
-  "track": {
+  "post": {
     // Indicators
     "isOnPage": {
       "selector": ".soundTitle__playButtonHero",
     },
     "isLoaded": {
-      "selector": "$get(track.likeButton.selector)",
+      "selector": "$get(post.likeButton.selector)",
     },
 
     // Actions
@@ -247,7 +247,7 @@
       "selector(array)": "a.soundTitle__title span"
     },
     "viewLikes": {
-      "selector": "$get(track.likeCount.selector)"
+      "selector": "$get(post.likeCount.selector)"
     },
   },
 
@@ -280,7 +280,7 @@
       "url": "/\\/sets\\//",
     },
     "isLoaded": {
-      "selector": "$get(track.likeButton.selector)",
+      "selector": "$get(post.likeButton.selector)",
     },
 
     // Explore

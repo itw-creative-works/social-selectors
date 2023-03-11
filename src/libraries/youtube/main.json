@@ -63,4 +63,15 @@
       "selector": "button.ytp-play-button[title*='Play']",
     },
   },
+
+  /*
+    YouTube Error Selectors
+    https://www.youtube.com/*
+  */
+  "error": {
+    // Indicators
+    "isOffline": {
+      "selector": "NOT_IMPLEMENTED_YET"
+    },
+  }  
 }

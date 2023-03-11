@@ -29,4 +29,10 @@
   "profile": {
 
   },
+
+  "error": {
+    "isOffline": {
+      "selector": "NOT_IMPLEMENTED_YET"
+    },
+  },  
 }

@@ -39,4 +39,15 @@
   "home": {
 
   },
+
+
+  /*
+    LinkedIn Error Selectors
+    https://www.linkedin.com
+  */  
+  "error": {
+    "isOffline": {
+      "selector": "NOT_IMPLEMENTED_YET"
+    },
+  }
 }

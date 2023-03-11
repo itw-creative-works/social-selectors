@@ -211,6 +211,9 @@
     },
     "isError": {
       "object": {"selector": "*[class*='DivErrorContainer']" },
-    },    
+    },
+    "isOffline": {
+      "selector": "NOT_IMPLEMENTED_YET"
+    },      
   }
 }

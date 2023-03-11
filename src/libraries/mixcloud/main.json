@@ -32,7 +32,7 @@
     Mixcloud Post Selectors
     https://www.mixcloud.com/
   */  
-  "mix": {
+  "post": {
     // Indicators
     "isPlaying": {
       "selector": "$get(content.pauseButton.selector)",
@@ -47,4 +47,15 @@
       "selector": "span.play-button.play-button-cloudcast.pause-state",
     },
   },
+
+  /*
+    Mixcloud Error Selectors
+    https://www.mixcloud.com/*
+  */
+  "error": {
+    // Indicators
+    "isOffline": {
+      "selector": "NOT_IMPLEMENTED_YET"
+    },
+  }    
 }

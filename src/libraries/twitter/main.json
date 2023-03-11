@@ -281,5 +281,8 @@
     "timeout": {
       "object": {"selector": "body", "filters": [ {"match": { "innerText": "/wait a few minutes/i" }} ] },
     },
+    "isOffline": {
+      "selector": "NOT_IMPLEMENTED_YET"
+    },    
   },
 }

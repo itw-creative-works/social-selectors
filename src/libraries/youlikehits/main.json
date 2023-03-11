@@ -127,8 +127,9 @@
     },
     "noPayoutMessage": {
       "object": {"selector": ".maintable div", "filters": [ {"match": { "innerText": "/does not have a payout/i" }} ], "index": 0 },
-    }
+    },
+    "isOffline": {
+      "selector": "NOT_IMPLEMENTED_YET"
+    },    
   }
-
-
 }

@@ -39,7 +39,18 @@
   "home": {
     // Actions
     "searchButton": {
-      "selector": "input[aria-label*='Google'][type='submit']",
+      "selector": "form[action='/search'] input[type='submit']",
     },
+  },
+
+  /*
+    Google Error Selectors
+    https://www.google.com/*
+  */  
+  "error": {
+    // Indicators
+    "isOffline": {
+      "selector": "NOT_IMPLEMENTED_YET"
+    },    
   },
 }
