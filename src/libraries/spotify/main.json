@@ -41,7 +41,7 @@
     Spotify Track Selectors
     https://open.spotify.com/track/0yLdNVWF3Srea0uzk55zFn
   */    
-  "track": {
+  "post": {
     // Indicators
     "isOnPage": {
       "url": "/spotify\\.com\\/track/",
