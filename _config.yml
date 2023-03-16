@@ -146,7 +146,7 @@ settings:
           config: {
             accountId: 'pLnXvh03xRQOHWAurn5EBnobC5H3',
             chatId: '8YIsRlzAAiv03d',
-            options: {},
+            settings: {},
           }
         },
         sentry: {
