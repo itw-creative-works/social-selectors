@@ -138,14 +138,29 @@ settings:
         },
         cookieconsent: {
           enabled: true,
-          config: {}
+          config: {
+            palette: {
+              popup: {
+                background: '#237afc',
+                text: '#fff'
+              },
+              button: {
+                background: '#fff',
+                text: '#237afc'
+              }
+            }
+          }
         },
         chatsy: {
           enabled: true,
           config: {
-            accountId: 'pLnXvh03xRQOHWAurn5EBnobC5H3',
+            accountId: 'fdxPPAHhHIU5mQPJXLZqcyAo0xt1',
             chatId: '8YIsRlzAAiv03d',
-            settings: {},
+            settings: {
+              openChatButton: {
+                background: '#237afc',
+              },
+            },
           }
         },
         sentry: {
