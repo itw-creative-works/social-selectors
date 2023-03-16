@@ -153,7 +153,7 @@ settings:
           enabled: true,
           config: {
             dsn: '',
-            release: 'ultimate-jekyll-website'
+            release: 'itwcw-website-social-selectors'
           }
         }
       }
