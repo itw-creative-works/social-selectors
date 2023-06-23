@@ -22,13 +22,8 @@ baseurl: "" # the subpath of your site, e.g. /blog
 version: '1.0.0'
 app: 'itw-creative-works'
 meta:
-<<<<<<< HEAD
   title: "ITW Creative Works"
   description: "Creative and quirky solutions to unworked problems."
-=======
-  title: "Default title"
-  description: "Default description"
->>>>>>> template
   og-image: "https://cdn.itwcreativeworks.com/assets/itw-creative-works/images/socials/itw-creative-works-brandmark-square-black-1024x1024.png"
   keywords: "" # false or blank to disable, comma separated kws
   viewport: "" # string, leave blank to use default
