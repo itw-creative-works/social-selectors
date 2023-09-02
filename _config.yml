@@ -157,15 +157,21 @@ settings:
         firebase_app: {
           enabled: true,
           config: {
-            apiKey: 'AIzaSyDzy5BG9-i9RmymyFx6mfwSgaRioyfa0Cc',
-            authDomain: 'ultimate-jekyll.firebaseapp.com',
-            databaseURL: 'https://ultimate-jekyll.firebaseio.com',
-            projectId: 'ultimate-jekyll',
-            storageBucket: 'ultimate-jekyll.appspot.com',
-            messagingSenderId: '837186164890',
-            appId: '1:837186164890:web:f1f59569d661078c',
-            measurementId: ''
-          }
+            apiKey: 'AIzaSyBJ01RMI3nxH6SZfu_foH6RTrvdtYI02vw',
+            authDomain: 'auth.itwcreativeworks.com',
+            databaseURL: 'https://itw-creative-works.firebaseio.com',
+            projectId: 'itw-creative-works',
+            storageBucket: 'itw-creative-works.appspot.com',
+            messagingSenderId: '297826993241',
+            appId: '1:297826993241:web:364271e108ff54fe419d48',
+            measurementId: 'G-067TDQEC7P',
+          },
+        },
+        firebase_appCheck: {
+          enabled: true,
+          config: {
+            siteKey: '6LdybfInAAAAAO307f_8WmrSw4daJg7wAtnpn0tl',
+          },
         },
         cookieconsent: {
           enabled: true,
@@ -173,14 +179,14 @@ settings:
             palette: {
               popup: {
                 background: '#237afc',
-                text: '#fff'
+                text: '#fff',
               },
               button: {
                 background: '#fff',
-                text: '#237afc'
-              }
-            }
-          }
+                text: '#237afc',
+              },
+            },
+          },
         },
         chatsy: {
           enabled: true,
@@ -190,18 +196,19 @@ settings:
             settings: {
               openChatButton: {
                 background: '#237afc',
+                text: '#fff',
               },
             },
-          }
+          },
         },
         sentry: {
           enabled: true,
           config: {
             dsn: '',
-            release: 'itwcw-website-social-selectors'
-          }
-        }
-      }
+            release: 'itwcw-website-social-selectors',
+          },
+        },
+      },
     }
   " # javascript object to set the Configuration object for Web Manager
 
