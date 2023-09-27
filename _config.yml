@@ -205,10 +205,7 @@ settings:
           enabled: true,
           config: {
             dsn: '',
-<<<<<<< HEAD
             release: 'itwcw-website-social-selectors',
-=======
-            release: 'ultimate-jekyll-website',
             replaysSessionSampleRate: 0.1,
             replaysOnErrorSampleRate: 1.0,
           },
@@ -224,7 +221,6 @@ settings:
           okButton: {
             text: 'Claim 15% Discount',
             link: '/pricing?utm_source=exitpopup&utm_medium=popup&utm_campaign=exitpopup',
->>>>>>> template
           },
         },
       },
