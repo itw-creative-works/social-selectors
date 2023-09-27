@@ -212,7 +212,7 @@ settings:
         },
       },
       exitPopup: {
-        enabled: true,
+        enabled: false,
         config: {
           timeout: 3600000,
           handler: null,
