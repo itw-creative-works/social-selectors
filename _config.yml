@@ -158,7 +158,7 @@ settings:
           enabled: true,
           config: {
             apiKey: 'AIzaSyBJ01RMI3nxH6SZfu_foH6RTrvdtYI02vw',
-            authDomain: 'auth.itwcreativeworks.com',
+            authDomain: 'itwcreativeworks.com',
             databaseURL: 'https://itw-creative-works.firebaseio.com',
             projectId: 'itw-creative-works',
             storageBucket: 'itw-creative-works.appspot.com',
