@@ -1,0 +1,1 @@
+{"global":{"isOnPage":{"url":"/twitch\\.tv/"},"isEnglish":{"object":{"selector":"html[lang*='en']"}},"isLoggedOut":{"selector":"button[data-a-target='login-button']"}},"home":{},"explore":{},"search":{},"profile":{},"error":{"isOffline":{"selector":"NOT_IMPLEMENTED_YET"}}}

@@ -1,0 +1,61 @@
+/*
+  ------------------
+  Mixcloud Selectors
+  ------------------
+*/
+{
+  /*
+    Mixcloud Global Selectors
+    https://www.mixcloud.com/
+  */
+  "global": {
+    // Indicators
+    "isOnPage": {
+      "url": "/mixcloud\\.com/",
+    },
+    "isOnMainSite": {
+      "selector": "",
+    },
+    "isLoggedOut": {
+      "selector": "",
+      "object": { "selector": "a button", "filters": [ {"match": { "innerText": "/Join/i" }} ] },
+    },
+
+    // Actions
+    "signUpButton": {
+      "selector": "",
+      "object": "$get(global.isLoggedOut.object)",
+    },
+  },
+
+  /*
+    Mixcloud Post Selectors
+    https://www.mixcloud.com/
+  */  
+  "post": {
+    // Indicators
+    "isPlaying": {
+      "selector": "$get(content.pauseButton.selector)",
+    },
+
+    // Actions
+    "playButton": {
+      "_selector": "span[title='Play'].play-button.play-button-cloudcast:not(.pause-state)",
+      "selector": "span.play-button.play-button-cloudcast:not(.pause-state)",
+    },
+    "pauseButton": {
+      "selector": "span.play-button.play-button-cloudcast.pause-state",
+    },
+  },
+
+  /*
+    Mixcloud Error Selectors
+    https://www.mixcloud.com/*
+  */
+  "error": {
+    // Indicators
+    "isOffline": {
+      "selector": "NOT_IMPLEMENTED_YET"
+    },
+  }    
+}

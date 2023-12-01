@@ -1,0 +1,305 @@
+/*
+  --------------------
+  SoundCloud Selectors
+  --------------------
+*/
+{
+  /*
+    SoundCloud Global Selectors
+    https://soundcloud.com
+  */  
+  "global": {
+    // Indicators
+    "isOnPage": {
+      "url": "/soundcloud\\.com/"
+    },
+    "isEnglish": {
+      "object": { "selector": "html[lang*='en']" },
+    },
+    "isLoggedIn": {
+      "selector": ".header__userNav .header__userNavUsernameButton"
+    },
+    "isLoggedOut": {
+      // https://soundcloud.com
+      // https://soundcloud.com/*
+      "object": {"selector": ".frontHero__signin button, header button", "filters": [{"match": {"innerText": "/Sign in/i"}}]},
+    },
+    "isAdVisible": {
+      "selector": ".playControlsPanel__whyAds",
+    },    
+    
+    // Actions
+    "profileLink": {
+      "selector": "$get(global.isLoggedIn.selector)",
+    },    
+    "searchBar": {
+      "selector": "header input",
+    },
+    "playCurrentTrack": {
+      "selector": "button[aria-label='Pause current']",
+    },    
+    "pauseCurrentTrack": {
+      "selector": "button[aria-label='Pause current']",
+    },
+
+    // Explore
+    "trackLink": {
+      "selector(array)": ".sound__body a.soundTitle__title span",
+    },
+    "trackProfileLink": {
+      "selector(array)": ".sound__body a.soundTitle__username span",
+    },
+    "modalCloseButton": {
+      "selector": ".modal__closeButton",
+    },
+    "cookieAcceptButton": {
+      "selector": "#onetrust-accept-btn-handler",
+    },
+  },
+
+  /*
+    SoundCloud Home Selectors
+    https://soundcloud.com/discover
+  */    
+  "home": {
+    // Indicators
+    "isOnPage": {
+      "url": "/soundcloud\\.com\\/discover/",
+    }
+  },
+
+  /*
+    SoundCloud Stream Selectors
+    https://soundcloud.com/discover
+  */
+  "stream": {
+    // Indicators
+    "isOnPage": {
+      "url": "/soundcloud\\.com\\/stream/",
+    }
+  },
+
+  /*
+    SoundCloud Stream Selectors
+    https://soundcloud.com/search
+  */  
+  "search": {
+    // Indicators
+    "isOnPage": {
+      "url": "/soundcloud\\.com\\/search/",
+    },
+    "isLoaded": {
+      "selector": "$get(global.trackLink.selector(array))",
+    },    
+
+    // Actions
+    "filterTracks": {
+      "selector": "a[href*='/search/sounds?']",
+    },
+    "filterTracks_byDate": {
+      "object": {"selector": ".searchOptions a", "filters": [{"match": {"innerText": "/Added /"}}]},
+    },
+    "filterTracks_byDate_pastWeek": {
+      "selector": "a[href*='filter.created_at=last_week']",
+    },
+    "filterTracks_byDate_pastMonth": {
+      "selector": "a[href*='filter.created_at=last_month']",
+    },
+    "filterTracks_byDate_pastYear": {
+      "selector": "a[href*='filter.created_at=last_year']",
+    },
+  },
+
+  /*
+    SoundCloud Profile Selectors
+    https://soundcloud.com/cheyennegilesmusic
+  */
+  "profile": {
+    // Indicators
+    "isOnPage": {
+      "selector": ".profileHeader",
+    },
+    "isLoaded": {
+      "selector": "$get(profile.followerCount.selector)",
+    },    
+
+    // Actions
+    "followButton": {
+      "selector": ".userInfoBar button[title*='Follow']"
+    },
+
+    // Stats
+    "followerCount": {
+      "selector": ".infoStats a[href*='/followers']",
+    },
+    "followingCount": {
+      "selector": ".infoStats a[href*='/following']",
+    },
+    "trackCount": {
+      "selector": ".infoStats a[href*='/tracks']",
+    },
+
+    // Explore
+    "trackLink": { // Good for testing loaded
+      "selector(array)": "$get(global.trackLink.selector(array))"
+    },
+    "viewFollowers": {
+      "selector": "$get(profile.followerCount.selector)"
+    },
+    "viewFollowing": {
+      "selector": "$get(profile.followingCount.selector)"
+    },
+  },
+
+  /*
+    SoundCloud Profile/Followers Selectors
+    https://soundcloud.com/cheyennegilesmusic/followers
+  */
+  "profile_followers": {
+    // Indicators
+    "isOnPage": {
+      "url": "/\\/followers/"
+    },
+    "isEmpty": {
+      "selector": ".emptyNetworkPage__image"
+    },
+
+    // Explore
+    "profileLink": {
+      "selector(array)": ".userBadgeListItem__title"
+    },
+  },
+
+  /*
+    SoundCloud Profile/Following Selectors
+    https://soundcloud.com/cheyennegilesmusic/following
+  */
+  "profile_following": {
+    // Indicators
+    "isOnPage": {
+      "url": "/\\/following/"
+    },
+    "isEmpty": {
+      "selector": "$get(profile_followers.isEmpty.selector)"
+    },
+
+    // Explore
+    "profileLink": {
+      "selector(array)": "$get(profile_followers.profileLink.selector(array))"
+    },
+  },
+
+  /*
+    SoundCloud Post Selectors
+    https://soundcloud.com/thechainsmokers/the-chainsmokers-x-cheyenne
+  */  
+  "post": {
+    // Indicators
+    "isOnPage": {
+      "selector": ".soundTitle__playButtonHero",
+    },
+    "isLoaded": {
+      "selector": "$get(post.likeButton.selector)",
+    },
+
+    // Actions
+    "likeButton": {
+      "selector": ".listenEngagement__footer button[aria-label='Like']",
+    },
+    "repostButton": {
+      "selector": ".listenEngagement__footer button[aria-label='Repost']",
+    },
+    "followButton": {
+      "selector": ".userBadge__actions button[aria-label='Follow']",
+    },
+    "playButton": {
+      "selector": ".l-listen-hero a[title='Play']",
+    },
+    "pauseButton": {
+      "selector": ".l-listen-hero a[title='Pause']",
+    },
+
+    // Stats
+    "likeCount": {
+      "selector": ".listenEngagement__footer a[href*='/likes']",
+    },
+    "repostCount": {
+      "selector": ".listenEngagement__footer a[href*='/reposts']",
+    },
+    "followerCount": {
+      "selector": ".userBadge__stats a[href*='/followers']",
+    },
+    "postDate": {
+      "selector": ".fullHero__uploadTime .relativeTime",
+    },
+    "commentList": {
+      "selector": ".commentsList"
+    },
+    "commentButton": {
+      "selector": ".commentForm__input"
+    },
+
+    // Explore
+    "commentProfileLink": {
+      "selector(array)": ".commentItem__username > a"
+    },
+    "relatedTrackLink": {
+      "selector(array)": "a.soundTitle__title span"
+    },
+    "viewLikes": {
+      "selector": "$get(post.likeCount.selector)"
+    },
+  },
+
+  /*
+    SoundCloud Track/Likes Selectors
+    https://soundcloud.com/thechainsmokers/the-chainsmokers-x-cheyenne/likes
+  */    
+  "track_likes": {
+    // Indicators
+    "isOnPage": {
+      "url": "/\\/likes/",
+    },
+    "isEmpty": {
+      "selector": "$get(profile_followers.isEmpty.selector)"
+    },
+
+    // Explore
+    "profileLink": {
+      "selector(array)": "$get(profile_followers.profileLink.selector(array))"
+    },
+  },
+
+  /*
+    SoundCloud Playlist Selectors
+    https://soundcloud.com/cheyennegilesmusic/sets/make-me-feel
+  */     
+  "playlist": {
+    // Indicators
+    "isOnPage": {
+      "url": "/\\/sets\\//",
+    },
+    "isLoaded": {
+      "selector": "$get(post.likeButton.selector)",
+    },
+
+    // Explore
+    "trackLink": {
+      "selector(array)": "a.trackItem__trackTitle"
+    },
+  },
+
+  /*
+    SoundCloud Error Selectors
+    https://soundcloud.com/*
+  */      
+  "error": {
+    // Indicators
+    "spamWarning": {
+      "selector": ".spamWarning"
+    },
+    "isOffline": {
+      "selector": ".sc-button.sc-button-large.reload-button"
+    },
+  }
+}

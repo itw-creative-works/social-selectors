@@ -1,0 +1,56 @@
+/*
+  ----------------
+  Google Selectors
+  ----------------
+*/
+{
+  /*
+    Google Global Selectors
+    https://www.google.com/*
+  */
+  "global": {
+    // Indicators
+    "isOnPage": {
+      "url": "/google\\.com/",
+    },
+    "isEnglish": {
+      "object": { "selector": "html[lang*='en']"},
+    },
+    "isOnMainSite": {
+      "selector": "",
+    },
+    "isLoggedOut": {
+      "selector": "",
+    },
+
+    // Actions
+    "signUpButton": {
+      "selector": "",
+    },
+    "searchBox": {
+      "selector": "input[name='q']",
+    },
+  },
+
+  /*
+    Google Home Selectors
+    https://www.google.com
+  */  
+  "home": {
+    // Actions
+    "searchButton": {
+      "selector": "form[action='/search'] input[type='submit']",
+    },
+  },
+
+  /*
+    Google Error Selectors
+    https://www.google.com/*
+  */  
+  "error": {
+    // Indicators
+    "isOffline": {
+      "selector": "NOT_IMPLEMENTED_YET"
+    },    
+  },
+}

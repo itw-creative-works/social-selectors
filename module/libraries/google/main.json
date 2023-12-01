@@ -1,0 +1,1 @@
+{"global":{"isOnPage":{"url":"/google\\.com/"},"isEnglish":{"object":{"selector":"html[lang*='en']"}},"isOnMainSite":{"selector":""},"isLoggedOut":{"selector":""},"signUpButton":{"selector":""},"searchBox":{"selector":"input[name='q']"}},"home":{"searchButton":{"selector":"form[action='/search'] input[type='submit']"}},"error":{"isOffline":{"selector":"NOT_IMPLEMENTED_YET"}}}

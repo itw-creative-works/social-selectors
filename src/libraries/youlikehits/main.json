@@ -1,0 +1,135 @@
+/*
+  ---------------------
+  YouLikeHits Selectors
+  ---------------------
+
+  Home
+  https://www.youlikehits.com/stats.php
+
+  SoundCloud
+  https://www.youlikehits.com/soundcloudplays.php
+
+  YouTube
+  https://www.youlikehits.com/youtubenew2.php
+*/
+{
+  /*
+    YouLikeHits Global Selectors
+    https://www.youlikehits.com/*
+  */
+  "global": {
+    // Indicators
+    "isOnPage": {
+      "url": "/youlikehits\\.com/"
+    },
+    "isLoaded": {
+      "selector": "a[href='bonuspoints.php']"
+    },    
+    "isLoggedIn": {
+      "selector": "a[href='account.php']"
+    },
+    "isLoggedOut": {
+      "selector": "a[href*='login.php']"
+    },
+    "isCaptcha": {
+      "selector": "#captcha .h-captcha iframe",
+    },
+    "captchaSiteKey": {
+      "selector": "#captcha .h-captcha",
+      "object": {"selector": "#captcha .h-captcha", "retrieve": [ "data-sitekey" ], "index": 0 },
+    },
+    "captchaFormSubmitButton": {
+      "selector": "#captcha input[type='submit']",
+    },
+
+    // Actions
+    "captchaFormInput": {
+      "selector": "#captcha input[type='text']",
+    },
+    "captchaFormImage": {
+      "selector": "#captcha img"
+    },
+    "captchaFailedMessage": {
+      "object": {"selector": "div font", "filters": [ {"match": { "innerText": "/did not successfully solve/i" }} ], "index": 0 },
+    },
+    "timerText": {
+      "object": {"selector": "span", "filters": [ {"match": { "innerText": "/Timer:/i" }} ], "index": 0 },
+    },
+    "pointsText": {
+      "object": {"selector": ".maintable div", "filters": [ {"match": { "innerText": "/Points:/i" }} ], "index": 0 },
+    },
+
+    "profileLink": {
+      "selector": ".header__userNav .header__userNavUsernameButton",
+    },
+    "footer": {
+      "selector": ".footer"
+    }
+  },
+
+  /*
+    YouLikeHits Home Selectors
+    https://www.youlikehits.com/stats.php
+  */
+  "home": {
+    // Indicators
+    "isOnPage": {
+      "url": "/soundcloud\\.com\\/discover/",
+    }
+  },
+
+  /*
+    YouLikeHits Bonus Selectors
+    https://www.youlikehits.com/bonuspoints.php
+  */
+  "bonus": {
+    // Indicators
+    "currentHits": {
+      "selector": ".maintable",
+    },
+
+    // Actions
+    "collectButton": {
+      "selector": "a[href*='?step=get']"
+    }
+  },
+
+  /*
+    YouLikeHits SoundCloud/Plays Selectors
+    https://www.youlikehits.com/soundcloudplays.php
+  */  
+  "soundcloud_plays": {
+    // Actions
+    "interactButton": {
+      "object": {"selector": "a.followbutton", "filters": [ {"match": { "innerText": "/Listen/i" }} ], "index": 0 },
+    },
+  },
+
+  /*
+    YouLikeHits YouTube/Views Selectors
+    https://www.youlikehits.com/youtubenew2.php
+  */    
+  "youtube_views": {
+    // Actions
+    "interactButton": {
+      "object": {"selector": "a.followbutton", "filters": [ {"match": { "innerText": "/View/i" }} ], "index": 0 },
+    },
+  },
+
+  /*
+    YouLikeHits Error Selectors
+    https://www.youlikehits.com/*
+  */   
+  "error": {
+    // Indicators
+    "spamWarning": {
+      "selector": ".spamWarning"
+    },
+    "noPayoutMessage": {
+      "object": {"selector": ".maintable div", "filters": [ {"match": { "innerText": "/does not have a payout/i" }} ], "index": 0 },
+    },
+    "isOffline": {
+      "selector": "NOT_IMPLEMENTED_YET"
+    },    
+  }
+}

@@ -1,0 +1,219 @@
+/*
+  ----------------
+  TikTok Selectors
+  -----------------
+
+  Normal + verified
+  https://www.tiktok.com/@sonyakisa8
+  
+  Private
+  n/a
+
+  No posts
+  https://www.tiktok.com/@kiruemusic
+*/
+{
+  /*
+    TikTok Global Selectors
+    https://www.tiktok.com
+  */
+  "global": {
+    // Indicators
+    "isOnPage": {
+      "url": "/tiktok\\.com/",
+    },
+    "isEnglish": {
+      "object": { "selector": "html[lang*='en']" },
+    },
+    "isLoggedIn": {
+      "object": { "selector": "div[data-e2e='profile-icon']" },
+    },    
+    "loginButton": {
+      "object": { "selector": "button[data-e2e='top-login-button']" },
+    },
+    "sessionMetaData": {
+      "selector": "#SIGI_STATE",
+    },
+    "isPopupOpen": {
+      "selector": "div[role='dialog']"
+    },
+    "isCaptchaOpen": {
+      "selector": "#tiktok-verify-ele:not([style*='display: none'])"
+    },
+
+    // Actions
+    "searchBar": {
+      "object": { "selector": "input[name='q']", "retrieve": ['value'], "index": 0 }
+    },
+    "notificationsReminder_disable": {
+      "object": { "selector": "button", "filters": [ {"match": { "innerText": "/Not Now/i" }} ] },
+    },
+  },
+
+  /*
+    TikTok Home Selectors
+    https://www.tiktok.com
+  */
+  "home": {
+    // Indicators
+    "isOnPage": {
+      "url": "/tiktok\\.com/",
+    },
+  },
+
+  /*
+    TikTok Search Selectors
+    https://www.tiktok.com/search
+  */
+  "search": {
+    // Indicators
+    "isOnPage": {
+      "url": "/tiktok\\.com\\/search/",
+    },
+
+    // Actions
+    "navItem": {
+      "selector(array)": "div[class*='DivMainContainer'] div[data-e2e='tab-item']",
+    },    
+    "profileLink": {
+      "selector(array)": "div[class*='DivMainContainer'] a[data-e2e='search-user-info-container']",
+    },
+    "postLink": {
+      "selector(array)": "div[class*='DivMainContainer'] div[class*='DivItemContainerForSearch']",
+    },    
+  },
+
+  /*
+    TikTok Profile Selectors
+    https://www.tiktok.com/@sonyakisa8
+  */
+  "profile": {
+    // Indicators
+    "isOnPage": {
+      "selector": "div[data-e2e='user-post-item-list'] div[class*='DivWrapper']",
+    },
+    "isLoaded": {
+      "selector": "$get(profile.isOnPage.selector)",
+    },    
+    "isPrivate": {
+      "object": {"selector": "_NOEXIST" },
+    },
+    "isFollowing": {
+      "object": "$get(profile.unfollowButton.object)",
+    },
+
+    // Actions
+    "followButton": {
+      "object": {"selector": "button[data-e2e='follow-button']", "filters": [ {"match": { "innerText": "/Follow/i" }} ] },
+    },
+    "unfollowButton": {
+      "object": {"selector": "div[class*='DivMessageContainer'] div[class*='DivFollowIconContainer']", },
+    },
+
+    // Stats
+    "followingCount": {
+      "object": {"selector": "div *[data-e2e='following-count']" },
+    },
+    "followerCount": {
+      "object": {"selector": "div *[data-e2e='followers-count']" },
+    },
+    "likeCount": {
+      "object": {"selector": "div *[data-e2e='likes-count']" },
+    },
+
+    // Explore
+    "postContainer": {
+      "selector": "data-e2e='user-page'",
+    },
+    "postLink": {
+      "selector(array)": "$get(profile.isOnPage.selector)",
+    },
+    "suggestedProfileLink": {
+      "selector(array)": "*[data-e2e='suggest-user-title']",
+    }
+  },
+
+  /*
+    TikTok Post Selectors
+    https://www.tiktok.com/@sonyakisa8/video/7164385647472528642
+  */
+  "post": {
+    // Indicators
+    "isOnPage": {
+      "url": "/\/video\//",
+      "selector": "*[class*='DivInfoContainer']",
+    },
+    "isLiked": {
+      "selector": "*[data-e2e='browse-like-icon'] svg[fill*='rgba(254, 44, 85']",
+    },
+    "isFollowing": {
+      "object": "$get(post.unfollowButton.object)",
+    },
+
+    // Actions
+    "followButton": {
+      "object": {"selector": "*[class*='DivInfoContainer'] button[data-e2e='browse-follow']", "filters": [ {"match": { "innerText": "/Follow$/i" }} ], "positionMethod": "bounding" },
+    },
+    "unfollowButton": {
+      "object": {"selector": "*[class*='DivInfoContainer'] button[data-e2e='browse-follow']", "filters": [ {"match": { "innerText": "/Following$/i" }} ], "positionMethod": "bounding" },
+    },
+    "likeButton": {
+      "object": {"selector": "*[data-e2e='browse-like-icon'] svg[fill*='rgba(22, 24, 35']", "positionMethod": "bounding"}
+    },
+    "commentContainer": {
+      "object": {"selector": "*[class*='DivCommentListContainer']", "positionMethod": "bounding"}
+    },     
+    "commentLikeButton": {
+      "object": {"selector": "div[data-e2e='comment-like-icon'] svg[fill*='currentColor']", "positionMethod": "bounding"},
+    },   
+    "commentInput": {
+      "object": {"selector": ".DraftEditor-root", "positionMethod": "bounding"}
+    },    
+
+    // Stats
+    "likeCount": {
+      "object": {"selector": "*[data-e2e='browse-like-count']" },
+    },
+    "commentCount": {
+      "object": {"selector": "*[data-e2e='browse-comment-count']" },
+    },
+    "postDate": {
+      "object": {"selector": "_NOEXIST" },
+    },
+
+    // Explore
+    "commentContainer_profileLink": {
+      "object": {"selector": "*[class*='DivCommentListContainer'] *[class*='DivCommentItemContainer'] a[href*='/@']", "positionMethod": "bounding"}
+    },
+  },
+
+  /*
+    TikTok Login Selectors
+    https://www.tiktok.com/login
+  */
+  "login": {
+    "isOnPage": {
+      "object": {"selector": "main p button", "filters": [ {"match": { "innerText": "/Sign Up$/i" }} ]},
+    }
+  },
+
+  /*
+    TikTok Error Selectors
+    https://www.tiktok.com/*
+  */
+  "error": {
+    // Indicators
+    "spamWarning": {
+      "selector": ".spamWarning",
+    },
+    "timeout": {
+      "object": {"selector": "body", "filters": [ {"match": { "innerText": "/wait a few minutes/i" }} ] },
+    },
+    "isError": {
+      "object": {"selector": "*[class*='DivErrorContainer']" },
+    },
+    "isOffline": {
+      "selector": "NOT_IMPLEMENTED_YET"
+    },      
+  }
+}

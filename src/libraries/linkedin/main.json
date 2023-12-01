@@ -1,0 +1,53 @@
+/*
+  ----------------
+  LinkedIn Selectors
+  ----------------
+*/
+{
+  /*
+    LinkedIn Global Selectors
+    https://www.linkedin.com/*
+  */
+  "global": {
+    // Indicators
+    "isOnPage": {
+      "url": "/linkedin\\.com/",
+    },
+    "isEnglish": {
+      "object": { "selector": "html[lang*='en']"},
+    },
+    "isOnMainSite": {
+      "selector": "",
+    },
+    "isLoggedIn": {
+      "selector": "nav[class='global-nav__nav'] img[class*='global-nav__me-photo'",
+    },
+
+    // Actions
+    "signUpButton": {
+      "selector": "",
+    },
+    "searchBox": {
+      "selector": "input[class='search-global-typeahead__input']",
+    },
+  },
+
+  /*
+    LinkedIn Home Selectors
+    https://www.linkedin.com
+  */  
+  "home": {
+
+  },
+
+
+  /*
+    LinkedIn Error Selectors
+    https://www.linkedin.com
+  */  
+  "error": {
+    "isOffline": {
+      "selector": "NOT_IMPLEMENTED_YET"
+    },
+  }
+}
