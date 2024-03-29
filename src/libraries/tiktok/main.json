@@ -5,7 +5,7 @@
 
   Normal + verified
   https://www.tiktok.com/@sonyakisa8
-  
+
   Private
   n/a
 
@@ -27,9 +27,12 @@
     },
     "isLoggedIn": {
       "object": { "selector": "div[data-e2e='profile-icon']" },
-    },    
+    },
     "loginButton": {
       "object": { "selector": "button[data-e2e='top-login-button']" },
+    },
+    "profileButton": {
+      "object": { "selector": "a[data-e2e='nav-profile']", "retrieve": ['href'] },
     },
     "sessionMetaData": {
       "selector": "#SIGI_STATE",
@@ -74,13 +77,13 @@
     // Actions
     "navItem": {
       "selector(array)": "div[class*='DivMainContainer'] div[data-e2e='tab-item']",
-    },    
+    },
     "profileLink": {
       "selector(array)": "div[class*='DivMainContainer'] a[data-e2e='search-user-info-container']",
     },
     "postLink": {
       "selector(array)": "div[class*='DivMainContainer'] div[class*='DivItemContainerForSearch']",
-    },    
+    },
   },
 
   /*
@@ -94,7 +97,7 @@
     },
     "isLoaded": {
       "selector": "$get(profile.isOnPage.selector)",
-    },    
+    },
     "isPrivate": {
       "object": {"selector": "_NOEXIST" },
     },
@@ -162,13 +165,13 @@
     },
     "commentContainer": {
       "object": {"selector": "*[class*='DivCommentListContainer']", "positionMethod": "bounding"}
-    },     
+    },
     "commentLikeButton": {
       "object": {"selector": "div[data-e2e='comment-like-icon'] svg[fill*='currentColor']", "positionMethod": "bounding"},
-    },   
+    },
     "commentInput": {
       "object": {"selector": ".DraftEditor-root", "positionMethod": "bounding"}
-    },    
+    },
 
     // Stats
     "likeCount": {
@@ -214,6 +217,6 @@
     },
     "isOffline": {
       "selector": "NOT_IMPLEMENTED_YET"
-    },      
+    },
   }
 }
