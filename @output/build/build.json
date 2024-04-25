@@ -5,13 +5,13 @@
     "name": "social-selectors"
   },
   "npm-build": {
-    "timestamp": "2024-04-18T04:51:09.262Z"
+    "timestamp": "2024-04-25T02:57:59.200Z"
   },
   "gh-pages-push": {
     "timestamp": "%GHP_TIMESTAMP%"
   },
   "packages": {
-    "web-manager": "3.2.48"
+    "web-manager": "3.2.49"
   },
   "brand": {
     "name": "ITW Creative Works",
