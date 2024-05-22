@@ -4,7 +4,7 @@
   "description": "A library of selectors for CSS elements on social media sites.",
   "main": "module/index.js",
   "scripts": {
-    "preinstall": "bundle update && bundle install",
+    "preinstall": "bundle install && bundle update",
     "start": "npm run _start -- --skipImageMin='true' --skipESLint='true' --skipJSMin='true'",
     "_start": "bundle exec gulp clean:jekyll && bundle exec gulp",
     "dist": "git add . && git commit -m 'Published pages' && git push origin",
