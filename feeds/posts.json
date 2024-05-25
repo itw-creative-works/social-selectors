@@ -1,0 +1,166 @@
+{
+  "version": "https://jsonfeed.org/version/1",
+  "title": "ITW Creative Works Blog",
+  "home_page_url": "https://social-selectors.itwcreativeworks.com/blog",
+  "feed_url": "https://social-selectors.itwcreativeworks.com/feeds/posts.json",
+  "description": "Default description.",
+  "generator": "Jekyll 4.3.2",
+  "language": "en",
+  "favicon": "",
+  "items": [
+    {
+      "id": "https://social-selectors.itwcreativeworks.com/blog/example-post-7",
+      "url": "https://social-selectors.itwcreativeworks.com/blog/example-post-7",
+      "title": "Example post number 7",
+      "content_text": "Title inside post 7This is a wonderful paragrah inside a post! This is post #7 with ID 1689222521.",
+      "content_html": "<h2 id='title-inside-post-7'>Title inside post 7</h2><p>This is a wonderful paragrah inside a post! This is post #7 with ID 1689222521.</p>",
+      "date_published": "2023-01-07T00:00:00.000Z",
+      "image": "",
+      "authors": [
+        {
+          "name": "ITW Creative Works"
+        }
+      ],
+      "attachments": [
+        {
+          "url": ""
+        }
+      ],
+      "summary": ""This is a sample excerpt for post number 7"",
+      "tags": [""]
+    },
+    
+    {
+      "id": "https://social-selectors.itwcreativeworks.com/blog/example-post-6",
+      "url": "https://social-selectors.itwcreativeworks.com/blog/example-post-6",
+      "title": "Example post number 6",
+      "content_text": "Title inside post 6This is a wonderful paragrah inside a post! This is post #6 with ID 1689222520.",
+      "content_html": "<h2 id='title-inside-post-6'>Title inside post 6</h2><p>This is a wonderful paragrah inside a post! This is post #6 with ID 1689222520.</p>",
+      "date_published": "2023-01-06T00:00:00.000Z",
+      "image": "",
+      "authors": [
+        {
+          "name": "ITW Creative Works"
+        }
+      ],
+      "attachments": [
+        {
+          "url": ""
+        }
+      ],
+      "summary": ""This is a sample excerpt for post number 6"",
+      "tags": [""]
+    },
+    
+    {
+      "id": "https://social-selectors.itwcreativeworks.com/blog/example-post-5",
+      "url": "https://social-selectors.itwcreativeworks.com/blog/example-post-5",
+      "title": "Example post number 5",
+      "content_text": "Title inside post 5This is a wonderful paragrah inside a post! This is post #5 with ID 1689222519.",
+      "content_html": "<h2 id='title-inside-post-5'>Title inside post 5</h2><p>This is a wonderful paragrah inside a post! This is post #5 with ID 1689222519.</p>",
+      "date_published": "2023-01-05T00:00:00.000Z",
+      "image": "",
+      "authors": [
+        {
+          "name": "ITW Creative Works"
+        }
+      ],
+      "attachments": [
+        {
+          "url": ""
+        }
+      ],
+      "summary": ""This is a sample excerpt for post number 5"",
+      "tags": [""]
+    },
+    
+    {
+      "id": "https://social-selectors.itwcreativeworks.com/blog/example-post-4",
+      "url": "https://social-selectors.itwcreativeworks.com/blog/example-post-4",
+      "title": "Example post number 4",
+      "content_text": "Title inside post 4This is a wonderful paragrah inside a post! This is post #4 with ID 1689222518.",
+      "content_html": "<h2 id='title-inside-post-4'>Title inside post 4</h2><p>This is a wonderful paragrah inside a post! This is post #4 with ID 1689222518.</p>",
+      "date_published": "2023-01-04T00:00:00.000Z",
+      "image": "",
+      "authors": [
+        {
+          "name": "ITW Creative Works"
+        }
+      ],
+      "attachments": [
+        {
+          "url": ""
+        }
+      ],
+      "summary": ""This is a sample excerpt for post number 4"",
+      "tags": [""]
+    },
+    
+    {
+      "id": "https://social-selectors.itwcreativeworks.com/blog/example-post-3",
+      "url": "https://social-selectors.itwcreativeworks.com/blog/example-post-3",
+      "title": "Example post number 3",
+      "content_text": "Title inside post 3This is a wonderful paragrah inside a post! This is post #3 with ID 1689222517.",
+      "content_html": "<h2 id='title-inside-post-3'>Title inside post 3</h2><p>This is a wonderful paragrah inside a post! This is post #3 with ID 1689222517.</p>",
+      "date_published": "2023-01-03T00:00:00.000Z",
+      "image": "",
+      "authors": [
+        {
+          "name": "ITW Creative Works"
+        }
+      ],
+      "attachments": [
+        {
+          "url": ""
+        }
+      ],
+      "summary": ""This is a sample excerpt for post number 3"",
+      "tags": [""]
+    },
+    
+    {
+      "id": "https://social-selectors.itwcreativeworks.com/blog/example-post-2",
+      "url": "https://social-selectors.itwcreativeworks.com/blog/example-post-2",
+      "title": "Example post number 2",
+      "content_text": "Title inside post 2This is a wonderful paragrah inside a post! This is post #2 with ID 1689222516.",
+      "content_html": "<h2 id='title-inside-post-2'>Title inside post 2</h2><p>This is a wonderful paragrah inside a post! This is post #2 with ID 1689222516.</p>",
+      "date_published": "2023-01-02T00:00:00.000Z",
+      "image": "",
+      "authors": [
+        {
+          "name": "ITW Creative Works"
+        }
+      ],
+      "attachments": [
+        {
+          "url": ""
+        }
+      ],
+      "summary": ""This is a sample excerpt for post number 2"",
+      "tags": [""]
+    },
+    
+    {
+      "id": "https://social-selectors.itwcreativeworks.com/blog/example-post-1",
+      "url": "https://social-selectors.itwcreativeworks.com/blog/example-post-1",
+      "title": "Example post number 1",
+      "content_text": "Title inside post 1This is a wonderful paragrah inside a post! This is post #1 with ID 1689222515.",
+      "content_html": "<h2 id='title-inside-post-1'>Title inside post 1</h2><p>This is a wonderful paragrah inside a post! This is post #1 with ID 1689222515.</p>",
+      "date_published": "2023-01-01T00:00:00.000Z",
+      "image": "",
+      "authors": [
+        {
+          "name": "ITW Creative Works"
+        }
+      ],
+      "attachments": [
+        {
+          "url": ""
+        }
+      ],
+      "summary": ""This is a sample excerpt for post number 1"",
+      "tags": [""]
+    }
+    
+  ]
+}
