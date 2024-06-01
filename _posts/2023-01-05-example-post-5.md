@@ -3,7 +3,7 @@
 layout: master/placeholder/blog/post
 sitemap:
   include: true
-  
+
 ### POST ONLY ###
 post:
   title: Example post number 5
@@ -11,8 +11,8 @@ post:
   description: This is a sample excerpt for post number 5
   author: alex
   id: 1689222519
-  tags: [tag, tag2, tag3]
-  categories: [marketing, business]
+  tags: ["business marketing"]
+  categories: ["Marketing", "Business"]
   affiliate-search-term: Marketing
 ---
 
