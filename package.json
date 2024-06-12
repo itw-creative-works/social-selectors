@@ -92,5 +92,8 @@
     "wonderful-fetch": "^1.1.9",
     "yargs": "16.2.0",
     "zzzzzzzzzz": "9.9.9"
+  },
+  "dependencies": {
+    "itwcw-package-analytics": "^1.0.1"
   }
 }
