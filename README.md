@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://cdn.itwcreativeworks.com/assets/itw-creative-works/images/logo/itw-creative-works-brandmark-black-x.svg">
+  <a href="https://itwcreativeworks.com">
     <img src="https://cdn.itwcreativeworks.com/assets/itw-creative-works/images/logo/itw-creative-works-brandmark-black-x.svg" width="100px">
   </a>
 </p>
@@ -44,8 +44,8 @@ Introducing **SocialSelectors**: a dynamically updated library of css selectors 
 * SoundCloud _(coming soon!)_
 * _more coming soon!_
 
-## Install SocialSelectors
-### Install via npm
+## 📦 Install Social Selectors
+### Option 1: Install via npm
 ```shell
 npm install social-selectors
 ```
@@ -87,14 +87,14 @@ So if you wanted the selector for the like button on an Instagram post, you woul
 * Are you annoyed with having to meticulously update your css selectors to successfully scrape these elements?
 This library solves that problem by providing an api with *static* css paths that get translated into the current css selectors!
 
-## What Can SocialSelectors do?
+## 📝 What Can SocialSelectors do?
 SocialSelectors is an API that provides an up-to-date library of CSS selectors for elements on social media sites.
 
-## Final Words
+## 🗨️ Final Words
 If you are still having difficulty, we would love for you to post
 a question to [the SocialSelectors issues page](https://github.com/itw-creative-works/social-selectors/issues). It is much easier to answer questions that include your code and relevant files! So if you can provide them, we'd be extremely grateful (and more likely to help you find the answer!)
 
-## Projects Using this Library
+## 📚 Projects Using this Library
 [Somiibo](https://somiibo.com/): A Social Media Bot with an open-source module library. <br>
 [JekyllUp](https://jekyllup.com/): A website devoted to sharing the best Jekyll themes. <br>
 [Slapform](https://slapform.com/): A backend processor for your HTML forms on static sites. <br>
