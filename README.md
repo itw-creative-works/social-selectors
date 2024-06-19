@@ -26,7 +26,7 @@
   <br>
 </p>
 
-## What is Social Selectors?
+## 🚀 What is Social Selectors?
 SO... you're trying to get the css selector for the _follow button_ on Twitter. **Which would you rather use?**
 
 ```js
@@ -38,7 +38,7 @@ SO... you're trying to get the css selector for the _follow button_ on Twitter. 
 Well, now you don't have to manage those ugly, system generated css selectors anymore!
 Introducing **SocialSelectors**: a dynamically updated library of css selectors for social media sites.
 
-## Supported Sites
+## 🦄 Supported Sites
 * Instagram
 * Twitter
 * SoundCloud _(coming soon!)_
@@ -50,7 +50,7 @@ Introducing **SocialSelectors**: a dynamically updated library of css selectors 
 npm install social-selectors
 ```
 
-## Using SocialSelectors
+## ⚡️ Using SocialSelectors
 ```js
 const SocialSelectors = new (require('social-selectors'));
 SocialSelectors.load({
@@ -74,15 +74,14 @@ SocialSelectors.load({
   });
 
 })
-
 ```
 
-## How do I find the paths for the selectors?
+### How do I find the paths for the selectors?
 The easiest way to get the path for the selectors is to view the src JSON files in the repo. For example if you want to find the paths for Instagram, open [https://github.com/itw-creative-works/social-selectors/blob/master/src/libraries/instagram/main.json](/src/libraries/instagram/main.json). Each site has two main sections in the JSON file: `globals` and `pages`. And `pages` is where you'll find the selectors broken down for each page on the site.
 
 So if you wanted the selector for the like button on an Instagram post, you would come up with `pages.post.elements.likeButton.selector`.
 
-## Why use SocialSelectors?
+## 📘 Why use SocialSelectors?
 * Does your app scrape social media sites or rely on their css elements in any way?
 * Are you annoyed with having to meticulously update your css selectors to successfully scrape these elements?
 This library solves that problem by providing an api with *static* css paths that get translated into the current css selectors!

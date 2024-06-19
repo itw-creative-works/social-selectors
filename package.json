@@ -1,6 +1,6 @@
 {
   "name": "social-selectors",
-  "version": "0.2.8",
+  "version": "1.0.0",
   "description": "A library of selectors for CSS elements on social media sites.",
   "main": "module/index.js",
   "scripts": {
@@ -30,7 +30,7 @@
     "lighthouse": "lighthouse --output json --output html --output-path ./@output/lighthouse/lighthouse-report.html"
   },
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=12"
   },
   "repository": {
     "type": "git",
