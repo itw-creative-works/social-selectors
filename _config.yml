@@ -205,9 +205,15 @@ settings:
           enabled: true,
           config: {
             dsn: '',
+<<<<<<< HEAD
             release: 'itwcw-website-social-selectors',
             replaysSessionSampleRate: 0.1,
             replaysOnErrorSampleRate: 1.0,
+=======
+            release: 'ultimate-jekyll-website',
+            replaysSessionSampleRate: 0.01,
+            replaysOnErrorSampleRate: 0.01,
+>>>>>>> template
           },
         },
       },
