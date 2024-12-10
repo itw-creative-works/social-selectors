@@ -6,7 +6,7 @@
   "description": "Default description.",
   "generator": "Jekyll 4.3.2",
   "language": "en",
-  "favicon": "",
+  "favicon": "https://cdn.itwcreativeworks.com/assets/itw-creative-works/images/favicon",
   "items": [
       {"id": "https://social-selectors.itwcreativeworks.com/blog/example-post-7",
         "url": "https://social-selectors.itwcreativeworks.com/blog/example-post-7",
