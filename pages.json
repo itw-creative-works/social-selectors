@@ -403,6 +403,30 @@
         "type": ""
       },
     {
+        "url": "https://social-selectors.itwcreativeworks.com/blog/categories/marketing",
+        "title": "Marketing - Blog Categories - ITW Creative Works",
+        "desc": "Browse all blog posts in the Marketing category.",
+        "breadcrumb": "Marketing",
+        "category": "",
+        "type": ""
+      },
+    {
+        "url": "https://social-selectors.itwcreativeworks.com/blog/categories/business",
+        "title": "Business - Blog Categories - ITW Creative Works",
+        "desc": "Browse all blog posts in the Business category.",
+        "breadcrumb": "Business",
+        "category": "",
+        "type": ""
+      },
+    {
+        "url": "https://social-selectors.itwcreativeworks.com/blog/tags/business-marketing",
+        "title": "Business Marketing - Blog Tags - ITW Creative Works",
+        "desc": "Browse all blog posts tagged with Business Marketing.",
+        "breadcrumb": "Business Marketing",
+        "category": "",
+        "type": ""
+      },
+    {
         "url": "https://social-selectors.itwcreativeworks.com/blog/example-post-7",
         "title": "",
         "desc": "",
