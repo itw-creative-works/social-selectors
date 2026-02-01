@@ -1,11 +1,11 @@
 {
   "environment": "production",
   "repo": {
-    "user": "itwcw-backup",
+    "user": "itw-creative-works",
     "name": "social-selectors"
   },
   "npm-build": {
-    "timestamp": "2026-01-01T02:16:40.332Z"
+    "timestamp": "2026-02-01T04:10:45.943Z"
   },
   "gh-pages-push": {
     "timestamp": "%GHP_TIMESTAMP%"
