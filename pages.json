@@ -243,18 +243,18 @@
         "type": ""
       },
     {
-        "url": "https://social-selectors.itwcreativeworks.com/admin/notifications",
-        "title": "Notifications",
-        "desc": "View notifications",
-        "breadcrumb": "Notifications",
-        "category": "",
-        "type": ""
-      },
-    {
         "url": "https://social-selectors.itwcreativeworks.com/admin/users",
         "title": "Explore Users",
         "desc": "Explore users with this Firestore query tool.",
         "breadcrumb": "Explore Users",
+        "category": "",
+        "type": ""
+      },
+    {
+        "url": "https://social-selectors.itwcreativeworks.com/admin/notifications",
+        "title": "Notifications",
+        "desc": "View notifications",
+        "breadcrumb": "Notifications",
         "category": "",
         "type": ""
       },
